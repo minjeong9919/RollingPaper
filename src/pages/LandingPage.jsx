@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import LandingCard from '../components/landingPage/LandingCard';
 import LandingImg1 from '../assets/images/landing1.png';
 import LandingImg2 from '../assets/images/landing2.png';
-import Button from '../components/landingPage/Button';
+import LinkButton from '../components/landingPage/Button';
 
 function LandingPage() {
   const cards = [
@@ -31,7 +31,7 @@ function LandingPage() {
         ))}
       </ContainerMain>
       <ButtonContainerDiv>
-        <Button>구경해보기</Button>
+        <LinkButton to="/list">구경해보기</LinkButton>
       </ButtonContainerDiv>
     </>
   );

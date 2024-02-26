@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Button = styled.button`
+const LinkButton = styled(Link)`
+  display: inline-block;
   width: 280px;
   padding: 14px 24px;
   text-align: center;
@@ -11,6 +13,7 @@ const Button = styled.button`
   font-weight: var(--regular, 700);
   line-height: 28px;
   letter-spacing: -0.18px;
+  text-decoration: none;
   &:hover {
     background: var(--purple700, #861dee);
   }
@@ -19,4 +22,4 @@ const Button = styled.button`
   }
 `;
 
-export default Button;
+export default LinkButton;
