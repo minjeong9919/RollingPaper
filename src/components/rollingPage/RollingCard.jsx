@@ -2,48 +2,37 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { getBadgeBgColor, getBadgeTextColor } from '../../utils/BadgeColor';
-import { ReactComponent as Plus } from '../../assets/icons/plus.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg';
 
 function RollingCard({
-  name = '김동훈',
-  badge = '동료',
-  date,
-  imgUrl,
-  content,
+  name = '',
+  badge = '',
+  date = '',
+  imgUrl = '',
+  content = '',
 }) {
   return (
-    <div>
-      {name ? (
-        <ContainerDiv>
-          <SenderFrameDiv>
-            <ProfileImageDiv>
-              <img src={imgUrl} alt={name} />
-            </ProfileImageDiv>
-            <SenderInfoDiv>
-              <div>
-                <span>From.</span>
-                <span className="name">{name}</span>
-              </div>
-              <BadgeDiv badge={badge}>{badge}</BadgeDiv>
-            </SenderInfoDiv>
-            <DeleteIconDiv>
-              <DeleteIcon />
-            </DeleteIconDiv>
-          </SenderFrameDiv>
-          <ContentDiv>
-            <p>{content}</p>
-            <p className="date">{date}</p>
-          </ContentDiv>
-        </ContainerDiv>
-      ) : (
-        <ContainerDiv className="empty">
-          <PlusFrame>
-            <Plus />
-          </PlusFrame>
-        </ContainerDiv>
-      )}
-    </div>
+    <ContainerDiv>
+      <SenderFrameDiv>
+        <ProfileImageDiv>
+          <img src={imgUrl} alt={name} />
+        </ProfileImageDiv>
+        <SenderInfoDiv>
+          <div>
+            <span>From.</span>
+            <span className="name">{name}</span>
+          </div>
+          <BadgeDiv badge={badge}>{badge}</BadgeDiv>
+        </SenderInfoDiv>
+        <DeleteIconDiv>
+          <DeleteIcon />
+        </DeleteIconDiv>
+      </SenderFrameDiv>
+      <ContentDiv>
+        <p>{content}</p>
+        <p className="date">{date}</p>
+      </ContentDiv>
+    </ContainerDiv>
   );
 }
 
@@ -56,17 +45,16 @@ RollingCard.propTypes = {
 };
 
 const ContainerDiv = styled.div`
-  width: 384px;
-  height: 280px;
+  width: 100%;
+  height: 100%;
   flex-shrink: 0;
   border-radius: 16px;
   background: var(--white);
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
 
-  &.empty {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -158,17 +146,6 @@ const ContentDiv = styled.div`
     line-height: 18px;
     letter-spacing: -0.06px;
   }
-`;
-
-const PlusFrame = styled.div`
-  width: 56px;
-  height: 56px;
-  border-radius: 100px;
-  background-color: var(--gray500);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
 `;
 
 const DeleteIconDiv = styled.div`
