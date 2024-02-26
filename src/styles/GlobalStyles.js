@@ -108,7 +108,7 @@ const GlobalStyles = createGlobalStyle`
     --font12: 1.2rem;
 
     /* ==========FONT WEIGHT========== */
-    --bord: 700;
+    --bold: 700;
     --regular: 400;
   }
 
