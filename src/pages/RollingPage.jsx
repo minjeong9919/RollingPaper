@@ -1,17 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import GlobalStyles from '../styles/GlobalStyles';
+import RollingCard from '../components/rollingPage/RollingCard';
 
 function RollingPage() {
   return (
-    <>
-      <GlobalStyles />
-      <Container>RollingPage</Container>
-    </>
+    <ContainerDiv>
+      <RollingCard />
+    </ContainerDiv>
   );
 }
 
-const Container = styled.div`
+const ContainerDiv = styled.div`
   background-color: ${({ bgColor = 'var(--orange200)' }) => bgColor};
   width: 100vw;
   height: 100vw;
