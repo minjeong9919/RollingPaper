@@ -34,4 +34,11 @@ export const HeaderButton = styled(Link)`
   font-weight: var(--regular, 700);
   line-height: 26px;
   letter-spacing: -0.16px;
+  &:hover {
+    background: var(--gray100, #f6f6f6);
+  }
+  &:active {
+    border: 1px solid var(--gray500, #555);
+    background: var(--white, #fff);
+  }
 `;
