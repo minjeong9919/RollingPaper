@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import profile from '../assets/icons/profile.svg';
 import arrowDown from '../assets/icons/arrowDown.svg';
+import TextEditor from '../components/TextEditor';
 
 function RollingToMsgPage() {
   return (
@@ -29,18 +30,20 @@ function RollingToMsgPage() {
           <span>상대와의 관계</span>
           <SelectBtn type="button">
             <span>지인</span>
-            <button type="button" aria-label="SeleteBtn" />
+            <div />
           </SelectBtn>
         </RelationshipContent>
         <WriteContent>
           <span>내용을 입력해 주세요</span>
-          <div>컨텐츠</div>
+          <div>
+            <TextEditor />
+          </div>
         </WriteContent>
         <FontsContent>
           <span>폰트 선택</span>
           <SelectBtn type="button">
             <span>Noto Sans</span>
-            <button type="button" aria-label="SeleteBtn" />
+            <div />
           </SelectBtn>
         </FontsContent>
       </MsgPageForm>
@@ -52,7 +55,6 @@ function RollingToMsgPage() {
 export default RollingToMsgPage;
 
 const MsgPageContainer = styled.div`
-  border: 1px solid red;
   width: 100%;
   height: 116.9rem;
   display: flex;
@@ -198,7 +200,7 @@ const SelectBtn = styled.button`
     letter-spacing: -0.016rem;
   }
 
-  & > button {
+  & > div {
     width: 1.6rem;
     height: 1.6rem;
     background-image: url(${arrowDown});
@@ -224,10 +226,6 @@ const WriteContent = styled.div`
   & > div {
     width: 72rem;
     height: 26rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.1rem 0.1rem 1.6rem;
   }
 `;
 
