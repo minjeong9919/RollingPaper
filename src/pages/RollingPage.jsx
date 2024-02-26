@@ -6,12 +6,17 @@ import profileImage from '../assets/images/senderProfileImage.png';
 function RollingPage() {
   const cardList = [
     {
+      name: null,
+    },
+    {
       name: '김동훈',
       badge: '동료',
       date: '2023.07.08',
       imgUrl: profileImage,
       content:
-        '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!',
+        '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!'.repeat(
+          3,
+        ),
     },
     {
       name: '강미나',
@@ -44,9 +49,6 @@ function RollingPage() {
       imgUrl: profileImage,
       content:
         '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!',
-    },
-    {
-      name: null,
     },
   ];
   return (

@@ -135,12 +135,11 @@ const ContentDiv = styled.div`
   margin: 16px auto;
 
   & > p {
-    width: 100%;
-    height: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 최대 라인 수 지정 (3줄 기준) */
+    -webkit-box-orient: vertical;
     overflow: hidden;
     color: var(--gray600);
-    text-overflow: ellipsis;
-    white-space: nowrap;
     font-family: Pretendard;
     font-size: 18px;
     font-style: normal;
