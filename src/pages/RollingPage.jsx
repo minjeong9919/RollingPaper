@@ -98,14 +98,22 @@ const CardsListsDiv = styled.div`
 
   @media (max-width: 1248px) {
     width: auto;
-    padding: 114px 24px;
+    padding: 114px 24px 0px;
   }
 
   @media (max-width: 768px) {
     width: auto;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    padding: 114px 24px;
+    grid-template-rows: repeat(3, 1fr);
+    padding: 93px 24px 0px;
+    gap: 16px;
+  }
+
+  @media (max-width: 360px) {
+    width: auto;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    padding: 80px 20px;
     gap: 16px;
   }
 `;

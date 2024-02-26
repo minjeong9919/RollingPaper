@@ -90,11 +90,19 @@ const SenderInfoDiv = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
+
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
   }
 
   & > div > .name {
     font-weight: 700;
     margin-left: 6px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
   }
 `;
 
