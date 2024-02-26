@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const CardContainerDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+`;
+
 export const CardContainerSection = styled.section`
   display: flex;
   flex-direction: ${({ $even }) => ($even ? 'row-reverse' : 'row')};
