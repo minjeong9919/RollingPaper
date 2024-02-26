@@ -14,7 +14,7 @@ function Header() {
           <h1 className="LogoText">Rolling</h1>
         </HeaderLogoLink>
         {location.pathname !== '/' && location.pathname !== '/list' ? null : (
-          <HeaderButton to="/rolling">롤링 페이퍼 만들기</HeaderButton>
+          <HeaderButton to="/post">롤링 페이퍼 만들기</HeaderButton>
         )}
       </div>
     </ContainerHeader>
