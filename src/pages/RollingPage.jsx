@@ -46,12 +46,7 @@ function RollingPage() {
         '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!',
     },
     {
-      name: '강미나',
-      badge: '친구',
-      date: '2023.07.08',
-      imgUrl: profileImage,
-      content:
-        '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!',
+      name: null,
     },
   ];
   return (
