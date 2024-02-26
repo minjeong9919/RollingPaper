@@ -20,6 +20,12 @@ const LinkButton = styled(Link)`
   &:active {
     background: var(--purple800, #6e0ad1);
   }
+  @media all and (min-width: 768px) and (max-width: 1248px) {
+    width: 100%;
+  }
+  @media all and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export default LinkButton;

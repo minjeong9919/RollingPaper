@@ -40,16 +40,32 @@ function LandingPage() {
 export default LandingPage;
 
 const ContainerMain = styled.main`
+  width: 100%;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   gap: 30px;
-  width: 1200px;
   margin: 60px auto 24px;
+  @media all and (min-width: 768px) and (max-width: 1248px) {
+    margin: 49px 0;
+    padding: 0 24px;
+  }
+  @media all and (max-width: 768px) {
+    padding: 24px 20px;
+    gap: 24px;
+  }
 `;
 
 const ButtonContainerDiv = styled.div`
+  width: 100%;
+  max-width: 1200px;
   padding: 24px 0;
-  width: 1200px;
   margin: auto;
   text-align: center;
+  @media all and (min-width: 768px) and (max-width: 1248px) {
+    padding: 24px;
+  }
+  @media all and (max-width: 768px) {
+    padding: 24px 20px;
+  }
 `;

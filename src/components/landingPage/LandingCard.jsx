@@ -12,7 +12,7 @@ function LandingCard({ card }) {
   const even = id % 2 === 0;
 
   return (
-    <CardContainerSection even={even}>
+    <CardContainerSection $even={even}>
       <CardWrapperDiv>
         <CardBadgeDiv>{point}</CardBadgeDiv>
         <CardDescDiv>
@@ -20,7 +20,7 @@ function LandingCard({ card }) {
           <p className="Description">{description}</p>
         </CardDescDiv>
       </CardWrapperDiv>
-      <img src={imgSrc} alt="랜딩 페이지 이미지" />
+      <img src={imgSrc} alt="랜딩 페이지 이미지" className="LandingImg" />
     </CardContainerSection>
   );
 }
