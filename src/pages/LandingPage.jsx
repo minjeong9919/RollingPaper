@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import LandingCard from '../components/landingPage/LandingCard';
 import LandingImg1 from '../assets/images/landing1.png';
 import LandingImg2 from '../assets/images/landing2.png';
+import Button from '../components/landingPage/Button';
 
 function LandingPage() {
   const cards = [
@@ -23,20 +24,32 @@ function LandingPage() {
   ];
 
   return (
-    <Container>
-      {cards.map((card) => (
-        <LandingCard key={card.id} card={card} />
-      ))}
-    </Container>
+    <>
+      <ContainerMain>
+        {cards.map((card) => (
+          <LandingCard key={card.id} card={card} />
+        ))}
+      </ContainerMain>
+      <ButtonContainerDiv>
+        <Button>구경해보기</Button>
+      </ButtonContainerDiv>
+    </>
   );
 }
 
 export default LandingPage;
 
-const Container = styled.main`
+const ContainerMain = styled.main`
   display: flex;
   flex-direction: column;
   gap: 30px;
   width: 1200px;
+  margin: 60px auto 24px;
+`;
+
+const ButtonContainerDiv = styled.div`
+  padding: 24px 0;
+  width: 1200px;
   margin: auto;
+  text-align: center;
 `;
