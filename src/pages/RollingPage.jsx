@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import RollingCard from '../components/rollingPage/RollingCard';
 import profileImage from '../assets/images/senderProfileImage.png';
-// import AddCard from '../components/rollingPage/AddCard';
+import AddCard from '../components/rollingPage/AddCard';
 import GlobalStyles from '../styles/GlobalStyles';
 
 function RollingPage() {
@@ -60,6 +60,7 @@ function RollingPage() {
       <GlobalStyles />
       <ContainerDiv>
         <CardsListsDiv>
+          <AddCard />
           {cardList.map((card) => {
             return (
               <RollingCard
@@ -81,6 +82,8 @@ function RollingPage() {
 const ContainerDiv = styled.div`
   width: 100vw;
   height: 100vh;
+  margin: 0px;
+  overflow: auto;
   background-color: ${({ bgColor = 'var(--orange200)' }) => bgColor};
 `;
 
