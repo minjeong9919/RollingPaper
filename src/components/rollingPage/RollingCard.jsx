@@ -47,22 +47,18 @@ RollingCard.propTypes = {
 const ContainerDiv = styled.div`
   width: 100%;
   height: 100%;
+  padding: 0px 24px;
   flex-shrink: 0;
   border-radius: 16px;
   background: var(--white);
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
-
-  @media (max-width: 768px) {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 const SenderFrameDiv = styled.div`
   display: flex;
   flex-direction: row;
   gap: 14px;
-  padding: 28px 24px 15px;
+  padding: 28px 0px 15px;
 `;
 
 const ProfileImageDiv = styled.div`
@@ -117,7 +113,7 @@ const BadgeDiv = styled.div`
 `;
 
 const ContentDiv = styled.div`
-  width: 336px;
+  width: 100%;
   height: 106px;
   flex-shrink: 0;
   margin: 16px auto;

@@ -80,7 +80,7 @@ function RollingPage() {
 
 const ContainerDiv = styled.div`
   width: 100vw;
-  height: 100vw;
+  height: 100vh;
   background-color: ${({ bgColor = 'var(--orange200)' }) => bgColor};
 `;
 
@@ -88,24 +88,24 @@ const CardsListsDiv = styled.div`
   width: 1200px;
   height: auto;
   display: grid;
-  grid-template-columns: repeat(3, 384px);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 280px);
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 28px 24px;
   padding-top: 114px;
   margin: auto;
 
   @media (max-width: 1248px) {
     width: auto;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    padding: 0px 24px;
+    padding: 114px 24px;
   }
 
   @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 352px);
-    grid-template-rows: repeat(4, 284px);
+    width: auto;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    padding: 114px 24px;
     gap: 16px;
   }
 `;
