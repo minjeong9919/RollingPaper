@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { getBadgeBgColor, getBadgeTextColor } from '../../utils/BadgeColor';
 import { ReactComponent as Plus } from '../../assets/icons/plus.svg';
+import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg';
 
 function RollingCard({
   name = '김동훈',
@@ -26,6 +27,9 @@ function RollingCard({
               </div>
               <BadgeDiv badge={badge}>{badge}</BadgeDiv>
             </SenderInfoDiv>
+            <DeleteIconDiv>
+              <DeleteIcon />
+            </DeleteIconDiv>
           </SenderFrameDiv>
           <ContentDiv>
             <p>{content}</p>
@@ -166,6 +170,20 @@ const PlusFrame = styled.div`
   justify-content: center;
   align-items: center;
   margin: auto;
+`;
+
+const DeleteIconDiv = styled.div`
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--gray300);
+  background: var(--white);
+  margin-left: auto;
 `;
 
 export default RollingCard;
