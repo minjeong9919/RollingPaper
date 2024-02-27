@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import profile from '../assets/icons/profile.svg';
 import arrowDown from '../assets/icons/arrowDown.svg';
-import TextEditor from '../components/TextEditor';
+import TextEditor from '../components/RollingToMsgPage/TextEditor';
+import Select from '../components/RollingToMsgPage/Select';
 
 function RollingToMsgPage() {
   return (
@@ -28,10 +29,7 @@ function RollingToMsgPage() {
         </ProfileImgContent>
         <RelationshipContent>
           <span>상대와의 관계</span>
-          <SelectBtn type="button">
-            <span>지인</span>
-            <div />
-          </SelectBtn>
+          <Select />
         </RelationshipContent>
         <WriteContent>
           <span>내용을 입력해 주세요</span>
@@ -108,7 +106,7 @@ const InputNameContent = styled.div`
     border-radius: 0.8rem;
     border: 1px solid var(--gray300);
     background-color: var(--white);
-    color: var(--gray500);
+    color: var(--gray500, #555555);
     font-size: var(--font16);
     font-weight: var(--regular);
     line-height: 1.625;
@@ -173,6 +171,7 @@ const RelationshipContent = styled.div`
   width: 32rem;
   display: flex;
   flex-direction: column;
+  position: relative;
   gap: 1.2rem;
 
   & > span {
