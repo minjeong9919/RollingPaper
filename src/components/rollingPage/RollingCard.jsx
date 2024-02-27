@@ -5,12 +5,13 @@ import { getBadgeBgColor, getBadgeTextColor } from '../../utils/BadgeColor';
 import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg';
 
 function RollingCard({
-  sender = '',
-  relationship = '',
-  createdAt = '',
-  profileImageURL = '',
-  content = '',
-  onClick = null,
+  sender,
+  relationship,
+  createdAt,
+  profileImageURL,
+  content,
+  onClick,
+  $isEditMode,
 }) {
   return (
     <ContainerDiv onClick={() => onClick()}>
@@ -25,7 +26,7 @@ function RollingCard({
           </div>
           <BadgeDiv badge={relationship}>{relationship}</BadgeDiv>
         </SenderInfoDiv>
-        <DeleteIconBtn onClick={(e) => e.preventDefault()}>
+        <DeleteIconBtn $isEditMode={$isEditMode}>
           <DeleteIcon />
         </DeleteIconBtn>
       </SenderFrameDiv>
@@ -38,12 +39,23 @@ function RollingCard({
 }
 
 RollingCard.propTypes = {
-  sender: PropTypes.string.isRequired,
-  relationship: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
-  profileImageURL: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  sender: PropTypes.string,
+  relationship: PropTypes.string,
+  createdAt: PropTypes.string,
+  profileImageURL: PropTypes.string,
+  content: PropTypes.string,
+  onClick: PropTypes.func,
+  $isEditMode: PropTypes.bool,
+};
+
+RollingCard.defaultProps = {
+  sender: '',
+  relationship: '',
+  createdAt: '',
+  profileImageURL: '',
+  content: '',
+  onClick: null,
+  $isEditMode: false,
 };
 
 const ContainerDiv = styled.div`
@@ -125,8 +137,9 @@ const ContentDiv = styled.div`
   margin: 16px auto;
 
   & > p {
+    height: 110px;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* 최대 라인 수 지정 (3줄 기준) */
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     color: var(--gray600);
@@ -137,6 +150,14 @@ const ContentDiv = styled.div`
     line-height: 28px;
     letter-spacing: -0.18px;
     margin-bottom: 16px;
+
+    @media (max-width: 768px) {
+      height: 80px;
+    }
+    @media (max-width: 360px) {
+      height: 56px;
+      -webkit-line-clamp: 2;
+    }
   }
 
   & > .date {
@@ -151,6 +172,7 @@ const ContentDiv = styled.div`
 `;
 
 const DeleteIconBtn = styled.button`
+  visibility: ${({ $isEditMode }) => ($isEditMode ? 'visible' : 'hidden')};
   width: 40px;
   height: 40px;
   display: inline-flex;
