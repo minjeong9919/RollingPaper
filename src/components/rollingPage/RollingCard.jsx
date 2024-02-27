@@ -10,9 +10,10 @@ function RollingCard({
   date = '',
   imgUrl = '',
   content = '',
+  onClick = null,
 }) {
   return (
-    <ContainerDiv>
+    <ContainerDiv onClick={() => onClick()}>
       <SenderFrameDiv>
         <ProfileImageDiv>
           <img src={imgUrl} alt={name} />
@@ -42,6 +43,7 @@ RollingCard.propTypes = {
   date: PropTypes.string.isRequired,
   imgUrl: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 const ContainerDiv = styled.div`
@@ -99,10 +101,6 @@ const SenderInfoDiv = styled.div`
   & > div > .name {
     font-weight: 700;
     margin-left: 6px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 16px;
   }
 `;
 

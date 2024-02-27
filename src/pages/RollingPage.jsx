@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import RollingCard from '../components/rollingPage/RollingCard';
-import profileImage from '../assets/images/senderProfileImage.png';
-import AddCard from '../components/rollingPage/AddCard';
 import GlobalStyles from '../styles/GlobalStyles';
+import RollingCard from '../components/RollingPage/RollingCard';
+import profileImage from '../assets/images/senderProfileImage.png';
+import AddCard from '../components/RollingPage/AddCard';
+import DetailCard from '../components/RollingPage/DetailCard';
 
 function RollingPage() {
   const cardList = [
@@ -55,12 +56,20 @@ function RollingPage() {
         '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!',
     },
   ];
+
+  const [isDetailVisible, setIsDetailVisible] = useState(false);
+
+  const onDetailClickHandle = () => {
+    setIsDetailVisible(!isDetailVisible);
+  };
+
   return (
     <>
       <GlobalStyles />
+      <DetailCard visible={isDetailVisible} onClick={onDetailClickHandle} />
       <ContainerDiv>
         <CardsListsDiv>
-          <AddCard />
+          {cardList.length < 6 ? <AddCard /> : null}
           {cardList.map((card) => {
             return (
               <RollingCard
@@ -70,6 +79,7 @@ function RollingPage() {
                 date={card.date}
                 content={card.content}
                 imgUrl={card.imgUrl}
+                onClick={onDetailClickHandle}
               />
             );
           })}
@@ -85,6 +95,7 @@ const ContainerDiv = styled.div`
   margin: 0px;
   overflow: auto;
   background-color: ${({ bgColor = 'var(--orange200)' }) => bgColor};
+  cursor: pointer;
 `;
 
 const CardsListsDiv = styled.div`
