@@ -5,10 +5,10 @@ import { getBadgeBgColor, getBadgeTextColor } from '../../utils/BadgeColor';
 import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg';
 
 function RollingCard({
-  name = '',
-  badge = '',
-  date = '',
-  imgUrl = '',
+  sender = '',
+  relationship = '',
+  createdAt = '',
+  profileImageURL = '',
   content = '',
   onClick = null,
 }) {
@@ -16,32 +16,32 @@ function RollingCard({
     <ContainerDiv onClick={() => onClick()}>
       <SenderFrameDiv>
         <ProfileImageDiv>
-          <img src={imgUrl} alt={name} />
+          <img src={profileImageURL} alt={sender} />
         </ProfileImageDiv>
         <SenderInfoDiv>
           <div>
             <span>From.</span>
-            <span className="name">{name}</span>
+            <span className="name">{sender}</span>
           </div>
-          <BadgeDiv badge={badge}>{badge}</BadgeDiv>
+          <BadgeDiv badge={relationship}>{relationship}</BadgeDiv>
         </SenderInfoDiv>
-        <DeleteIconDiv>
+        <DeleteIconBtn onClick={(e) => e.preventDefault()}>
           <DeleteIcon />
-        </DeleteIconDiv>
+        </DeleteIconBtn>
       </SenderFrameDiv>
       <ContentDiv>
         <p>{content}</p>
-        <p className="date">{date}</p>
+        <p className="date">{createdAt}</p>
       </ContentDiv>
     </ContainerDiv>
   );
 }
 
 RollingCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  badge: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  imgUrl: PropTypes.string.isRequired,
+  sender: PropTypes.string.isRequired,
+  relationship: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  profileImageURL: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
@@ -63,7 +63,7 @@ const SenderFrameDiv = styled.div`
   padding: 28px 0px 15px;
 `;
 
-const ProfileImageDiv = styled.div`
+const ProfileImageDiv = styled.button`
   width: 56px;
   height: 56px;
   display: flex;
@@ -150,7 +150,7 @@ const ContentDiv = styled.div`
   }
 `;
 
-const DeleteIconDiv = styled.div`
+const DeleteIconBtn = styled.button`
   width: 40px;
   height: 40px;
   display: inline-flex;

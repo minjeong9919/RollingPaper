@@ -2,60 +2,38 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import GlobalStyles from '../styles/GlobalStyles';
 import RollingCard from '../components/RollingPage/RollingCard';
-import profileImage from '../assets/images/senderProfileImage.png';
 import AddCard from '../components/RollingPage/AddCard';
 import DetailCard from '../components/RollingPage/DetailCard';
+import cardList from '../constants/CardLists';
 
 function RollingPage() {
-  const cardList = [
-    {
-      id: 1,
-      name: '김동훈',
-      badge: '동료',
-      date: '2023.07.08',
-      imgUrl: profileImage,
-      content:
-        '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!'.repeat(
-          3,
-        ),
-    },
-    {
-      id: 2,
-      name: '강미나',
-      badge: '친구',
-      date: '2023.07.08',
-      imgUrl: profileImage,
-      content:
-        '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!',
-    },
-    {
-      id: 3,
-      name: '강미나',
-      badge: '지인',
-      date: '2023.07.08',
-      imgUrl: profileImage,
-      content:
-        '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!',
-    },
-    {
-      id: 4,
-      name: '강미나',
-      badge: '가족',
-      date: '2023.07.08',
-      imgUrl: profileImage,
-      content:
-        '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!',
-    },
-    {
-      id: 5,
-      name: '강미나',
-      badge: '친구',
-      date: '2023.07.08',
-      imgUrl: profileImage,
-      content:
-        '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!',
-    },
-  ];
+  // const ApiTest = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       'https://rolling-api.vercel.app/4-3/recipients/',
+  //     );
+
+  //     const result = await response.json();
+  //     console.log(result);
+  //     return result;
+  //   } catch (e) {
+  //     console.error(e);
+  //     throw e;
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       await ApiTest();
+  //     } catch (error) {
+  //       // 오류 처리
+  //       console.error(error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   const [isDetailVisible, setIsDetailVisible] = useState(false);
 
@@ -66,7 +44,7 @@ function RollingPage() {
   return (
     <>
       <GlobalStyles />
-      <DetailCard visible={isDetailVisible} onClick={onDetailClickHandle} />
+      <DetailCard $visible={isDetailVisible} onClick={onDetailClickHandle} />
       <ContainerDiv>
         <CardsListsDiv>
           {cardList.length < 6 ? <AddCard /> : null}
@@ -74,11 +52,11 @@ function RollingPage() {
             return (
               <RollingCard
                 key={card.id}
-                name={card.name}
-                badge={card.badge}
-                date={card.date}
+                sender={card.sender}
+                relationship={card.relationship}
+                createdAt={card.createdAt}
                 content={card.content}
-                imgUrl={card.imgUrl}
+                profileImageURL={card.profileImageURL}
                 onClick={onDetailClickHandle}
               />
             );
