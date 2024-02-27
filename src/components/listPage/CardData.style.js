@@ -1,21 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const CardListContainerSection = styled.section`
-  width: 1160px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 16px;
-`;
-export const CardListTitleH2 = styled.h2`
-  color: var(--black, #000);
-  font-size: var(--font24, 2.4rem);
-  font-weight: var(--bold, 700);
-  line-height: 36px;
-  letter-spacing: -0.24px;
-`;
 export const CardListBoxDiv = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -36,11 +21,14 @@ export const CardWrapperLink = styled(Link)`
   padding: 30px 24px 20px;
   border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background: var(--Purple-200, #ecd9ff);
+  background-color: ${({ $bgColor }) => $bgColor};
+  background-image: ${({ $bgImg }) => `url(${$bgImg})`};
+  background-size: cover;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
 `;
 export const CardRecipientWrapperDiv = styled.div`
   width: 100%;
+  height: 114px;
   display: flex;
   flex-direction: column;
   gap: 12px;

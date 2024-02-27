@@ -1,66 +1,54 @@
-import React, { useState } from 'react';
-import {
-  CardCommentCountDiv,
-  CardCommentImgBoxDiv,
-  CardListBoxDiv,
-  CardListContainerSection,
-  CardListTitleH2,
-  CardReactionDiv,
-  CardReactionWrapperDiv,
-  CardRecipientDiv,
-  CardRecipientWrapperDiv,
-  CardWrapperLink,
-} from './ListCard.style';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import CardData from './CardData';
 
 function ListCard() {
-  const [cardList, setCardList] = useState([]);
-  fetch('https://jsonplaceholder.typicode.com/photos')
-    .then((response) => response.json())
-    .then((data) => setCardList(data));
-  const maxElements = 5;
-  const slicedArray = cardList.slice(0, maxElements);
+  const [cardData, setCardData] = useState({ popular: [], recent: [] });
+
+  useEffect(() => {
+    Promise.all([
+      fetch('https://rolling-api.vercel.app/4-4/recipients/?sort=like'),
+      fetch('https://rolling-api.vercel.app/4-4/recipients/'),
+    ]).then(([popularRes, recentRes]) =>
+      Promise.all([popularRes.json(), recentRes.json()]).then(
+        ([popularData, recentData]) => {
+          setCardData({
+            popular: popularData.results,
+            recent: recentData.results,
+          });
+        },
+      ),
+    );
+  }, []);
+
   return (
-    <CardListContainerSection>
-      <CardListTitleH2>인기 롤링 페이퍼 🔥</CardListTitleH2>
-      <CardListBoxDiv>
-        {slicedArray.map((list) => (
-          <article key={list.id}>
-            <CardWrapperLink>
-              <CardRecipientWrapperDiv>
-                <CardRecipientDiv>To. {list.title}</CardRecipientDiv>
-                <CardCommentImgBoxDiv>
-                  <img
-                    className="commentImg"
-                    src={list.thumbnailUrl}
-                    alt="코멘트 이미지"
-                  />
-                  <img
-                    className="commentImg"
-                    src={list.thumbnailUrl}
-                    alt="코멘트 이미지"
-                  />
-                  <img
-                    className="commentImg"
-                    src={list.thumbnailUrl}
-                    alt="코멘트 이미지"
-                  />
-                  <div className="commentImg">+zzzzzz{list.id}</div>
-                </CardCommentImgBoxDiv>
-                <CardCommentCountDiv>
-                  <span className="CommentCount">30</span>명이 작성했어요!
-                </CardCommentCountDiv>
-              </CardRecipientWrapperDiv>
-              <CardReactionWrapperDiv>
-                <CardReactionDiv>
-                  👍<span className="ReactionCount">20</span>
-                </CardReactionDiv>
-              </CardReactionWrapperDiv>
-            </CardWrapperLink>
-          </article>
-        ))}
-      </CardListBoxDiv>
-    </CardListContainerSection>
+    <>
+      <CardListContainerSection>
+        <CardListTitleH2>인기 롤링 페이퍼 🔥</CardListTitleH2>
+        <CardData cardData={cardData.popular} />
+      </CardListContainerSection>
+
+      <CardListContainerSection>
+        <CardListTitleH2>최근에 만든 롤링 페이퍼 ⭐</CardListTitleH2>
+        <CardData cardData={cardData.recent} />
+      </CardListContainerSection>
+    </>
   );
 }
 
+const CardListContainerSection = styled.section`
+  width: 1160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+`;
+const CardListTitleH2 = styled.h2`
+  color: var(--black, #000);
+  font-size: var(--font24, 2.4rem);
+  font-weight: var(--bold, 700);
+  line-height: 36px;
+  letter-spacing: -0.24px;
+`;
 export default ListCard;
