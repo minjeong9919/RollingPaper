@@ -13,6 +13,13 @@ function RollingCard({
   onClick,
   $isEditMode,
 }) {
+  const year = createdAt.substring(0, 4);
+  const month = createdAt.substring(5, 7);
+  const day = createdAt.substring(8, 10);
+  // const hour = createdAt.substring(11, 13);
+  // const minute = createdAt.substring(14, 16);
+  const date = `${year}.${month}.${day}`;
+
   return (
     <ContainerDiv onClick={() => onClick()}>
       <SenderFrameDiv>
@@ -32,7 +39,7 @@ function RollingCard({
       </SenderFrameDiv>
       <ContentDiv>
         <p>{content}</p>
-        <p className="date">{createdAt}</p>
+        <p className="date">{date}</p>
       </ContentDiv>
     </ContainerDiv>
   );
@@ -106,7 +113,7 @@ const SenderInfoDiv = styled.div`
     line-height: 24px;
 
     @media (max-width: 768px) {
-      font-size: 18px;
+      font-size: 3vw;
     }
   }
 
@@ -153,6 +160,7 @@ const ContentDiv = styled.div`
 
     @media (max-width: 768px) {
       height: 80px;
+      -webkit-line-clamp: 3;
     }
     @media (max-width: 360px) {
       height: 56px;

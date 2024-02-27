@@ -25,14 +25,14 @@ const cardList = [
       '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!'.repeat(
         3,
       ),
-    createdAt: '2023.07.08',
+    createdAt: '2023-11-01T08:05:25.399056Z',
   },
   {
     id: 2,
     recipientId: 2,
     sender: '강미나',
     relationship: '친구',
-    createdAt: '2023.07.08',
+    createdAt: '2023-11-01T08:05:25.399056Z',
     profileImageURL: profileImage,
     content:
       '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!',
@@ -42,7 +42,7 @@ const cardList = [
     recipientId: 2,
     sender: '강미나',
     relationship: '지인',
-    createdAt: '2023.07.08',
+    createdAt: '2023-11-01T08:05:25.399056Z',
     profileImageURL: profileImage,
     content:
       '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!',
@@ -52,7 +52,7 @@ const cardList = [
     recipientId: 2,
     sender: '강미나',
     relationship: '가족',
-    createdAt: '2023.07.08',
+    createdAt: '2023-11-01T08:05:25.399056Z',
     profileImageURL: profileImage,
     content:
       '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!',
@@ -62,7 +62,7 @@ const cardList = [
     recipientId: 2,
     sender: '강미나',
     relationship: '친구',
-    createdAt: '2023.07.08',
+    createdAt: '2023-11-01T08:05:25.399056Z',
     profileImageURL: profileImage,
     content:
       '코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심 또 하세요!',
