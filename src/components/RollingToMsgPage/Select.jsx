@@ -1,23 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import arrowDown from '../../assets/icons/arrowDown.svg';
 
-function Select() {
+function Select({ SelectList, isOpen, setIsOpen }) {
+  const [value, setValue] = useState(null);
+
+  const isOpenHandle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const onItemClickHandle = (item) => {
+    setValue(item);
+    setIsOpen(false);
+  };
+
   return (
     <>
-      <SelectBtn type="button">
-        <span>지인</span>
+      <SelectBtn type="button" onClick={isOpenHandle}>
+        <span>{value || '선택하세요'}</span>
         <div />
       </SelectBtn>
-      <SelectOption>
-        <li>친구</li>
-        <li>지인</li>
-        <li>동료</li>
-        <li>가족</li>
-      </SelectOption>
+      {isOpen && (
+        <SelectOption>
+          {SelectList.map((item) => (
+            <button
+              type="button"
+              key={item}
+              onClick={() => onItemClickHandle(item)}
+            >
+              {item}
+            </button>
+          ))}
+        </SelectOption>
+      )}
     </>
   );
 }
+
+Select.propTypes = {
+  SelectList: PropTypes.node.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  setIsOpen: PropTypes.func.isRequired,
+};
 
 export default Select;
 
@@ -51,7 +76,7 @@ const SelectBtn = styled.button`
   }
 `;
 
-const SelectOption = styled.ul`
+const SelectOption = styled.div`
   width: 32rem;
   display: flex;
   flex-direction: column;
@@ -63,7 +88,7 @@ const SelectOption = styled.ul`
   background-color: var(--white);
   z-index: 1;
 
-  & > li {
+  & > button {
     width: 31.6rem;
     display: flex;
     align-items: center;

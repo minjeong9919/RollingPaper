@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import profile from '../assets/icons/profile.svg';
-import arrowDown from '../assets/icons/arrowDown.svg';
 import TextEditor from '../components/RollingToMsgPage/TextEditor';
 import Select from '../components/RollingToMsgPage/Select';
+import {
+  fontsList,
+  relationshList,
+} from '../components/RollingToMsgPage/SelectList';
 
 function RollingToMsgPage() {
+  const [isOpenRelationsh, setIsOpenRelationsh] = useState(false);
+  const [isOpenFont, setIsOpenFont] = useState(false);
+
   return (
     <MsgPageContainer>
       <MsgPageForm>
@@ -29,7 +35,11 @@ function RollingToMsgPage() {
         </ProfileImgContent>
         <RelationshipContent>
           <span>상대와의 관계</span>
-          <Select />
+          <Select
+            SelectList={relationshList}
+            isOpen={isOpenRelationsh}
+            setIsOpen={setIsOpenRelationsh}
+          />
         </RelationshipContent>
         <WriteContent>
           <span>내용을 입력해 주세요</span>
@@ -37,12 +47,13 @@ function RollingToMsgPage() {
             <TextEditor />
           </div>
         </WriteContent>
-        <FontsContent>
+        <FontsContent $isOpen={(isOpenRelationsh, isOpenFont)}>
           <span>폰트 선택</span>
-          <SelectBtn type="button">
-            <span>Noto Sans</span>
-            <div />
-          </SelectBtn>
+          <Select
+            SelectList={fontsList}
+            isOpen={isOpenFont}
+            setIsOpen={setIsOpenFont}
+          />
         </FontsContent>
       </MsgPageForm>
       <button type="submit">생성하기</button>
@@ -183,32 +194,6 @@ const RelationshipContent = styled.div`
   }
 `;
 
-const SelectBtn = styled.button`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 1.6rem;
-  border-radius: 0.8rem;
-  border: 0.1rem solid var(--gray300);
-
-  & > span {
-    color: var(--gray500);
-    font-size: var(--font16);
-    font-weight: var(--regular);
-    line-height: 1.625;
-    letter-spacing: -0.016rem;
-  }
-
-  & > div {
-    width: 1.6rem;
-    height: 1.6rem;
-    background-image: url(${arrowDown});
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-`;
-
 const WriteContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -232,6 +217,8 @@ const FontsContent = styled.div`
   width: 32rem;
   display: flex;
   flex-direction: column;
+  position: relative;
+  padding-bottom: ${({ $isOpen }) => ($isOpen ? '25rem' : '')};
   gap: 1.2rem;
 
   & > span {
