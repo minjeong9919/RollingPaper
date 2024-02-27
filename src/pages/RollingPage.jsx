@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import GlobalStyles from '../styles/GlobalStyles';
 import RollingCard from '../components/RollingPage/RollingCard';
-import AddCard from '../components/RollingPage/AddCard';
 import DetailCard from '../components/RollingPage/DetailCard';
 import cardList from '../constants/CardLists';
+import AddCard from '../components/RollingPage/AddCard';
 
 function RollingPage() {
   // const ApiTest = async () => {
