@@ -61,7 +61,7 @@ RollingCard.defaultProps = {
 const ContainerDiv = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0px 24px;
+  padding: 24px;
   flex-shrink: 0;
   border-radius: 16px;
   background: var(--white);
@@ -72,7 +72,7 @@ const SenderFrameDiv = styled.div`
   display: flex;
   flex-direction: row;
   gap: 14px;
-  padding: 28px 0px 15px;
+  margin-top: 4px;
 `;
 
 const ProfileImageDiv = styled.button`
@@ -132,9 +132,9 @@ const BadgeDiv = styled.div`
 
 const ContentDiv = styled.div`
   width: 100%;
-  height: 106px;
+  height: auto;
   flex-shrink: 0;
-  margin: 16px auto;
+  margin-top: 16px;
 
   & > p {
     height: 110px;
@@ -161,6 +161,8 @@ const ContentDiv = styled.div`
   }
 
   & > .date {
+    height: auto;
+    margin: 0px;
     color: var(--gray400);
     font-family: Pretendard;
     font-size: 12px;
