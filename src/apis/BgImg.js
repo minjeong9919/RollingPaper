@@ -1,13 +1,10 @@
-import axios from 'axios';
-
-const BASE_URL = 'https://rolling-api.vercel.app';
+const BASE_URL = 'https://rolling-api.vercel.app/background-images/';
 
 export default async function GetBgImg() {
-  try {
-    const res = await axios.get(`${BASE_URL}/background-images`);
-    const body = res.data;
-    return body;
-  } catch (err) {
-    console.log(err);
+  const response = await fetch(`${BASE_URL}`);
+  if (!response.ok) {
+    throw new Error('요청이 실패했습니다.');
   }
+  const body = await response.json();
+  return body;
 }

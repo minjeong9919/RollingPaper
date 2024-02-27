@@ -1,12 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import InputComponent from '../components/InputComponent';
 import Toggle from '../components/Toggle';
+import getBgImg from '../apis/BgImg';
+import BgList from '../components/BgList';
 
 function RollingToBgPage() {
   const [name, setName] = useState('');
   const [nameTouched, setNameTouched] = useState(false);
   const [toggleValue, setToggleValue] = useState('color');
+  const [loadingError, setLoadingError] = useState(null);
+  const [items, setItems] = useState([]);
+  const color = ['#ffe2ad', '#ecd9ff', '#b1e4ff', '#d0f5c3'];
+
+  console.log(name);
+  console.log(toggleValue);
+
+  const onLoadHandle = async () => {
+    let result;
+    try {
+      setLoadingError(null);
+      result = await getBgImg();
+    } catch (error) {
+      setLoadingError(error);
+      return;
+    }
+    const { imageUrls } = result;
+    setItems(imageUrls);
+  };
+
+  useEffect(() => {
+    onLoadHandle();
+  }, []);
+
+  console.log(items);
 
   const onToggleHandle = (value) => {
     setToggleValue(value);
@@ -25,6 +52,12 @@ function RollingToBgPage() {
           id="To"
         />
         <Toggle onToggle={onToggleHandle} toggleValue={toggleValue} />
+        {toggleValue === 'color' ? (
+          <BgList images={color} />
+        ) : (
+          <BgList images={items} />
+        )}
+        {loadingError && <div>에러가 발생했습니다.</div>}
         <SubmitButton type="submit">생성하기</SubmitButton>
       </FormWrapper>
     </Wrapper>
