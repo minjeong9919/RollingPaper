@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import LandingCard from '../components/landingPage/LandingCard';
 import LinkButton from '../components/landingPage/Button';
-import Header from '../components/Common/header/Header';
+import Header from '../components/common/header/Header';
 
 function LandingPage() {
   return (
