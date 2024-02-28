@@ -26,6 +26,11 @@ export const CardWrapperLink = styled(Link)`
   background-image: ${({ $bgImg }) => `url(${$bgImg})`};
   background-size: cover;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
+  @media all and (max-width: 768px) {
+    width: 208px;
+    height: 232px;
+    gap: 33px;
+  }
 `;
 export const CardRecipientWrapperDiv = styled.div`
   width: 100%;
@@ -33,6 +38,9 @@ export const CardRecipientWrapperDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  @media all and (max-width: 768px) {
+    height: 100px;
+  }
 `;
 export const CardRecipientDiv = styled.div`
   color: var(--gray900, #181818);
@@ -43,6 +51,12 @@ export const CardRecipientDiv = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  @media all and (max-width: 768px) {
+    font-size: var(--font18, 1.8rem);
+    font-weight: var(--bold, 700);
+    line-height: 28px; /* 155.556% */
+    letter-spacing: -0.18px;
+  }
 `;
 export const CardCommentImgBoxDiv = styled.div`
   display: flex;
@@ -89,6 +103,15 @@ export const CardCommentCountDiv = styled.div`
   .CommentCount {
     font-weight: var(--bold, 700);
   }
+  @media all and (max-width: 768px) {
+    font-size: var(--font14, 1.4rem);
+    font-weight: var(--regular, 400);
+    line-height: 20px;
+    letter-spacing: -0.07px;
+    .CommentCount {
+      font-weight: var(--bold, 700);
+    }
+  }
 `;
 export const CardReactionWrapperDiv = styled.div`
   display: flex;
@@ -98,6 +121,9 @@ export const CardReactionWrapperDiv = styled.div`
   width: 100%;
   padding-top: 16px;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
+  @media all and (max-width: 768px) {
+    gap: 4px;
+  }
 `;
 
 export const CardReactionDiv = styled.div`
@@ -114,5 +140,10 @@ export const CardReactionDiv = styled.div`
   .ReactionCount {
     color: #fff;
     line-height: 20px;
+  }
+  @media all and (max-width: 768px) {
+    padding: 6px 8px;
+    font-size: var(--font14, 1.4rem);
+    letter-spacing: -0.07px;
   }
 `;
