@@ -19,7 +19,7 @@ function CardData({ cardData, translateX }) {
       {cardData.map((list, index) => (
         <article key={list.id}>
           <CardWrapperLink
-            to={`/recipients/${list.id}`}
+            to={`/post${list.id}`}
             $bgColor={list.backgroundColor}
             $bgImg={list.backgroundImageURL}
           >
