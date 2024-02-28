@@ -11,11 +11,11 @@ import {
   CardWrapperLink,
 } from './CardData.style';
 
-function CardData({ cardData }) {
+function CardData({ cardData, translateX }) {
   const commentImg = cardData.map((data) => data.recentMessages);
   const emoji = cardData.map((data) => data.topReactions);
   return (
-    <CardListBoxDiv>
+    <CardListBoxDiv $translateX={translateX}>
       {cardData.map((list, index) => (
         <article key={list.id}>
           <CardWrapperLink
@@ -68,6 +68,7 @@ function CardData({ cardData }) {
 }
 CardData.propTypes = {
   cardData: PropTypes.instanceOf(Array).isRequired,
+  translateX: PropTypes.number.isRequired,
 };
 
 export default CardData;

@@ -7,7 +7,8 @@ export const CardListBoxDiv = styled.div`
   align-items: center;
   gap: 20px;
   max-width: 1160px;
-  overflow: hidden;
+  transition: transform 0.4s ease;
+  transform: ${({ $translateX }) => `translateX(-${$translateX}px)`};
 `;
 
 export const CardWrapperLink = styled(Link)`
