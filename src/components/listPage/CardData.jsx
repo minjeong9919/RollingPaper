@@ -13,7 +13,7 @@ import {
 
 function CardData({ cardData, translateX }) {
   const commentImg = cardData.map((data) => data.recentMessages);
-  const emoji = cardData.map((data) => data.topReactions);
+  const emoji = cardData.map((data) => data.topReactions.slice(0, 3));
   return (
     <CardListBoxDiv $translateX={translateX}>
       {cardData.map((list, index) => (
