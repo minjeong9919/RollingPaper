@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import profile from '../assets/icons/profile.svg';
 import TextEditor from '../components/RollingToMsgPage/TextEditor';
 import Select from '../components/RollingToMsgPage/Select';
 import {
@@ -8,6 +7,7 @@ import {
   relationshList,
 } from '../components/RollingToMsgPage/SelectList';
 import getProfileImg from '../apis/ProfileImgApi';
+import ImgList from '../components/RollingToMsgPage/ImgList';
 
 function RollingToMsgPage() {
   const [isOpenRelationsh, setIsOpenRelationsh] = useState(false);
@@ -18,75 +18,66 @@ function RollingToMsgPage() {
     const { imageUrls } = await getProfileImg();
     setProfileImg([...imageUrls]);
   };
-  console.log(profileImg);
 
   useEffect(() => {
     loadProfileImgHandle();
   }, []);
 
   return (
-    <MsgPageContainer>
+    <MsgPageContainerDiv>
       <MsgPageForm>
-        <InputNameContent>
+        <InputNameContentDiv>
           <label htmlFor="InputFrom">From.</label>
           <input
             id="InputFrom"
             type="text"
             placeholder="이름을 입력해 주세요."
           />
-        </InputNameContent>
-        <ProfileImgContent>
+        </InputNameContentDiv>
+        <ProfileImgContentDiv>
           <span>프로필 이미지</span>
-          <ImgDiv>
-            <ProfileIc />
-            <ImgListDiv>
-              <span>프로필 이미지를 선택해주세요!</span>
-              <ListContentDiv>
-                {profileImg.map((item) => (
-                  <div key={item} data={item} />
-                ))}
-              </ListContentDiv>
-            </ImgListDiv>
-          </ImgDiv>
-        </ProfileImgContent>
-        <RelationshipContent>
+          <ImgList profileImg={profileImg} />
+        </ProfileImgContentDiv>
+        <RelationshipContentDiv>
           <span>상대와의 관계</span>
           <Select
             SelectList={relationshList}
             isOpen={isOpenRelationsh}
             setIsOpen={setIsOpenRelationsh}
           />
-        </RelationshipContent>
-        <WriteContent>
+        </RelationshipContentDiv>
+        <WriteContentDiv>
           <span>내용을 입력해 주세요</span>
           <div>
             <TextEditor />
           </div>
-        </WriteContent>
-        <FontsContent $isOpen={(isOpenRelationsh, isOpenFont)}>
+        </WriteContentDiv>
+        <FontsContentDiv $isOpen={(isOpenRelationsh, isOpenFont)}>
           <span>폰트 선택</span>
           <Select
             SelectList={fontsList}
             isOpen={isOpenFont}
             setIsOpen={setIsOpenFont}
           />
-        </FontsContent>
+        </FontsContentDiv>
       </MsgPageForm>
       <button type="submit">생성하기</button>
-    </MsgPageContainer>
+    </MsgPageContainerDiv>
   );
 }
 
 export default RollingToMsgPage;
 
-const MsgPageContainer = styled.div`
+const MsgPageContainerDiv = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 6rem;
   gap: 6.2rem;
 
   @media (max-width: 768px) {
+    padding-bottom: 2.4rem;
     gap: 5.2rem;
   }
 
@@ -132,7 +123,7 @@ const MsgPageForm = styled.form`
   }
 `;
 
-const InputNameContent = styled.div`
+const InputNameContentDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -165,7 +156,7 @@ const InputNameContent = styled.div`
   }
 `;
 
-const ProfileImgContent = styled.div`
+const ProfileImgContentDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -179,65 +170,7 @@ const ProfileImgContent = styled.div`
   }
 `;
 
-const ImgDiv = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 3.2rem;
-`;
-
-const ProfileIc = styled.div`
-  width: 8rem;
-  height: 8rem;
-  background-image: url(${profile});
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-`;
-
-const ImgListDiv = styled.div`
-  width: calc(100% - 11.2rem);
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  & > span {
-    color: var(--gray500);
-    font-size: var(--font16);
-    font-weight: var(--regular);
-    line-height: 1.625;
-    letter-spacing: -0.016rem;
-  }
-`;
-
-const ListContentDiv = styled.div`
-  width: 60.5rem;
-  height: 5.6rem;
-  display: flex;
-  gap: 0.4rem;
-
-  @media (max-width: 360px) {
-    width: 20.8rem;
-    height: 8.4rem;
-    flex-wrap: wrap;
-    gap: 0.4rem 0.2rem;
-  }
-
-  & > div {
-    width: 5.6rem;
-    height: 5.6rem;
-    background-image: url(${profile});
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    @media (max-width: 360px) {
-      width: 4rem;
-      height: 4rem;
-    }
-  }
-`;
-
-const RelationshipContent = styled.div`
+const RelationshipContentDiv = styled.div`
   width: 32rem;
   display: flex;
   flex-direction: column;
@@ -253,7 +186,7 @@ const RelationshipContent = styled.div`
   }
 `;
 
-const WriteContent = styled.div`
+const WriteContentDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -276,7 +209,7 @@ const WriteContent = styled.div`
   }
 `;
 
-const FontsContent = styled.div`
+const FontsContentDiv = styled.div`
   width: 32rem;
   display: flex;
   flex-direction: column;

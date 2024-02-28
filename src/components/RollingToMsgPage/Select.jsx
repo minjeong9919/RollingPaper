@@ -22,7 +22,7 @@ function Select({ SelectList, isOpen, setIsOpen }) {
         <div />
       </SelectBtn>
       {isOpen && (
-        <SelectOption>
+        <SelectOptionDiv>
           {SelectList.map((item) => (
             <button
               type="button"
@@ -32,7 +32,7 @@ function Select({ SelectList, isOpen, setIsOpen }) {
               {item}
             </button>
           ))}
-        </SelectOption>
+        </SelectOptionDiv>
       )}
     </>
   );
@@ -76,7 +76,7 @@ const SelectBtn = styled.button`
   }
 `;
 
-const SelectOption = styled.div`
+const SelectOptionDiv = styled.div`
   width: 32rem;
   display: flex;
   flex-direction: column;
