@@ -99,6 +99,10 @@ const CardListContainerSection = styled.section`
   gap: 16px;
   .ListCardContent {
     position: relative;
+    width: 100%;
+  }
+  @media all and (max-width: 1248px) {
+    width: 100%;
   }
 `;
 const CardListTitleH2 = styled.h2`
@@ -110,6 +114,16 @@ const CardListTitleH2 = styled.h2`
 `;
 const CardList = styled.div`
   overflow: hidden;
+
+  @media all and (max-width: 1248px) {
+    overflow: scroll;
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+    /* ( 크롬, 사파리, 오페라, 엣지 ) 동작 */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 const PrevButton = styled.button`
   position: absolute;
@@ -117,6 +131,9 @@ const PrevButton = styled.button`
   left: -3rem;
   transform: translateY(-50%);
   z-index: 1;
+  @media all and (max-width: 1248px) {
+    display: none;
+  }
 `;
 const NextButton = styled(PrevButton)`
   right: -3rem;

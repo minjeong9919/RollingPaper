@@ -25,4 +25,8 @@ const Container = styled.main`
   align-items: center;
   gap: 50px;
   margin-top: 50px;
+  padding: 0 24px;
+  @media all and (max-width: 1248px) {
+    overflow: hidden;
+  }
 `;
