@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import profile from '../assets/icons/profile.svg';
 import TextEditor from '../components/RollingToMsgPage/TextEditor';
@@ -7,10 +7,22 @@ import {
   fontsList,
   relationshList,
 } from '../components/RollingToMsgPage/SelectList';
+import getProfileImg from '../apis/ProfileImgApi';
 
 function RollingToMsgPage() {
   const [isOpenRelationsh, setIsOpenRelationsh] = useState(false);
   const [isOpenFont, setIsOpenFont] = useState(false);
+  const [profileImg, setProfileImg] = useState([]);
+
+  const loadProfileImgHandle = async () => {
+    const { imageUrls } = await getProfileImg();
+    setProfileImg([...imageUrls]);
+  };
+  console.log(profileImg);
+
+  useEffect(() => {
+    loadProfileImgHandle();
+  }, []);
 
   return (
     <MsgPageContainer>
@@ -29,7 +41,11 @@ function RollingToMsgPage() {
             <ProfileIc />
             <ImgListDiv>
               <span>프로필 이미지를 선택해주세요!</span>
-              <div />
+              <ListContentDiv>
+                {profileImg.map((item) => (
+                  <div key={item} data={item} />
+                ))}
+              </ListContentDiv>
             </ImgListDiv>
           </ImgDiv>
         </ProfileImgContent>
@@ -65,11 +81,18 @@ export default RollingToMsgPage;
 
 const MsgPageContainer = styled.div`
   width: 100%;
-  height: 116.9rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6.2rem;
+
+  @media (max-width: 768px) {
+    gap: 5.2rem;
+  }
+
+  @media (max-width: 360px) {
+    gap: 18.2rem;
+  }
 
   & > button {
     width: 72rem;
@@ -85,6 +108,10 @@ const MsgPageContainer = styled.div`
     font-weight: var(--bold);
     line-height: 1.55556;
     letter-spacing: -0.018rem;
+
+    @media (max-width: 360px) {
+      width: 32rem;
+    }
   }
 `;
 
@@ -94,6 +121,15 @@ const MsgPageForm = styled.form`
   flex-direction: column;
   padding-top: 4.7rem;
   gap: 5rem;
+
+  @media (max-width: 768px) {
+    padding-top: 4.9rem;
+  }
+
+  @media (max-width: 360px) {
+    width: 32rem;
+    padding-top: 5rem;
+  }
 `;
 
 const InputNameContent = styled.div`
@@ -115,13 +151,17 @@ const InputNameContent = styled.div`
     align-items: center;
     padding: 1.2rem 1.6rem;
     border-radius: 0.8rem;
-    border: 1px solid var(--gray300);
+    border: 0.1rem solid var(--gray300);
     background-color: var(--white);
     color: var(--gray500, #555555);
     font-size: var(--font16);
     font-weight: var(--regular);
     line-height: 1.625;
     letter-spacing: -0.016rem;
+
+    @media (max-width: 360px) {
+      width: 32rem;
+    }
   }
 `;
 
@@ -167,6 +207,20 @@ const ImgListDiv = styled.div`
     line-height: 1.625;
     letter-spacing: -0.016rem;
   }
+`;
+
+const ListContentDiv = styled.div`
+  width: 60.5rem;
+  height: 5.6rem;
+  display: flex;
+  gap: 0.4rem;
+
+  @media (max-width: 360px) {
+    width: 20.8rem;
+    height: 8.4rem;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.2rem;
+  }
 
   & > div {
     width: 5.6rem;
@@ -175,6 +229,11 @@ const ImgListDiv = styled.div`
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+
+    @media (max-width: 360px) {
+      width: 4rem;
+      height: 4rem;
+    }
   }
 `;
 
@@ -210,6 +269,10 @@ const WriteContent = styled.div`
   & > div {
     width: 72rem;
     height: 26rem;
+
+    @media (max-width: 360px) {
+      width: 32rem;
+    }
   }
 `;
 
@@ -220,6 +283,10 @@ const FontsContent = styled.div`
   position: relative;
   padding-bottom: ${({ $isOpen }) => ($isOpen ? '25rem' : '')};
   gap: 1.2rem;
+
+  @media (max-width: 360px) {
+    padding-bottom: ${({ $isOpen }) => ($isOpen ? '7rem' : '0')};
+  }
 
   & > span {
     color: var(--gray900);

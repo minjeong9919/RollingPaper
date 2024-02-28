@@ -8,7 +8,7 @@ function TextEditor() {
 
   const modules = {
     toolbar: [
-      [{ header: [1, 2, false] }],
+      // [{ header: [1, 2, false] }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
       [
         { list: 'ordered' },
@@ -45,7 +45,6 @@ function TextEditor() {
 
   return (
     <StyledQuillEditor
-      style={{ width: '72rem', height: '21.8rem', borderRadius: 8 }}
       theme="snow"
       modules={modules}
       formats={formats}
@@ -58,11 +57,19 @@ function TextEditor() {
 export default TextEditor;
 
 const StyledQuillEditor = styled(ReactQuill)`
-  .ql-container {
-    border-radius: 0 0 0.8rem 0.8rem;
+  width: 72rem;
+  height: 21.8rem;
+  border-radius: 0.8rem;
+
+  @media (max-width: 360px) {
+    width: 32rem;
+    height: 19.4rem;
   }
 
   .ql-toolbar {
     border-radius: 0.8rem 0.8rem 0 0;
+  }
+  .ql-container {
+    border-radius: 0 0 0.8rem 0.8rem;
   }
 `;
