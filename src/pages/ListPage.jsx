@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import ListCard from '../components/listPage/ListCard';
-import Header from '../components/common/header/Header';
-import LinkButton from '../components/landingPage/Button';
+import ListCard from '../components/ListPage/ListCard';
+import Header from '../components/Common/Header/Header';
+import LinkButton from '../components/LandingPage/Button';
 
 function ListPage() {
   return (
