@@ -14,8 +14,8 @@ function ListCard() {
 
   useEffect(() => {
     Promise.all([
-      fetch('https://rolling-api.vercel.app/4-4/recipients/?sort=like'),
-      fetch('https://rolling-api.vercel.app/4-4/recipients/'),
+      fetch('https://rolling-api.vercel.app/4-3/recipients/?sort=like'),
+      fetch('https://rolling-api.vercel.app/4-3/recipients/'),
     ]).then(([popularRes, recentRes]) =>
       Promise.all([popularRes.json(), recentRes.json()]).then(
         ([popularData, recentData]) => {
