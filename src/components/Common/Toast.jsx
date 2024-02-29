@@ -64,6 +64,8 @@ const timerAnimation = css`
 `;
 
 const ToastBoxDiv = styled.div`
+  position: fixed;
+  bottom: 0px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
