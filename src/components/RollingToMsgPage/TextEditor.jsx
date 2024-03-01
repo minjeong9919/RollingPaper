@@ -4,7 +4,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import styled from 'styled-components';
 
-function TextEditor({ quillValue, setQuillValue, onChange }) {
+function TextEditor({ quillValue, onChange }) {
   const modules = {
     toolbar: [
       // [{ header: [1, 2, false] }],
@@ -39,9 +39,7 @@ function TextEditor({ quillValue, setQuillValue, onChange }) {
   ];
 
   const onQuillChangeHandle = (content) => {
-    const newValue = content;
-    setQuillValue(newValue);
-    onChange(newValue);
+    onChange(content);
   };
 
   return (
@@ -58,7 +56,6 @@ function TextEditor({ quillValue, setQuillValue, onChange }) {
 TextEditor.propTypes = {
   quillValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
     .isRequired,
-  setQuillValue: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

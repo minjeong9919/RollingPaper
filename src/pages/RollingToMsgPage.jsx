@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import TextEditor from '../components/RollingToMsgPage/TextEditor';
-import Select from '../components/RollingToMsgPage/Select';
-import {
-  fontsList,
-  relationshList,
-} from '../components/RollingToMsgPage/SelectList';
-import ImgList from '../components/RollingToMsgPage/ImgList';
-import getProfileImg from '../apis/ProfileImgApi';
-import { getRecipients, postFormData } from '../apis/api';
+import { useNavigate } from 'react-router-dom';
+import { getProfileImg, getRecipients, postFormData } from '../apis/api';
+import InputName from '../components/RollingToMsgPage/InputName';
+import ProfileImg from '../components/RollingToMsgPage/ProfileImg';
+import Relationship from '../components/RollingToMsgPage/Relationship';
+import Fonts from '../components/RollingToMsgPage/Fonts';
+import Text from '../components/RollingToMsgPage/Text';
 
 function RollingToMsgPage() {
   const [isOpenRelationship, setIsOpenRelationship] = useState(false);
@@ -33,7 +30,7 @@ function RollingToMsgPage() {
     const { results } = await getRecipients();
     setId(results[0].id);
   };
-  console.log(quillValue);
+
   const onSubmitHandle = async (e) => {
     e.preventDefault();
     const formData = {
@@ -49,27 +46,6 @@ function RollingToMsgPage() {
     const response = await postFormData(formData, id);
     navigate(`/post/${id}/`);
     return response;
-  };
-
-  const onNameChangeHandle = (e) => {
-    setName(e.target.value);
-  };
-
-  const onNameFocusHandle = () => {
-    setName('');
-    setErrorMsg('');
-  };
-
-  const onNameBlurHandle = (e) => {
-    if (e.target.value === '') {
-      setErrorMsg('값을 입력해 주세요.');
-    } else {
-      setErrorMsg('');
-    }
-  };
-
-  const onImgHandle = (value) => {
-    setImage(value);
   };
 
   const onRelationshipValueHandle = (value) => {
@@ -88,64 +64,32 @@ function RollingToMsgPage() {
     loadProfileImgHandle();
     loadRecipients();
   }, []);
-
   return (
     <MsgPageContainerDiv>
       <MsgPageForm onSubmit={onSubmitHandle}>
-        <InputNameContentDiv>
-          <label htmlFor="InputFrom">From.</label>
-          <NameInput
-            id="InputFrom"
-            type="text"
-            placeholder="이름을 입력해 주세요."
-            onChange={onNameChangeHandle}
-            onFocus={onNameFocusHandle}
-            onBlur={onNameBlurHandle}
-            $errorMsg={errorMsg}
-          />
-          {errorMsg && <span>{errorMsg}</span>}
-        </InputNameContentDiv>
-        <ProfileImgContentDiv>
-          <span>프로필 이미지</span>
-          <ImgList
-            profileImg={profileImg}
-            image={image}
-            setImage={setImage}
-            onChange={onImgHandle}
-          />
-        </ProfileImgContentDiv>
-        <RelationshipContentDiv>
-          <span>상대와의 관계</span>
-          <Select
-            SelectList={relationshList}
-            isOpen={isOpenRelationship}
-            setIsOpen={setIsOpenRelationship}
-            value={relationshipValue}
-            setValue={setRelationshipValue}
-            onChange={onRelationshipValueHandle}
-          />
-        </RelationshipContentDiv>
-        <WriteContentDiv>
-          <span>내용을 입력해 주세요</span>
-          <div>
-            <TextEditor
-              quillValue={quillValue}
-              setQuillValue={setQuillValue}
-              onChange={onQuillValueChangeHandle}
-            />
-          </div>
-        </WriteContentDiv>
-        <FontsContentDiv $isOpen={(isOpenRelationship, isOpenFont)}>
-          <span>폰트 선택</span>
-          <Select
-            SelectList={fontsList}
-            isOpen={isOpenFont}
-            setIsOpen={setIsOpenFont}
-            value={fontpValue}
-            setValue={setFontValue}
-            onChange={onFontValueHandle}
-          />
-        </FontsContentDiv>
+        <InputName
+          setName={setName}
+          errorMsg={errorMsg}
+          setErrorMsg={setErrorMsg}
+        />
+        <ProfileImg profileImg={profileImg} image={image} setImage={setImage} />
+        <Relationship
+          isOpenRelationship={isOpenRelationship}
+          setIsOpenRelationship={setIsOpenRelationship}
+          relationshipValue={relationshipValue}
+          onRelationshipValueHandle={onRelationshipValueHandle}
+        />
+        <Text
+          quillValue={quillValue}
+          onQuillValueChangeHandle={onQuillValueChangeHandle}
+        />
+        <Fonts
+          isOpenFont={isOpenFont}
+          setIsOpenFont={setIsOpenFont}
+          isOpenRelationship={isOpenRelationship}
+          fontpValue={fontpValue}
+          onFontValueHandle={onFontValueHandle}
+        />
         <SubmitBtn type="submit" disabled={!name || !quillValue}>
           생성하기
         </SubmitBtn>
@@ -182,130 +126,6 @@ const MsgPageForm = styled.form`
   @media (max-width: 360px) {
     width: 32rem;
     padding-top: 5rem;
-  }
-`;
-
-const InputNameContentDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  & > label {
-    color: var(--gray900);
-    font-size: var(--font24);
-    font-weight: var(--bold);
-    line-height: 1.5;
-    letter-spacing: -0.024rem;
-  }
-
-  & > span {
-    color: var(--error);
-    margin-top: -0.6rem;
-    font-size: var(--font14);
-    font-weight: var(--regular);
-    line-height: normal;
-  }
-`;
-
-const NameInput = styled.input`
-  width: 72rem;
-  display: flex;
-  align-items: center;
-  padding: 1.2rem 1.6rem;
-  border-radius: 0.8rem;
-  border: 0.1rem solid
-    ${({ $errorMsg }) => ($errorMsg === '' ? 'var(--gray300)' : 'var(--error)')};
-  background-color: var(--white);
-  color: var(--gray500, #555555);
-  font-size: var(--font16);
-  font-weight: var(--regular);
-  line-height: 1.625;
-  letter-spacing: -0.016rem;
-
-  &:focus {
-    border: 0.1rem solid var(--gray300);
-  }
-
-  @media (max-width: 360px) {
-    width: 32rem;
-  }
-`;
-
-const ProfileImgContentDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  & > span {
-    color: var(--gray900);
-    font-size: var(--font24);
-    font-weight: var(--bold);
-    line-height: 1.5;
-    letter-spacing: -0.024rem;
-  }
-`;
-
-const RelationshipContentDiv = styled.div`
-  width: 32rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  gap: 1.2rem;
-
-  & > span {
-    color: var(--gray900);
-    font-size: var(--font24);
-    font-weight: var(--bold);
-    line-height: 1.5;
-    letter-spacing: -0.024rem;
-  }
-`;
-
-const WriteContentDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  & > span {
-    color: var(--gray900);
-    font-size: var(--font24);
-    font-weight: var(--bold);
-    line-height: 1.5;
-    letter-spacing: -0.024rem;
-  }
-
-  & > div {
-    width: 72rem;
-    height: 26rem;
-
-    @media (max-width: 360px) {
-      width: 32rem;
-    }
-  }
-`;
-
-const FontsContentDiv = styled.div`
-  width: 32rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  padding-bottom: ${({ $isOpen }) => ($isOpen ? '25rem' : '1.2rem')};
-  gap: 1.2rem;
-
-  @media (max-width: 768px) {
-    padding-bottom: ${({ $isOpen }) => ($isOpen ? '25rem' : '0.2rem')};
-  }
-
-  @media (max-width: 360px) {
-    padding-bottom: ${({ $isOpen }) => ($isOpen ? '20.6rem' : '20.6rem')};
-  }
-
-  & > span {
-    color: var(--gray900);
-    font-size: var(--font24);
-    font-weight: var(--bold);
-    line-height: 1.5;
-    letter-spacing: -0.024rem;
   }
 `;
 

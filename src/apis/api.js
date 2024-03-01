@@ -6,6 +6,12 @@ export const getRecipients = async () => {
   return result;
 };
 
+export const getProfileImg = async () => {
+  const response = await fetch(`${BASE_URL}/profile-images/`);
+  const result = response.json();
+  return result;
+};
+
 export const postFormData = async (formData, id) => {
   const response = await fetch(`${BASE_URL}/4-3/recipients/${id}/messages/`, {
     method: 'POST',

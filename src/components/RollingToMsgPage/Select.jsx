@@ -4,13 +4,12 @@ import styled from 'styled-components';
 import arrowDown from '../../assets/icons/arrowDown.svg';
 import arrowTop from '../../assets/icons/arrowTop.svg';
 
-function Select({ SelectList, isOpen, setIsOpen, value, setValue, onChange }) {
+function Select({ SelectList, isOpen, setIsOpen, value, onChange }) {
   const isOpenHandle = () => {
     setIsOpen(!isOpen);
   };
 
   const onItemClickHandle = (item) => {
-    setValue(item);
     onChange(item);
     setIsOpen(false);
   };
@@ -47,7 +46,6 @@ Select.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   setIsOpen: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  setValue: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

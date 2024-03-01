@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import profile from '../../assets/icons/profile.svg';
 
-function ImgList({ profileImg, image, setImage, onChange }) {
+function ImgList({ profileImg, image, onChange }) {
   const onImageClickHandle = (item) => {
-    setImage(item);
     onChange(item);
   };
 
   useEffect(() => {
     if (!image && profileImg.length > 0) {
-      setImage(profileImg[0]);
       onChange(profileImg[0]);
     }
   }, [profileImg]);
@@ -38,7 +36,6 @@ function ImgList({ profileImg, image, setImage, onChange }) {
 ImgList.propTypes = {
   profileImg: PropTypes.node.isRequired,
   image: PropTypes.node.isRequired,
-  setImage: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
