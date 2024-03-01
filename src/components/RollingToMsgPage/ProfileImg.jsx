@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import ImgList from './ImgList';
+import { ProfileImgContentDiv } from '../../styles/RollingToMsgPage/ProfileImg.style';
 
 function ProfileImg({ profileImg, image, setImage }) {
   const onImgHandle = (value) => {
@@ -23,18 +23,3 @@ ProfileImg.propTypes = {
 };
 
 export default ProfileImg;
-
-const ProfileImgContentDiv = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  & > span {
-    color: var(--gray900);
-    font-size: var(--font24);
-    font-weight: var(--bold);
-    line-height: 1.5;
-    letter-spacing: -0.024rem;
-  }
-`;

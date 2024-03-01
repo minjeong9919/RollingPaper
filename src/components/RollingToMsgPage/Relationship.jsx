@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Select from './Select';
 import { relationshList } from './SelectList';
+import { RelationshipContentDiv } from '../../styles/RollingToMsgPage/Relationship.style';
 
 function Relationship({
   isOpenRelationship,
@@ -32,20 +32,3 @@ Relationship.propTypes = {
 };
 
 export default Relationship;
-
-const RelationshipContentDiv = styled.div`
-  max-width: 32rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  gap: 1.2rem;
-
-  & > span {
-    color: var(--gray900);
-    font-size: var(--font24);
-    font-weight: var(--bold);
-    line-height: 1.5;
-    letter-spacing: -0.024rem;
-  }
-`;

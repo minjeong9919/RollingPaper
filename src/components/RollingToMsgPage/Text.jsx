@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import TextEditor from './TextEditor';
+import { WriteContentDiv } from '../../styles/RollingToMsgPage/Text.style';
 
 function Text({ quillValue, onQuillValueChangeHandle }) {
   return (
@@ -23,26 +23,3 @@ Text.propTypes = {
 };
 
 export default Text;
-
-const WriteContentDiv = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  & > span {
-    color: var(--gray900);
-    font-size: var(--font24);
-    font-weight: var(--bold);
-    line-height: 1.5;
-    letter-spacing: -0.024rem;
-  }
-
-  & > div {
-    height: 26rem;
-
-    @media (max-width: 360px) {
-      width: 32rem;
-    }
-  }
-`;
