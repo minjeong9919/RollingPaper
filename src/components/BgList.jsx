@@ -4,16 +4,16 @@ import styled from 'styled-components';
 import BgImg from './BgImg';
 import BgColor from './BgColor';
 
-function BgList({ images, onSelectColor, onSelectImg }) {
+function BgList({ images, onSelectColor, onSelectImg, selectedColor }) {
   const [selectedImg, setSelectedImg] = useState('');
-  const [selectedColor, setSelectedColor] = useState('');
+  const [userSelectedColor, setUserSelectedColor] = useState(selectedColor);
 
   const onSelectedImgHandle = (img) => {
     setSelectedImg(img);
   };
 
   const onSelectedColorHandle = (color) => {
-    setSelectedColor(color);
+    setUserSelectedColor(color);
   };
   return (
     <BgListWrapper>
@@ -31,7 +31,7 @@ function BgList({ images, onSelectColor, onSelectImg }) {
             key={image}
             color={image}
             onSelectColor={onSelectColor}
-            isSelected={selectedColor === image}
+            isSelected={userSelectedColor === image}
             onSelectedColor={onSelectedColorHandle}
           />
         ),
@@ -44,12 +44,14 @@ BgList.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string),
   onSelectColor: PropTypes.func,
   onSelectImg: PropTypes.func,
+  selectedColor: PropTypes.string,
 };
 
 BgList.defaultProps = {
   images: [],
   onSelectColor: () => {},
   onSelectImg: () => {},
+  selectedColor: 'beige',
 };
 
 export default BgList;

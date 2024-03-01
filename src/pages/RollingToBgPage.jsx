@@ -11,9 +11,9 @@ function RollingToBgPage() {
   const [toggleValue, setToggleValue] = useState('color');
   const [loadingError, setLoadingError] = useState(null);
   const [items, setItems] = useState([]);
-  const color = ['#ffe2ad', '#ecd9ff', '#b1e4ff', '#d0f5c3'];
+  const color = ['beige', 'purple', 'blue', 'green'];
   const [selectedColor, setSelectedColor] = useState(color[0]);
-  const [selectedImg, setSelectedImg] = useState('');
+  const [selectedImg, setSelectedImg] = useState(' ');
   console.log('임시로 불러온 선택된 컬러', selectedColor);
   console.log('임시로 불러온 선택된 이미지', selectedImg);
 
@@ -46,10 +46,39 @@ function RollingToBgPage() {
     setToggleValue(value);
   };
 
+  const onSubmitHandle = async (event) => {
+    event.preventDefault();
+    const data = {
+      team: '4-3',
+      name,
+      backgroundColor: selectedColor,
+      backgroundImageURL: selectedImg,
+    };
+    try {
+      const response = await fetch(
+        'https://rolling-api.vercel.app/4-3/recipients/',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        },
+      );
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Wrapper>
       <Header>RollingToBgPage</Header>
-      <FormWrapper>
+      <FormWrapper onSubmit={onSubmitHandle}>
         <InputComponent
           value={name}
           setValue={setName}
@@ -70,6 +99,7 @@ function RollingToBgPage() {
             images={items}
             onSelectColor={onSelectColorHandle}
             onSelectImg={onSelectImgHandle}
+            selectedColor={selectedColor}
           />
         )}
         {loadingError && <div>에러가 발생했습니다.</div>}
