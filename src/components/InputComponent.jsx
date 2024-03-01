@@ -64,7 +64,7 @@ const InputWrapper = styled.div`
   align-items: start;
   justify-content: center;
   width: 100%;
-  margin: 20px 0;
+  margin-bottom: 50px;
   gap: 12px;
   label {
     color: var(--gray-900, #181818);

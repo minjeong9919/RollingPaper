@@ -47,6 +47,7 @@ export default Toggle;
 
 const TotalWrapper = styled.div`
   width: 100%;
+  margin-bottom: 45px;
 `;
 
 const TextWrapper = styled.div`
@@ -55,7 +56,7 @@ const TextWrapper = styled.div`
   justify-content: center;
   align-items: start;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   font-family: Pretendard;
 `;
 

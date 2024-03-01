@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputComponent from '../components/InputComponent';
 import Toggle from '../components/Toggle';
@@ -14,8 +15,8 @@ function RollingToBgPage() {
   const color = ['beige', 'purple', 'blue', 'green'];
   const [selectedColor, setSelectedColor] = useState(color[0]);
   const [selectedImg, setSelectedImg] = useState(' ');
-  console.log('임시로 불러온 선택된 컬러', selectedColor);
-  console.log('임시로 불러온 선택된 이미지', selectedImg);
+
+  const navigate = useNavigate();
 
   const onSelectColorHandle = (value) => {
     setSelectedColor(value);
@@ -66,10 +67,8 @@ function RollingToBgPage() {
         },
       );
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        navigate.push('/rolling');
       }
-      const result = await response.json();
-      console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -114,9 +113,9 @@ export default RollingToBgPage;
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   width: 100%;
-  height: 100vh;
+  margin-top: 122px;
 `;
 
 const Header = styled.h1`
@@ -136,7 +135,6 @@ const FormWrapper = styled.form`
   justify-content: center;
   align-items: start;
   width: 786px;
-  background-color: aliceblue;
 `;
 
 const SubmitButton = styled.button`
