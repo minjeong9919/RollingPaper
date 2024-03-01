@@ -3,50 +3,46 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SelectedImg from '../assets/selectedBgImg.png';
 
-function BgImg({ img, onSelectImg, isSelected, onSelectedImg }) {
-  const onClickImgHandle = (value) => {
-    onSelectImg(value);
-    onSelectedImg(value);
+function BgImg({ color, onSelectColor, isSelected, onSelectedColor }) {
+  const onClickColorHandle = (value) => {
+    onSelectColor(value);
+    onSelectedColor(value);
   };
+
   return (
-    <BgItemWrapper onClick={() => onClickImgHandle(img)}>
-      <BgImgWrapper src={img} alt={img} />
+    <BgImgWrapper color={color} onClick={() => onClickColorHandle(color)}>
       {isSelected && (
         <SelectedLayer>
           <img src={SelectedImg} alt="selectIcon" />
         </SelectedLayer>
       )}
-    </BgItemWrapper>
+    </BgImgWrapper>
   );
 }
 
 BgImg.propTypes = {
-  img: PropTypes.string,
-  onSelectImg: PropTypes.func,
+  color: PropTypes.string,
+  onSelectColor: PropTypes.func,
   isSelected: PropTypes.bool,
-  onSelectedImg: PropTypes.func,
+  onSelectedColor: PropTypes.func,
 };
 
 BgImg.defaultProps = {
-  img: '',
-  onSelectImg: () => {},
+  color: '',
+  onSelectColor: () => {},
   isSelected: false,
-  onSelectedImg: () => {},
+  onSelectedColor: () => {},
 };
 
 export default BgImg;
 
-const BgItemWrapper = styled.div`
+const BgImgWrapper = styled.div`
   position: relative;
   width: 168px;
   height: 168px;
-`;
-
-const BgImgWrapper = styled.img`
-  width: 100%;
-  height: 100%;
   border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: ${({ color }) => color};
 `;
 
 const SelectedLayer = styled.div`
@@ -55,7 +51,6 @@ const SelectedLayer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 16px;
   display: flex;
   justify-content: center;

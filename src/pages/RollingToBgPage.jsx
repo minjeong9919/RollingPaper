@@ -12,9 +12,18 @@ function RollingToBgPage() {
   const [loadingError, setLoadingError] = useState(null);
   const [items, setItems] = useState([]);
   const color = ['#ffe2ad', '#ecd9ff', '#b1e4ff', '#d0f5c3'];
+  const [selectedColor, setSelectedColor] = useState(color[0]);
+  const [selectedImg, setSelectedImg] = useState('');
+  console.log('임시로 불러온 선택된 컬러', selectedColor);
+  console.log('임시로 불러온 선택된 이미지', selectedImg);
 
-  console.log(name);
-  console.log(toggleValue);
+  const onSelectColorHandle = (value) => {
+    setSelectedColor(value);
+  };
+
+  const onSelectImgHandle = (value) => {
+    setSelectedImg(value);
+  };
 
   const onLoadHandle = async () => {
     let result;
@@ -32,8 +41,6 @@ function RollingToBgPage() {
   useEffect(() => {
     onLoadHandle();
   }, []);
-
-  console.log(items);
 
   const onToggleHandle = (value) => {
     setToggleValue(value);
@@ -53,9 +60,17 @@ function RollingToBgPage() {
         />
         <Toggle onToggle={onToggleHandle} toggleValue={toggleValue} />
         {toggleValue === 'color' ? (
-          <BgList images={color} />
+          <BgList
+            images={color}
+            onSelectColor={onSelectColorHandle}
+            onSelectImg={onSelectImgHandle}
+          />
         ) : (
-          <BgList images={items} />
+          <BgList
+            images={items}
+            onSelectColor={onSelectColorHandle}
+            onSelectImg={onSelectImgHandle}
+          />
         )}
         {loadingError && <div>에러가 발생했습니다.</div>}
         <SubmitButton type="submit">생성하기</SubmitButton>
