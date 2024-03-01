@@ -101,36 +101,42 @@ function RollingToMsgPage() {
 export default RollingToMsgPage;
 
 const MsgPageContainerDiv = styled.div`
+  max-width: 192rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 6rem;
 
   @media (max-width: 768px) {
-    padding-bottom: 2.4rem;
+    max-width: 76.8rem;
+    padding: 0 2.4rem;
+  }
+
+  @media (max-width: 360px) {
+    max-width: 36rem;
+    padding: 0 2rem;
   }
 `;
 
 const MsgPageForm = styled.form`
-  width: 72rem;
   display: flex;
   flex-direction: column;
-  padding-top: 4.7rem;
+  padding: 4.7rem 0 6rem;
+  margin: 0 auto;
   gap: 5rem;
 
   @media (max-width: 768px) {
-    padding-top: 4.9rem;
+    width: 100%;
+    padding: 4.9rem 0 6rem;
   }
 
   @media (max-width: 360px) {
-    width: 32rem;
-    padding-top: 5rem;
+    min-width: 32rem;
   }
 `;
 
 const SubmitBtn = styled.button`
-  width: 72rem;
+  width: 100%;
   height: 5.6rem;
   display: flex;
   justify-content: center;

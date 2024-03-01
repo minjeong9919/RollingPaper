@@ -25,6 +25,7 @@ Text.propTypes = {
 export default Text;
 
 const WriteContentDiv = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -38,7 +39,6 @@ const WriteContentDiv = styled.div`
   }
 
   & > div {
-    width: 72rem;
     height: 26rem;
 
     @media (max-width: 360px) {

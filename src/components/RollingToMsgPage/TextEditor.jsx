@@ -62,7 +62,6 @@ TextEditor.propTypes = {
 export default TextEditor;
 
 const StyledQuillEditor = styled(ReactQuill)`
-  width: 72rem;
   height: 21.8rem;
   border-radius: 0.8rem;
 

@@ -46,6 +46,7 @@ InputName.propTypes = {
 export default InputName;
 
 const InputNameContentDiv = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -68,7 +69,6 @@ const InputNameContentDiv = styled.div`
 `;
 
 const NameInput = styled.input`
-  width: 72rem;
   display: flex;
   align-items: center;
   padding: 1.2rem 1.6rem;

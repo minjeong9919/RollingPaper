@@ -42,6 +42,7 @@ ImgList.propTypes = {
 export default ImgList;
 
 const ImgDiv = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 3.2rem;
@@ -73,9 +74,8 @@ const ImgListDiv = styled.div`
 `;
 
 const ListContentDiv = styled.div`
-  width: 60.5rem;
-  height: 5.6rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 0.4rem;
 
   @media (max-width: 360px) {

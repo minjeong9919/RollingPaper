@@ -25,6 +25,7 @@ ProfileImg.propTypes = {
 export default ProfileImg;
 
 const ProfileImgContentDiv = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;

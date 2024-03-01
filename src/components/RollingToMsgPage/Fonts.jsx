@@ -36,7 +36,8 @@ Fonts.propTypes = {
 export default Fonts;
 
 const FontsContentDiv = styled.div`
-  width: 32rem;
+  max-width: 32rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
