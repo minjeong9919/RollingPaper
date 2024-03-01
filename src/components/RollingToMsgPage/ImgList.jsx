@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import profile from '../../assets/icons/profile.svg';
 
-function ImgList({ profileImg }) {
-  const [image, setImage] = useState(null);
-
+function ImgList({ profileImg, image, setImage, onChange }) {
   const onImageClickHandle = (item) => {
     setImage(item);
+    onChange(item);
   };
+
+  useEffect(() => {
+    if (!image && profileImg.length > 0) {
+      setImage(profileImg[0]);
+      onChange(profileImg[0]);
+    }
+  }, [profileImg]);
+
   return (
     <ImgDiv>
-      <ProfileIc image={image} />
+      <ProfileIc $image={image} />
       <ImgListDiv>
         <span>프로필 이미지를 선택해주세요!</span>
         <ListContentDiv>
-          {profileImg.map((item) => (
+          {profileImg.slice(1).map((item) => (
             <ImageDiv
               key={item}
               data={item}
@@ -30,6 +37,9 @@ function ImgList({ profileImg }) {
 
 ImgList.propTypes = {
   profileImg: PropTypes.node.isRequired,
+  image: PropTypes.node.isRequired,
+  setImage: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default ImgList;
@@ -43,7 +53,7 @@ const ImgDiv = styled.div`
 const ProfileIc = styled.div`
   width: 8rem;
   height: 8rem;
-  background-image: ${(props) => `url(${props.image || profile})`};
+  background-image: ${(props) => `url(${props.$image || profile})`};
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -87,6 +97,8 @@ const ImageDiv = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 10rem;
+  border-radius: 100px;
+  border: 0.1rem solid var(--gray200);
   cursor: pointer;
 
   @media (max-width: 360px) {

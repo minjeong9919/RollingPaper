@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import styled from 'styled-components';
 
-function TextEditor() {
-  const [quillValue, setQuillValue] = useState('');
-
+function TextEditor({ quillValue, setQuillValue, onChange }) {
   const modules = {
     toolbar: [
       // [{ header: [1, 2, false] }],
@@ -39,8 +38,10 @@ function TextEditor() {
     'background',
   ];
 
-  const handleQuillChange = (content, delta, source, editor) => {
-    setQuillValue(editor.getContents());
+  const onQuillChangeHandle = (content) => {
+    const newValue = content;
+    setQuillValue(newValue);
+    onChange(newValue);
   };
 
   return (
@@ -49,10 +50,17 @@ function TextEditor() {
       modules={modules}
       formats={formats}
       value={quillValue || ''}
-      onChange={handleQuillChange}
+      onChange={onQuillChangeHandle}
     />
   );
 }
+
+TextEditor.propTypes = {
+  quillValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    .isRequired,
+  setQuillValue: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default TextEditor;
 
@@ -67,9 +75,13 @@ const StyledQuillEditor = styled(ReactQuill)`
   }
 
   .ql-toolbar {
+    border: 0.2rem solid var(--gray300);
     border-radius: 0.8rem 0.8rem 0 0;
+    background-color: var(--gray200);
   }
+
   .ql-container {
+    border: 0.2rem solid var(--gray300);
     border-radius: 0 0 0.8rem 0.8rem;
   }
 `;
