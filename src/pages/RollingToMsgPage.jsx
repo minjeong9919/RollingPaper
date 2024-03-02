@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { getProfileImg, getRecipients, postFormData } from '../apis/api';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getProfileImg, postFormData } from '../apis/api';
 import InputName from '../components/RollingToMsgPage/InputName';
 import ProfileImg from '../components/RollingToMsgPage/ProfileImg';
 import Relationship from '../components/RollingToMsgPage/Relationship';
@@ -16,7 +16,6 @@ function RollingToMsgPage() {
   const [isOpenRelationship, setIsOpenRelationship] = useState(false);
   const [isOpenFont, setIsOpenFont] = useState(false);
   const [profileImg, setProfileImg] = useState([]);
-  const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [image, setImage] = useState('');
@@ -24,15 +23,10 @@ function RollingToMsgPage() {
   const [quillValue, setQuillValue] = useState('');
   const [fontpValue, setFontValue] = useState('Noto Sans');
   const navigate = useNavigate();
-
+  const { id } = useParams();
   const loadProfileImgHandle = async () => {
     const { imageUrls } = await getProfileImg();
     setProfileImg([...imageUrls]);
-  };
-
-  const loadRecipients = async () => {
-    const { results } = await getRecipients();
-    setId(results[0].id);
   };
 
   const onSubmitHandle = async (e) => {
@@ -66,7 +60,6 @@ function RollingToMsgPage() {
 
   useEffect(() => {
     loadProfileImgHandle();
-    loadRecipients();
   }, []);
   return (
     <MsgPageContainerDiv>
