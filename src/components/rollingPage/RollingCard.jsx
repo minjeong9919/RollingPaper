@@ -39,7 +39,7 @@ function RollingCard({
         </DeleteIconBtn>
       </SenderFrameDiv>
       <ContentDiv font={font}>
-        <p>{content}</p>
+        <p dangerouslySetInnerHTML={{ __html: content }} />
         <p className="date">{date}</p>
       </ContentDiv>
     </ContainerDiv>
