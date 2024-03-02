@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import LandingCard from '../components/LandingPage/LandingCard';
 import LinkButton from '../components/LandingPage/Button';
 import Header from '../components/Common/Header/Header';
+import LandingCard from '../components/LandingPage/LandingCard';
 
 function LandingPage() {
   return (

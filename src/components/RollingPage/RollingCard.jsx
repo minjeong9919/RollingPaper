@@ -10,6 +10,7 @@ function RollingCard({
   createdAt,
   profileImageURL,
   content,
+  font,
   onClick,
   $isEditMode,
 }) {
@@ -37,7 +38,7 @@ function RollingCard({
           <DeleteIcon />
         </DeleteIconBtn>
       </SenderFrameDiv>
-      <ContentDiv>
+      <ContentDiv font={font}>
         <p>{content}</p>
         <p className="date">{date}</p>
       </ContentDiv>
@@ -53,6 +54,7 @@ RollingCard.propTypes = {
   content: PropTypes.string,
   onClick: PropTypes.func,
   $isEditMode: PropTypes.bool,
+  font: PropTypes.string,
 };
 
 RollingCard.defaultProps = {
@@ -63,6 +65,7 @@ RollingCard.defaultProps = {
   content: '',
   onClick: null,
   $isEditMode: false,
+  font: 'Pretendard',
 };
 
 const ContainerDiv = styled.div`
@@ -73,6 +76,13 @@ const ContainerDiv = styled.div`
   border-radius: 16px;
   background: var(--white);
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s linear;
+
+  &:hover {
+    cursor: pointer;
+    width: 100%;
+    transform: scale(1.02);
+  }
 `;
 
 const SenderFrameDiv = styled.div`
@@ -150,7 +160,7 @@ const ContentDiv = styled.div`
     -webkit-box-orient: vertical;
     overflow: hidden;
     color: var(--gray600);
-    font-family: Pretendard;
+    font-family: ${({ font }) => font};
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

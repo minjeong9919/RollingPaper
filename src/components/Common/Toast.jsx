@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, keyframes } from 'styled-components';
 import Completed from '../../assets/icons/completed.svg';
@@ -6,21 +6,20 @@ import Close from '../../assets/icons/close.svg';
 
 function Toast({ showToast, setShowToast }) {
   // Toast 5초뒤에 꺼지는 코드
-  // const [showToast, setShowToast] = useState(false);
 
-  // useEffect(() => {
-  //   let timeout;
+  useEffect(() => {
+    let timeout;
 
-  //   if (showToast) {
-  //     timeout = setTimeout(() => {
-  //       setShowToast(false);
-  //     }, 5000);
-  //   }
+    if (showToast) {
+      timeout = setTimeout(() => {
+        setShowToast(false);
+      }, 5000);
+    }
 
-  //   return () => {
-  //     clearTimeout(timeout);
-  //   };
-  // }, [showToast]);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [showToast]);
 
   return (
     <ContainerDiv>

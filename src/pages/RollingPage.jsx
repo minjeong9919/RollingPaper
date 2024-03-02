@@ -1,45 +1,88 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { ReactComponent as DeleteIcon } from '../assets/icons/delete.svg';
 import GlobalStyles from '../styles/GlobalStyles';
 import RollingCard from '../components/RollingPage/RollingCard';
 import DetailCard from '../components/RollingPage/DetailCard';
-import cardList from '../constants/CardLists';
+// import cardList from '../constants/CardLists';
 import AddCard from '../components/RollingPage/AddCard';
+import Header from '../components/Common/Header/Header';
+import RollingPageHeader from '../components/RollingPage/RollingHeader/RollingPageHeader';
+import Toast from '../components/Common/Toast';
 
 function RollingPage() {
-  // const ApiTest = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       'https://rolling-api.vercel.app/4-3/recipients/',
-  //     );
+  const [cardlist, setCardlist] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
+  const [userTopReactions, setUserTopReactions] = useState([]);
+  const [isSharedToastVisible, setIsSharedToastVisible] = useState(false);
 
-  //     const result = await response.json();
-  //     console.log(result);
-  //     return result;
-  //   } catch (e) {
-  //     console.error(e);
-  //     throw e;
-  //   }
-  // };
+  const BaseUrl = 'https://rolling-api.vercel.app/4-3/recipients/2844/';
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       await ApiTest();
-  //     } catch (error) {
-  //       // 오류 처리
-  //       console.error(error);
-  //     }
-  //   };
+  const getMessage = async () => {
+    try {
+      const response = await fetch(`${BaseUrl}messages/`);
+      const result = await response.json();
+      return result;
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  };
 
-  //   fetchData();
-  // }, []);
+  const getUserInfo = async () => {
+    try {
+      const response = await fetch(`${BaseUrl}`);
+      const result = await response.json();
+      return result;
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  };
+
+  const getUserTopReactions = async () => {
+    try {
+      const response = await fetch(`${BaseUrl}reactions/`);
+      const result = await response.json();
+      return result;
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let messages;
+      let useInfo;
+      let topReactions;
+      try {
+        messages = await getMessage();
+        useInfo = await getUserInfo();
+        topReactions = await getUserTopReactions();
+      } catch (error) {
+        // 오류 처리
+        console.error(error);
+      }
+
+      messages = messages.results;
+      topReactions = topReactions.results;
+
+      setCardlist(messages);
+      setUserInfo(useInfo);
+      setUserTopReactions(topReactions);
+    };
+
+    fetchData();
+  }, []);
 
   const [isDetailVisible, setIsDetailVisible] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [clickedUser, setClickedUser] = useState({});
 
-  const onDetailClickHandle = () => {
+  const onDetailClickHandle = (clickedCard) => {
     setIsDetailVisible(!isDetailVisible);
+    setClickedUser(clickedCard);
   };
 
   const onEditModClickHandle = () => {
@@ -47,37 +90,62 @@ function RollingPage() {
   };
 
   return (
-    <>
-      <GlobalStyles />
-      <DetailCard $visible={isDetailVisible} onClick={onDetailClickHandle} />
-      <ContainerDiv>
-        <div className="Div">
-          <EditBtn $isEditMode={isEditMode} onClick={onEditModClickHandle}>
-            삭제하기
-          </EditBtn>
-          <CompleteBtn $isEditMode={isEditMode} onClick={onEditModClickHandle}>
-            수정완료
-          </CompleteBtn>
-          <CardsListsDiv>
-            {cardList.length < 6 ? <AddCard /> : null}
-            {cardList.map((card) => {
-              return (
-                <RollingCard
-                  key={card.id}
-                  sender={card.sender}
-                  relationship={card.relationship}
-                  createdAt={card.createdAt}
-                  content={card.content}
-                  profileImageURL={card.profileImageURL}
-                  onClick={onDetailClickHandle}
-                  $isEditMode={isEditMode}
-                />
-              );
-            })}
-          </CardsListsDiv>
-        </div>
-      </ContainerDiv>
-    </>
+    userInfo.name && (
+      <>
+        <GlobalStyles />
+        <Toast
+          setShowToast={setIsSharedToastVisible}
+          showToast={isSharedToastVisible}
+        />
+        <DetailCard
+          $visible={isDetailVisible}
+          onClick={onDetailClickHandle}
+          card={clickedUser}
+        />
+        <ContainerDiv>
+          <Header name={String(userInfo.name)} />
+          <RollingPageHeader
+            name={userInfo.name}
+            messageCount={userInfo.messageCount}
+            cardList={cardlist}
+            setIsSharedToastVisible={setIsSharedToastVisible}
+            topReactions={userTopReactions}
+          />
+          <div className="Div">
+            <EditBtn $isEditMode={isEditMode} onClick={onEditModClickHandle}>
+              <DeleteIcon />
+              삭제하기
+            </EditBtn>
+            <CompleteBtn
+              $isEditMode={isEditMode}
+              onClick={onEditModClickHandle}
+            >
+              수정완료
+            </CompleteBtn>
+            <CardsListsDiv>
+              <AddCard />
+              {cardlist.length !== 0
+                ? cardlist.map((card) => {
+                    return (
+                      <RollingCard
+                        key={card.id}
+                        sender={card.sender}
+                        relationship={card.relationship}
+                        createdAt={card.createdAt}
+                        content={card.content}
+                        font={card.font}
+                        profileImageURL={card.profileImageURL}
+                        $isEditMode={isEditMode}
+                        onClick={() => onDetailClickHandle(card)}
+                      />
+                    );
+                  })
+                : null}
+            </CardsListsDiv>
+          </div>
+        </ContainerDiv>
+      </>
+    )
   );
 }
 
@@ -87,7 +155,6 @@ const ContainerDiv = styled.div`
   margin: 0px;
   overflow: auto;
   background-color: ${({ bgColor = 'var(--orange200)' }) => bgColor};
-  cursor: pointer;
 
   & > .Div {
     padding-top: 114px;
@@ -132,21 +199,27 @@ const CardsListsDiv = styled.div`
 `;
 
 const EditBtn = styled.button`
-  display: ${({ $isEditMode }) => (!$isEditMode ? 'block' : 'none')};
+  display: ${({ $isEditMode }) => (!$isEditMode ? 'flex' : 'none')};
+  align-items: center;
+  justify-content: center;
   padding: 8px 17px;
   flex-shrink: 0;
   border-radius: 6px;
   background: var(--gray300);
   margin-bottom: 11px;
 
-  color: black;
+  color: var(--gray600);
   text-align: center;
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 26px;
   letter-spacing: -0.16px;
+
+  &:hover {
+    transform: scale(1.05); /* Scale the button slightly on hover */
+  }
 
   @media (max-width: 768px) {
     width: auto;
