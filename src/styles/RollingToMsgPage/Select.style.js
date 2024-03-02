@@ -14,14 +14,15 @@ export const SelectBtn = styled.button`
   &:hover {
     border: 0.2rem solid var(--gray500);
   }
+`;
 
-  & > span {
-    color: var(--gray500);
-    font-size: var(--font16);
-    font-weight: var(--regular);
-    line-height: 1.625;
-    letter-spacing: -0.016rem;
-  }
+export const SelectSpan = styled.span`
+  color: var(--gray500);
+  font-family: ${({ $fontValue }) => `${$fontValue}`};
+  font-size: var(--font16);
+  font-weight: var(--regular);
+  line-height: 1.625;
+  letter-spacing: -0.016rem;
 `;
 
 export const ArrowBtn = styled.div`
@@ -45,21 +46,22 @@ export const SelectOptionDiv = styled.div`
   border: 0.1rem solid var(--gray300);
   background-color: var(--white);
   z-index: 1;
+`;
 
-  & > button {
-    width: 31.6rem;
-    display: flex;
-    align-items: center;
-    padding: 1.2rem 1.6rem;
-    cursor: pointer;
-    color: var(--gray900);
-    font-size: var(--font16);
-    font-weight: var(--regular);
-    line-height: 1.625;
-    letter-spacing: -0.016rem;
+export const SelectOptionBtn = styled.button`
+  width: 31.6rem;
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 1.6rem;
+  cursor: pointer;
+  color: var(--gray900);
+  font-family: ${({ item }) => `${item}`};
+  font-size: var(--font16);
+  font-weight: var(--regular);
+  line-height: 1.625;
+  letter-spacing: -0.016rem;
 
-    &:hover {
-      background-color: var(--gray100);
-    }
+  &:hover {
+    background-color: var(--gray100);
   }
 `;

@@ -4,7 +4,10 @@ import {
   SelectBtn,
   ArrowBtn,
   SelectOptionDiv,
+  SelectOptionBtn,
+  SelectSpan,
 } from '../../styles/RollingToMsgPage/Select.style';
+import { fontsList } from './SelectList';
 
 function Select({ SelectList, isOpen, setIsOpen, value, onChange }) {
   const isOpenHandle = () => {
@@ -20,22 +23,25 @@ function Select({ SelectList, isOpen, setIsOpen, value, onChange }) {
     (v) => v.includes('지인') || v.includes('Noto Sans'),
   );
 
+  const fontValue = fontsList.filter((v) => v === value);
+
   return (
     <>
       <SelectBtn type="button" $isOpen={isOpen} onClick={isOpenHandle}>
-        <span>{value || filterValue}</span>
+        <SelectSpan $fontValue={fontValue}>{value || filterValue}</SelectSpan>
         <ArrowBtn $isOpen={isOpen} />
       </SelectBtn>
       {isOpen && (
         <SelectOptionDiv>
           {SelectList.map((item) => (
-            <button
+            <SelectOptionBtn
               type="button"
               key={item}
+              item={item}
               onClick={() => onItemClickHandle(item)}
             >
               {item}
-            </button>
+            </SelectOptionBtn>
           ))}
         </SelectOptionDiv>
       )}
