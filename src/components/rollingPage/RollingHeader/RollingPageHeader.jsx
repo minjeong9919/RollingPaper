@@ -183,7 +183,7 @@ const EmoticonDetailButton = styled.button`
   width: 36px;
   height: 36px;
   padding: 6px;
-  &>svg: hover {
+  & > svg:hover {
     background-color: var(--gray200);
   }
 `;
@@ -199,7 +199,7 @@ const AddEmotionButton = styled.button`
   border: 1px solid var(--gray300);
   background: var(--white);
 
-  &: hover {
+  &:hover {
     background-color: var(--gray200);
   }
 
