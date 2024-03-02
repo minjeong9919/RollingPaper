@@ -11,12 +11,12 @@ module.exports = {
     'prettier',
   ],
   rules: {
-    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] },],
-    "jsx-a11y/label-has-associated-control": [
-      2,
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
+    'jsx-a11y/label-has-associated-control': [
+      'error',
       {
-        "labelAttributes": ["htmlFor"]
-      }
+        labelAttributes: ['htmlFor'],
+      },
     ],
   },
 };

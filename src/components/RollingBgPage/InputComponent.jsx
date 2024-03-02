@@ -72,7 +72,7 @@ const InputWrapper = styled.div`
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
-    line-height: 42px;
+    line-height: 36px;
     letter-spacing: -0.24px;
   }
 `;

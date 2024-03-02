@@ -48,6 +48,9 @@ export default Toggle;
 const TotalWrapper = styled.div`
   width: 100%;
   margin-bottom: 45px;
+  @media (min-width: 360px) and (max-width: 768px) {
+    margin-bottom: 28px;
+  }
 `;
 
 const TextWrapper = styled.div`
@@ -65,6 +68,9 @@ const SelectTxt = styled.h2`
   font-weight: 700;
   line-height: 36px;
   margin-bottom: 8px;
+  @media (min-width: 360px) and (max-width: 768px) {
+    margin-bottom: 4px;
+  }
 `;
 
 const SubTxt = styled.p`

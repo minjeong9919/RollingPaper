@@ -43,6 +43,10 @@ const BgImgWrapper = styled.div`
   border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   background-color: ${({ color }) => color};
+  @media (min-width: 360px) and (max-width: 768px) {
+    width: 154px;
+    height: 154px;
+  }
 `;
 
 const SelectedLayer = styled.div`

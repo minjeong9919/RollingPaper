@@ -77,7 +77,9 @@ function RollingToBgPage() {
 
   return (
     <>
-      <Header />
+      <HeaderDisplay>
+        <Header />
+      </HeaderDisplay>
       <Wrapper>
         <FormWrapper onSubmit={onSubmitHandle}>
           <InputComponent
@@ -113,12 +115,21 @@ function RollingToBgPage() {
 
 export default RollingToBgPage;
 
+const HeaderDisplay = styled.div`
+  @media (min-width: 360px) and (max-width: 768px) {
+    display: none;
+  }
+`;
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: start;
   width: 100%;
   margin-top: 57px;
+  @media (min-width: 360px) and (max-width: 768px) {
+    margin-top: 50px;
+  }
 `;
 
 const FormWrapper = styled.form`
@@ -126,7 +137,11 @@ const FormWrapper = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  width: 786px;
+  width: 720px;
+
+  @media (min-width: 360px) and (max-width: 768px) {
+    width: 320px;
+  }
 `;
 
 const SubmitButton = styled.button`
@@ -141,4 +156,6 @@ const SubmitButton = styled.button`
   font-weight: 700;
   font-size: 18px;
   color: #fff;
+  margin-top: 24px;
+  margin-bottom: 24px;
 `;
