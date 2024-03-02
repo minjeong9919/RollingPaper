@@ -71,8 +71,6 @@ function RollingPage() {
       setCardlist(messages);
       setUserInfo(useInfo);
       setUserTopReactions(topReactions);
-
-      console.log(topReactions);
     };
 
     fetchData();
