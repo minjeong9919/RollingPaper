@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 export const ContainerHeader = styled.header`
   border-bottom: 1px solid #ededed;
+  background-color: var(--white);
+
   @media all and (max-width: 1248px) {
     padding: 0 24px;
   }
@@ -41,4 +43,16 @@ export const HeaderButton = styled(Link)`
     border: 1px solid var(--gray500, #555);
     background: var(--white, #fff);
   }
+`;
+
+export const UserH1 = styled.h1`
+  width: max-width;
+  color: var(--gray800);
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: -0.28px;
+  cursor: pointer;
 `;
