@@ -108,7 +108,7 @@ const GlobalStyles = createGlobalStyle`
     --font12: 1.2rem;
 
     /* ==========FONT WEIGHT========== */
-    --bord: 700;
+    --bold: 700;
     --regular: 400;
   }
 
@@ -117,6 +117,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Pretendard';
+    text-decoration: none;
   }
 
   html,
