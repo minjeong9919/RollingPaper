@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getProfileImg, postFormData } from '../apis/api';
 import InputName from '../components/RollingToMsgPage/InputName';
@@ -11,6 +11,7 @@ import {
   MsgPageForm,
   SubmitBtn,
 } from '../styles/RollingToMsgPage.style';
+import useOutsideClose from '../hooks/useOutsideClose';
 
 function RollingToMsgPage() {
   const [isOpenRelationship, setIsOpenRelationship] = useState(false);
@@ -24,6 +25,9 @@ function RollingToMsgPage() {
   const [fontpValue, setFontValue] = useState('Noto Sans');
   const navigate = useNavigate();
   const { id } = useParams();
+  const relationshipRef = useRef(null);
+  const fontRef = useRef(null);
+
   const loadProfileImgHandle = async () => {
     const { imageUrls } = await getProfileImg();
     setProfileImg([...imageUrls]);
@@ -58,6 +62,9 @@ function RollingToMsgPage() {
     setFontValue(value);
   };
 
+  useOutsideClose(relationshipRef, setIsOpenRelationship);
+  useOutsideClose(fontRef, setIsOpenFont);
+
   useEffect(() => {
     loadProfileImgHandle();
   }, []);
@@ -71,6 +78,7 @@ function RollingToMsgPage() {
         />
         <ProfileImg profileImg={profileImg} image={image} setImage={setImage} />
         <Relationship
+          ref={relationshipRef}
           isOpenRelationship={isOpenRelationship}
           setIsOpenRelationship={setIsOpenRelationship}
           relationshipValue={relationshipValue}
@@ -81,6 +89,7 @@ function RollingToMsgPage() {
           onQuillValueChangeHandle={onQuillValueChangeHandle}
         />
         <Fonts
+          ref={fontRef}
           isOpenFont={isOpenFont}
           setIsOpenFont={setIsOpenFont}
           isOpenRelationship={isOpenRelationship}

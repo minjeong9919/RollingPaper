@@ -5,7 +5,6 @@ export const MsgPageContainerDiv = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   @media (max-width: 768px) {
     max-width: 76.8rem;

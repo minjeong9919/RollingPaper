@@ -33,7 +33,6 @@ function DetailCard({ $visible, onClick = null, card }) {
           <p className="date">{date}</p>
         </SenderFrameDiv>
         <ContentDiv>
-          {/* <p>{card.content}</p> */}
           <p dangerouslySetInnerHTML={{ __html: card.content }} />
         </ContentDiv>
         <CheckButton onClick={() => onClick()}>확인</CheckButton>
