@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { getBadgeBgColor, getBadgeTextColor } from '../../utils/BadgeColor';
 
 function DetailCard({ $visible, onClick = null, card }) {
+  const { font } = card;
+
   let date = '';
   if (card.createdAt) {
     const year = card.createdAt.substring(0, 4);
@@ -32,7 +34,7 @@ function DetailCard({ $visible, onClick = null, card }) {
           </div>
           <p className="date">{date}</p>
         </SenderFrameDiv>
-        <ContentDiv>
+        <ContentDiv $font={font}>
           <p dangerouslySetInnerHTML={{ __html: card.content }} />
         </ContentDiv>
         <CheckButton onClick={() => onClick()}>확인</CheckButton>
@@ -51,6 +53,7 @@ DetailCard.propTypes = {
     createdAt: PropTypes.string,
     content: PropTypes.string,
     profileImageURL: PropTypes.string,
+    font: PropTypes.string,
   }),
 };
 
@@ -62,6 +65,7 @@ DetailCard.defaultProps = {
     createdAt: '',
     content: '',
     profileImageURL: '',
+    font: '',
   },
 };
 
@@ -207,7 +211,7 @@ const ContentDiv = styled.div`
     display: -webkit-box;
     overflow-y: scroll;
     color: var(--gray600);
-    font-family: Pretendard;
+    /* font-family: ${({ font }) => font}; */
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -231,6 +235,10 @@ const ContentDiv = styled.div`
       width: 90%;
       height: auto;
     }
+  }
+
+  & p {
+    font-family: ${({ $font }) => $font};
   }
 
   & > .date {
