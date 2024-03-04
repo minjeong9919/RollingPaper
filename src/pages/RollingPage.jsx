@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete.svg';
@@ -9,55 +9,102 @@ import AddCard from '../components/RollingPage/AddCard';
 import Header from '../components/Common/Header/Header';
 import RollingPageHeader from '../components/RollingPage/RollingHeader/RollingPageHeader';
 import Toast from '../components/Common/Toast';
-import { deleteMsgData } from '../apis/api';
-
-const fetchData = async (url) => {
-  try {
-    const response = await fetch(url);
-    const result = await response.json();
-    return result; // 여기서 결과의 .results를 반환합니다.
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
+import {
+  deleteMsgData,
+  getCardData,
+  getUserInfo,
+  getMsgInfo,
+} from '../apis/api';
 
 function RollingPage() {
+  const { id } = useParams();
+  const myRef = useRef();
+  const [offset, setOffset] = useState(0);
+  const [isMoreData, setIsMoreData] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [cardlist, setCardlist] = useState([]);
   const [userInfo, setUserInfo] = useState({});
   const [isSharedToastVisible, setIsSharedToastVisible] = useState(false);
   const [deleteMsgId, setDeleteMsgId] = useState('');
-
   const navigate = useNavigate();
 
-  const { id } = useParams();
+  const fetchDataForRollingPage = async () => {
+    try {
+      setLoading(true);
+      const [messages, useInfo] = await Promise.all([
+        getCardData(id),
+        getUserInfo(id),
+      ]);
 
-  const BaseUrl = `https://rolling-api.vercel.app/4-3/recipients/${id}/`;
+      const newCardList = messages.results;
+
+      setUserInfo(useInfo);
+      setCardlist(newCardList);
+    } catch (error) {
+      // 오류 처리
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchDataForRollingPage = async () => {
-      try {
-        const [messages, useInfo] = await Promise.all([
-          fetchData(`${BaseUrl}messages/`),
-          fetchData(`${BaseUrl}`),
-        ]);
-
-        setCardlist(messages.results);
-        setUserInfo(useInfo);
-      } catch (error) {
-        // 오류 처리
-        console.error(error);
-      }
-    };
-
     fetchDataForRollingPage();
   }, []);
 
+  const loadMoreData = async () => {
+    try {
+      const result = await getMsgInfo(id);
+      const nextMoreCard = await result.next;
+
+      if (nextMoreCard) {
+        setIsMoreData(true);
+      } else setIsMoreData(false);
+      // setIsMoreData(nextMoreCard);
+
+      if (isMoreData) {
+        const messages = await getCardData(id, offset);
+        console.log(messages);
+        setCardlist((prevData) => [...prevData, ...messages.results]);
+        console.log(cardlist);
+      }
+      setOffset(offset + 8);
+
+      // }
+    } catch (error) {
+      // 오류 처리
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            loadMoreData();
+          }
+        });
+      },
+      { threshold: 0.9 },
+    );
+
+    if (myRef.current) {
+      observer.observe(myRef.current);
+    }
+
+    return () => {
+      if (myRef.current) {
+        observer.unobserve(myRef.current);
+      }
+    };
+  }, [id, isMoreData, loading]);
+
+  // 카드 지우기
   useEffect(() => {
     if (deleteMsgId) {
       deleteMsgData(deleteMsgId);
     }
-    console.log(deleteMsgId);
   }, [deleteMsgId]);
 
   const [isDetailVisible, setIsDetailVisible] = useState(false);
@@ -109,7 +156,7 @@ function RollingPage() {
             >
               수정완료
             </CompleteBtn>
-            <CardsListsDiv>
+            <CardsListsDiv ref={myRef}>
               <AddCard onClick={onAddCardClickHandle} />
               {cardlist.length !== 0
                 ? cardlist.map((card) => {
@@ -171,6 +218,7 @@ const CardsListsDiv = styled.div`
   align-items: center;
   gap: 28px 24px;
   margin: auto;
+  margin-bottom: 24px;
 
   @media (max-width: 768px) {
     width: auto;
