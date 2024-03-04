@@ -140,6 +140,9 @@ const SenderInfoDiv = styled.div`
     @media (max-width: 768px) {
       font-size: 3vw;
     }
+    @media (max-width: 360px) {
+      font-size: 16px;
+    }
   }
 
   & > div > .name {
@@ -190,6 +193,7 @@ const ContentDiv = styled.div`
     @media (max-width: 360px) {
       height: 56px;
       -webkit-line-clamp: 2;
+      font-size: 15px;
     }
   }
 
