@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete.svg';
-import GlobalStyles from '../styles/GlobalStyles';
 import RollingCard from '../components/RollingPage/RollingCard';
 import DetailCard from '../components/RollingPage/DetailCard';
 // import cardList from '../constants/CardLists';
@@ -10,6 +9,17 @@ import AddCard from '../components/RollingPage/AddCard';
 import Header from '../components/Common/Header/Header';
 import RollingPageHeader from '../components/RollingPage/RollingHeader/RollingPageHeader';
 import Toast from '../components/Common/Toast';
+
+const fetchData = async (url) => {
+  try {
+    const response = await fetch(url);
+    const result = await response.json();
+    return result; // 여기서 결과의 .results를 반환합니다.
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
 
 function RollingPage() {
   const [cardlist, setCardlist] = useState([]);
@@ -24,62 +34,25 @@ function RollingPage() {
 
   const BaseUrl = `https://rolling-api.vercel.app/4-3/recipients/${id}/`;
 
-  const getMessage = async () => {
-    try {
-      const response = await fetch(`${BaseUrl}messages/`);
-      const result = await response.json();
-      return result;
-    } catch (e) {
-      console.error(e);
-      throw e;
-    }
-  };
-
-  const getUserInfo = async () => {
-    try {
-      const response = await fetch(`${BaseUrl}`);
-      const result = await response.json();
-      return result;
-    } catch (e) {
-      console.error(e);
-      throw e;
-    }
-  };
-
-  const getUserTopReactions = async () => {
-    try {
-      const response = await fetch(`${BaseUrl}reactions/`);
-      const result = await response.json();
-      return result;
-    } catch (e) {
-      console.error(e);
-      throw e;
-    }
-  };
-
   useEffect(() => {
-    const fetchData = async () => {
-      let messages;
-      let useInfo;
-      let topReactions;
+    const fetchDataForRollingPage = async () => {
       try {
-        messages = await getMessage();
-        useInfo = await getUserInfo();
-        topReactions = await getUserTopReactions();
+        const [messages, useInfo, topReactions] = await Promise.all([
+          fetchData(`${BaseUrl}messages/`),
+          fetchData(`${BaseUrl}`),
+          fetchData(`${BaseUrl}reactions/`),
+        ]);
+
+        setCardlist(messages.results);
+        setUserInfo(useInfo);
+        setUserTopReactions(topReactions.results);
       } catch (error) {
         // 오류 처리
         console.error(error);
       }
-
-      messages = messages.results;
-      topReactions = topReactions.results;
-
-      setCardlist(messages);
-      setUserInfo(useInfo);
-      setUserTopReactions(topReactions);
     };
 
-    fetchData();
+    fetchDataForRollingPage();
   }, []);
 
   useEffect(() => {
@@ -110,7 +83,6 @@ function RollingPage() {
   return (
     userInfo.name && (
       <>
-        <GlobalStyles />
         <Toast
           setShowToast={setIsSharedToastVisible}
           showToast={isSharedToastVisible}
