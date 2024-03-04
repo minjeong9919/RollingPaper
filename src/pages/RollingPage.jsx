@@ -24,7 +24,6 @@ const fetchData = async (url) => {
 function RollingPage() {
   const [cardlist, setCardlist] = useState([]);
   const [userInfo, setUserInfo] = useState({});
-  const [userTopReactions, setUserTopReactions] = useState([]);
   const [isSharedToastVisible, setIsSharedToastVisible] = useState(false);
   const [deleteMsgId, setDeleteMsgId] = useState('');
 
@@ -37,15 +36,13 @@ function RollingPage() {
   useEffect(() => {
     const fetchDataForRollingPage = async () => {
       try {
-        const [messages, useInfo, topReactions] = await Promise.all([
+        const [messages, useInfo] = await Promise.all([
           fetchData(`${BaseUrl}messages/`),
           fetchData(`${BaseUrl}`),
-          fetchData(`${BaseUrl}reactions/`),
         ]);
 
         setCardlist(messages.results);
         setUserInfo(useInfo);
-        setUserTopReactions(topReactions.results);
       } catch (error) {
         // 오류 처리
         console.error(error);
@@ -96,10 +93,10 @@ function RollingPage() {
           <Header name={String(userInfo.name)} />
           <RollingPageHeader
             name={userInfo.name}
+            id={id}
             messageCount={userInfo.messageCount}
             cardList={cardlist}
             setIsSharedToastVisible={setIsSharedToastVisible}
-            topReactions={userTopReactions}
           />
           <div className="Div">
             <EditBtn $isEditMode={isEditMode} onClick={onEditModClickHandle}>

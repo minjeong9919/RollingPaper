@@ -2,18 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { PropTypes } from 'prop-types';
 import Emoticon from './Emoticon';
-import emojiList from '../../../constants/EmojiList';
+// import emojiList from '../../../constants/EmojiList';
 
-export default function EmoticonDetail({ isVisible }) {
+export default function EmoticonDetail({ isVisible, emojilist }) {
   return (
     <ContainerDiv $isVisible={isVisible}>
       <EmoticonsDiv>
-        {emojiList.map((emoji) => (
-          <Emoticon
-            key={emoji.emoji}
-            emoticon={emoji.emoji}
-            count={emoji.cnt}
-          />
+        {emojilist.map((emoji) => (
+          <Emoticon key={emoji.id} emoticon={emoji.emoji} count={emoji.count} />
         ))}
       </EmoticonsDiv>
     </ContainerDiv>
@@ -22,10 +18,18 @@ export default function EmoticonDetail({ isVisible }) {
 
 EmoticonDetail.propTypes = {
   isVisible: PropTypes.bool,
+  emojilist: PropTypes.arrayOf(
+    PropTypes.shape({
+      count: PropTypes.number,
+      emoji: PropTypes.string,
+      id: PropTypes.number,
+    }),
+  ),
 };
 
 EmoticonDetail.defaultProps = {
   isVisible: false,
+  emojilist: [],
 };
 
 const ContainerDiv = styled.div`
