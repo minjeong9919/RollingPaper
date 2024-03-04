@@ -9,6 +9,7 @@ import AddCard from '../components/RollingPage/AddCard';
 import Header from '../components/Common/Header/Header';
 import RollingPageHeader from '../components/RollingPage/RollingHeader/RollingPageHeader';
 import Toast from '../components/Common/Toast';
+import { deleteMsgData } from '../apis/api';
 
 const fetchData = async (url) => {
   try {
@@ -53,11 +54,10 @@ function RollingPage() {
   }, []);
 
   useEffect(() => {
-    if (cardlist[0]) {
-      setCardlist((prevCardlist) =>
-        prevCardlist.filter((item) => item.id !== deleteMsgId),
-      );
+    if (deleteMsgId) {
+      deleteMsgData(deleteMsgId);
     }
+    console.log(deleteMsgId);
   }, [deleteMsgId]);
 
   const [isDetailVisible, setIsDetailVisible] = useState(false);

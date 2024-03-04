@@ -23,6 +23,13 @@ export const postFormData = async (formData, id) => {
   return response;
 };
 
+export const deleteMsgData = async (id) => {
+  const response = await fetch(`${BASE_URL}/4-3/messages/${id}/`, {
+    method: 'DELETE',
+  });
+  return response;
+};
+
 export const getUserInfo = async (id) => {
   const response = await fetch(`${BASE_URL}/4-3/recipients/${id}/`);
   const result = response.json();
