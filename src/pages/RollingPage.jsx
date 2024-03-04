@@ -15,6 +15,7 @@ function RollingPage() {
   const [userInfo, setUserInfo] = useState({});
   const [userTopReactions, setUserTopReactions] = useState([]);
   const [isSharedToastVisible, setIsSharedToastVisible] = useState(false);
+  const [deleteMsgId, setDeleteMsgId] = useState('');
 
   const BaseUrl = 'https://rolling-api.vercel.app/4-3/recipients/2844/';
 
@@ -76,6 +77,14 @@ function RollingPage() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (cardlist[0]) {
+      setCardlist((prevCardlist) =>
+        prevCardlist.filter((item) => item.id !== deleteMsgId),
+      );
+    }
+  }, [deleteMsgId]);
+
   const [isDetailVisible, setIsDetailVisible] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [clickedUser, setClickedUser] = useState({});
@@ -129,6 +138,7 @@ function RollingPage() {
                     return (
                       <RollingCard
                         key={card.id}
+                        id={card.id}
                         sender={card.sender}
                         relationship={card.relationship}
                         createdAt={card.createdAt}
@@ -137,6 +147,7 @@ function RollingPage() {
                         profileImageURL={card.profileImageURL}
                         $isEditMode={isEditMode}
                         onClick={() => onDetailClickHandle(card)}
+                        setDeleteId={setDeleteMsgId}
                       />
                     );
                   })

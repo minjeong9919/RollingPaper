@@ -5,6 +5,7 @@ import { getBadgeBgColor, getBadgeTextColor } from '../../utils/BadgeColor';
 import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg';
 
 function RollingCard({
+  id,
   sender,
   relationship,
   createdAt,
@@ -13,6 +14,7 @@ function RollingCard({
   font,
   onClick,
   $isEditMode,
+  setDeleteId,
 }) {
   const year = createdAt.substring(0, 4);
   const month = createdAt.substring(5, 7);
@@ -21,8 +23,12 @@ function RollingCard({
   // const minute = createdAt.substring(14, 16);
   const date = `${year}.${month}.${day}`;
 
+  const onDeleteBtnHandle = () => {
+    setDeleteId(id);
+  };
+
   return (
-    <ContainerDiv onClick={() => onClick()}>
+    <ContainerDiv onClick={() => $isEditMode || onClick()}>
       <SenderFrameDiv>
         <ProfileImageDiv>
           <img src={profileImageURL} alt={sender} />
@@ -34,7 +40,12 @@ function RollingCard({
           </div>
           <BadgeDiv badge={relationship}>{relationship}</BadgeDiv>
         </SenderInfoDiv>
-        <DeleteIconBtn $isEditMode={$isEditMode}>
+        <DeleteIconBtn
+          $isEditMode={$isEditMode}
+          onClick={() => {
+            onDeleteBtnHandle();
+          }}
+        >
           <DeleteIcon />
         </DeleteIconBtn>
       </SenderFrameDiv>
@@ -47,6 +58,7 @@ function RollingCard({
 }
 
 RollingCard.propTypes = {
+  id: PropTypes.number,
   sender: PropTypes.string,
   relationship: PropTypes.string,
   createdAt: PropTypes.string,
@@ -55,9 +67,11 @@ RollingCard.propTypes = {
   onClick: PropTypes.func,
   $isEditMode: PropTypes.bool,
   font: PropTypes.string,
+  setDeleteId: PropTypes.func,
 };
 
 RollingCard.defaultProps = {
+  id: 0,
   sender: '',
   relationship: '',
   createdAt: '',
@@ -66,6 +80,7 @@ RollingCard.defaultProps = {
   onClick: null,
   $isEditMode: false,
   font: 'Pretendard',
+  setDeleteId: null,
 };
 
 const ContainerDiv = styled.div`
