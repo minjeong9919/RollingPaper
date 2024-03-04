@@ -6,6 +6,7 @@ import ProfileImg from '../components/RollingToMsgPage/ProfileImg';
 import Relationship from '../components/RollingToMsgPage/Relationship';
 import Fonts from '../components/RollingToMsgPage/Fonts';
 import Text from '../components/RollingToMsgPage/Text';
+import PostHeader from '../components/Common/Header/PostHeader';
 import {
   MsgPageContainerDiv,
   MsgPageForm,
@@ -70,6 +71,7 @@ function RollingToMsgPage() {
   }, []);
   return (
     <MsgPageContainerDiv>
+      <PostHeader />
       <MsgPageForm onSubmit={onSubmitHandle}>
         <InputName
           setName={setName}
