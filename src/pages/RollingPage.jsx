@@ -64,9 +64,7 @@ function RollingPage() {
 
       if (isMoreData) {
         const messages = await getCardData(id, offset);
-        console.log(messages);
         setCardlist((prevData) => [...prevData, ...messages.results]);
-        console.log(cardlist);
       }
       setOffset(offset + 8);
 
