@@ -80,6 +80,8 @@ function RollingPageHeader({
 
   const onSharedBtnHandle = () => {
     setIsSharedToastVisible(true);
+    const url = window.location.href;
+    navigator.clipboard.writeText(url);
   };
   const threePeople = cardList.slice(0, 3);
 
