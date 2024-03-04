@@ -22,7 +22,11 @@ export default function NumOfWritingPeople({ messageCount, threePeople }) {
           left="32px"
           profileImgURL={threePeople[2] ? threePeople[2].profileImageURL : null}
         />
-        <ProfileFrame type="number" left="48px" number={messageCount} />
+        <ProfileFrame
+          type="number"
+          left="48px"
+          number={messageCount - 3 > 0 ? messageCount - 3 : 0}
+        />
       </EclipseDiv>
       <p>
         <span className="number">{messageCount}</span>
