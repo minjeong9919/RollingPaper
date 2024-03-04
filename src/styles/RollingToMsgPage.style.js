@@ -18,6 +18,7 @@ export const MsgPageContainerDiv = styled.div`
 `;
 
 export const MsgPageForm = styled.form`
+  min-width: 64.8rem;
   display: flex;
   flex-direction: column;
   padding: 4.7rem 0 6rem;
