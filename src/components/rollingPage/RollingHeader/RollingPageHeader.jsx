@@ -50,20 +50,6 @@ function RollingPageHeader({
     fetchDataAndSetState();
   }, [fetchData, id]);
 
-  const onAddEmojiBtnHandle = () => {
-    setIsEmojiPickerVsiible(!isEmojiPickerVisible);
-    setIsEmotionDetailVisible(false);
-  };
-
-  const onEmoticonDetailBtnHandle = () => {
-    setIsEmotionDetailVisible(!isEmoticonDetailVisible);
-    setIsEmojiPickerVsiible(false);
-  };
-
-  const onSharedBtnHandle = () => {
-    setIsSharedToastVisible(true);
-  };
-
   // 새롭게 이모티콘 생성 시 POST 요청 후, 다시 GET 요청으로 리스트 변경
   const onEmojiPickerHandle = async (emojiData) => {
     const updatedEmojiFormData = {
@@ -82,6 +68,19 @@ function RollingPageHeader({
     setTopReactions(newTopReactions);
   };
 
+  const onAddEmojiBtnHandle = () => {
+    setIsEmojiPickerVsiible(!isEmojiPickerVisible);
+    setIsEmotionDetailVisible(false);
+  };
+
+  const onEmoticonDetailBtnHandle = () => {
+    setIsEmotionDetailVisible(!isEmoticonDetailVisible);
+    setIsEmojiPickerVsiible(false);
+  };
+
+  const onSharedBtnHandle = () => {
+    setIsSharedToastVisible(true);
+  };
   const threePeople = cardList.slice(0, 3);
 
   return (
