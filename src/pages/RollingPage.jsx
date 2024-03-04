@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete.svg';
 import GlobalStyles from '../styles/GlobalStyles';
@@ -18,8 +18,9 @@ function RollingPage() {
   const [isSharedToastVisible, setIsSharedToastVisible] = useState(false);
   const [deleteMsgId, setDeleteMsgId] = useState('');
 
+  const navigate = useNavigate();
+
   const { id } = useParams();
-  console.log(id);
 
   const BaseUrl = `https://rolling-api.vercel.app/4-3/recipients/${id}/`;
 
@@ -102,6 +103,10 @@ function RollingPage() {
     setIsEditMode(!isEditMode);
   };
 
+  const onAddCardClickHandle = () => {
+    navigate(`/post/${id}/message`);
+  };
+
   return (
     userInfo.name && (
       <>
@@ -136,7 +141,7 @@ function RollingPage() {
               수정완료
             </CompleteBtn>
             <CardsListsDiv>
-              <AddCard />
+              <AddCard onClick={onAddCardClickHandle} />
               {cardlist.length !== 0
                 ? cardlist.map((card) => {
                     return (
