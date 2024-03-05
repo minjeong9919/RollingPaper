@@ -117,7 +117,7 @@ function RollingPageHeader({
           content: {
             title,
             description: '🥰내 롤링페이퍼로 오세요🥰',
-            imageUrl: ``,
+            imageUrl: `../../../assets/images/shareLogo.png`,
             link: {
               webUrl: itemUrl,
             },
