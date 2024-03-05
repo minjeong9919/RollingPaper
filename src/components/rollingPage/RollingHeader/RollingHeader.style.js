@@ -135,7 +135,7 @@ export const ShareOptionDiv = styled.div`
 `;
 
 export const ShareOptionBtn = styled.button`
-  width: 13.8rem;
+  width: 13.6rem;
   display: flex;
   align-items: center;
   padding: 1.2rem 1.6rem;
