@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete.svg';
 import RollingCard from '../components/RollingPage/RollingCard';
 import DetailCard from '../components/RollingPage/DetailCard';
@@ -19,9 +19,8 @@ import {
 function RollingPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
-  const { bgColor, bgImg } = location.state;
-
+  const [backgroundColor, setBackgroundColor] = useState(null);
+  const [backgroundImage, setBackgroundImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [cardlist, setCardlist] = useState([]);
   const [userInfo, setUserInfo] = useState({});
@@ -42,6 +41,12 @@ function RollingPage() {
       setUserInfo(useInfo);
       setCardlist(newCardList);
       setNextCard(messages.next);
+
+      setBackgroundColor(useInfo.backgroundColor);
+      setBackgroundImage(useInfo.backgroundImageURL);
+
+      console.log(backgroundColor);
+      console.log(backgroundImage);
     } catch (error) {
       // 오류 처리
       console.error(error);
@@ -106,11 +111,10 @@ function RollingPage() {
   useEffect(() => {
     if (deleteMsgId) {
       deleteMsgData(deleteMsgId);
+      setCardlist((prevItems) =>
+        prevItems.filter((card) => card.id !== deleteMsgId),
+      );
     }
-
-    setCardlist((prevItems) =>
-      prevItems.filter((card) => card.id !== deleteMsgId),
-    );
   }, [deleteMsgId]);
 
   const [isDetailVisible, setIsDetailVisible] = useState(false);
@@ -142,7 +146,7 @@ function RollingPage() {
           onClick={onDetailClickHandle}
           card={clickedUser}
         />
-        <ContainerDiv $bgColor={bgColor} $bgImg={bgImg}>
+        <ContainerDiv $bgColor={backgroundColor} $bgImg={backgroundImage}>
           <Header name={String(userInfo.name)} />
           <RollingPageHeader
             name={userInfo.name}
