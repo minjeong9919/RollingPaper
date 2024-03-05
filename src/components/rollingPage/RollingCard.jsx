@@ -30,8 +30,6 @@ const RollingCard = forwardRef(
     const year = createdAt.substring(0, 4);
     const month = createdAt.substring(5, 7);
     const day = createdAt.substring(8, 10);
-    // const hour = createdAt.substring(11, 13);
-    // const minute = createdAt.substring(14, 16);
     const date = `${year}.${month}.${day}`;
 
     const onDeleteBtnHandle = () => {
