@@ -45,7 +45,60 @@ const GlobalStyles = createGlobalStyle`
         url('https://cdn.jsdelivr.net/gh/webfontworld/Poppins/Poppins-Bold.ttf') format("truetype");
     font-display: swap;
   } 
-
+  @font-face {
+    font-family: 'Noto Sans';
+    font-weight: 400;
+    font-style: normal;
+    src: url('//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.eot');
+    src: url('//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.eot?#iefix') format('embedded-opentype'),
+        url('//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2') format('woff2'),
+        url('//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff') format('woff'),
+        url('//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.ttf') format('truetype');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Noto Sans';
+    font-weight: 700;
+    font-style: normal;
+    src: url('//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.eot');
+    src: url('//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.eot?#iefix') format('embedded-opentype'),
+        url('//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2') format('woff2'),
+        url('//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff') format('woff'),
+        url('//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.ttf') format('truetype');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: '나눔명조';
+    font-weight: 400;
+    font-style: normal; 
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/NanumMyeongjo/NanumMyeongjo.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/NanumMyeongjo/NanumMyeongjo.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/NanumMyeongjo/NanumMyeongjo.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/NanumMyeongjo/NanumMyeongjo.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/NanumMyeongjo/NanumMyeongjo.ttf') format("truetype");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: '나눔명조';
+    font-weight: 700;
+    font-style: normal; 
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/NanumMyeongjo/NanumMyeongjo.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/NanumMyeongjo/NanumMyeongjo.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/NanumMyeongjo/NanumMyeongjo.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/NanumMyeongjo/NanumMyeongjo.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/NanumMyeongjo/NanumMyeongjo.ttf') format("truetype");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: '나눔손글씨 손편지체';
+    font-weight: 400;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.eot');
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.ttf') format('truetype');
+    font-display: swap;
+  }
   :root {
     /* ============COLOR============ */
     /* Purple Palette */
@@ -108,7 +161,7 @@ const GlobalStyles = createGlobalStyle`
     --font12: 1.2rem;
 
     /* ==========FONT WEIGHT========== */
-    --bord: 700;
+    --bold: 700;
     --regular: 400;
   }
 
@@ -117,6 +170,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Pretendard';
+    text-decoration: none;
   }
 
   html,
