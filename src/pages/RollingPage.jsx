@@ -26,6 +26,7 @@ function RollingPage() {
   const [userInfo, setUserInfo] = useState({});
   const [isSharedToastVisible, setIsSharedToastVisible] = useState(false);
   const [deleteMsgId, setDeleteMsgId] = useState('');
+  const [deleteMsgIdArr, setDeleteMsgIdArr] = useState([]);
   const [nextCard, setNextCard] = useState(null);
 
   const fetchDataForRollingPage = async () => {
@@ -44,9 +45,6 @@ function RollingPage() {
 
       setBackgroundColor(useInfo.backgroundColor);
       setBackgroundImage(useInfo.backgroundImageURL);
-
-      console.log(backgroundColor);
-      console.log(backgroundImage);
     } catch (error) {
       // 오류 처리
       console.error(error);
@@ -110,7 +108,7 @@ function RollingPage() {
   // 카드 지우기
   useEffect(() => {
     if (deleteMsgId) {
-      deleteMsgData(deleteMsgId);
+      setDeleteMsgIdArr((prevArr) => [...prevArr, deleteMsgId]);
       setCardlist((prevItems) =>
         prevItems.filter((card) => card.id !== deleteMsgId),
       );
@@ -127,7 +125,16 @@ function RollingPage() {
   };
 
   const onEditModClickHandle = () => {
-    setIsEditMode(!isEditMode);
+    setIsEditMode(true);
+  };
+
+  const onDeleteCheckClickHandle = () => {
+    setIsEditMode(false);
+    if (deleteMsgIdArr[0]) {
+      deleteMsgIdArr.map((deleteId) => {
+        return deleteMsgData(deleteId);
+      });
+    }
   };
 
   const onAddCardClickHandle = () => {
@@ -162,7 +169,7 @@ function RollingPage() {
             </EditBtn>
             <CompleteBtn
               $isEditMode={isEditMode}
-              onClick={onEditModClickHandle}
+              onClick={onDeleteCheckClickHandle}
             >
               수정완료
             </CompleteBtn>
