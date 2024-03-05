@@ -22,7 +22,7 @@ function Header({ name }) {
   return (
     <ContainerHeader>
       <div className="HeaderContainer">
-        {location.pathname === '/rolling' && screenSize <= 368 && name ? (
+        {screenSize <= 368 && name ? (
           <UserH1>To. {name}</UserH1>
         ) : (
           <HeaderLogoLink to="/">

@@ -1,0 +1,239 @@
+import styled from 'styled-components';
+import { ContainerHeader } from '../../Common/Header/Header.style';
+
+// RollingHeader.style
+export const MainContainerHeader = styled(ContainerHeader)`
+  cursor: default;
+  & .HeaderContainer {
+    padding: 13px auto;
+    justify-content: space-between;
+
+    & > div {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      margin: 0px;
+      @media (max-width: 1248px) {
+        margin: 0px;
+      }
+    }
+  }
+`;
+
+export const UserH1 = styled.h1`
+  width: max-width;
+  color: var(--gray800);
+  font-family: Pretendard;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: -0.28px;
+  cursor: pointer;
+
+  @media (max-width: 368px) {
+    display: none;
+  }
+`;
+
+export const EmoticonDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  position: relative;
+
+  & > #EmojiPicker {
+    position: absolute;
+    top: 42px;
+    transform: translateX(00%);
+  }
+
+  @media (max-width: 368px) {
+    gap: 0px;
+  }
+`;
+
+export const BestEmoticonDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  position: relative;
+  @media (max-width: 368px) {
+    gap: auto;
+  }
+`;
+
+export const EmoticonDetailButton = styled.button`
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  &>svg: hover {
+    background-color: var(--gray200);
+  }
+`;
+
+export const AddEmotionButton = styled.button`
+  width: max-content;
+  padding: 6px 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  border-radius: 6px;
+  border: 1px solid var(--gray300);
+  background: var(--white);
+
+  &: hover {
+    background-color: var(--gray200);
+  }
+
+  @media (max-width: 368px) {
+    padding: 6px 8px;
+    & > span {
+      display: none;
+    }
+  }
+`;
+
+export const DividerDiv = styled.div`
+  width: 1px;
+  height: 28px;
+  background-color: var(--gray200);
+  margin: 0px ${({ $marginLeft }) => $marginLeft};
+
+  &#hiddenAtMobile {
+    @media (max-width: 368px) {
+      display: none;
+    }
+  }
+
+  &#shrinkAtMobile {
+    margin: 0px 11px;
+  }
+`;
+
+export const ShareButton = styled(AddEmotionButton)`
+  & > svg {
+    width: 20px;
+    height: 20px;
+  }
+`;
+// ProfilFrame.style
+export const ProfileFrameDiv = styled.div`
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  border: ${({ type }) =>
+    type === 'image' ? '2px solid #FFF' : '1px solid #e3e3e3'};
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: ${({ $left }) => $left || '0px'};
+  background-color: var(--white);
+
+  & > img {
+    display: ${({ type }) => (type === 'image' ? 'block' : 'none')};
+    width: 200%;
+    height: 200%;
+  }
+`;
+
+export const NumberP = styled.p`
+  display: ${({ type }) => (type === 'number' ? 'block' : 'none')};
+  font-family: Pretendard;
+  font-size: 12px;
+  color: #484848;
+  font-weight: 500;
+`;
+
+// Emoticon.style
+export const EmoticonFrameDiv = styled.div`
+  width: max-content;
+  padding: 8px 12px;
+  gap: 10px;
+  border-radius: 32px;
+  background: rgba(0, 0, 0, 0.54);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  @media (max-width: 368px) {
+    padding: 4px 8px;
+    border-radius: 20px;
+  }
+`;
+
+export const EmoticonSpan = styled.span`
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+
+  & > span {
+    margin-right: 5px;
+  }
+  @media (max-width: 368px) {
+    font-size: 14px;
+  }
+`;
+
+// EmoticonDetai.style
+export const EmoticonDetaiDiv = styled.div`
+  width: auto;
+  height: auto;
+  visibility: ${({ $isVisible }) => ($isVisible ? 'visible' : 'hidden')};
+  padding: 24px;
+  background-color: var(--white);
+  border: 1px solid #b6b6b6;
+  border-radius: 8px;
+  position: absolute;
+  top: 42px;
+`;
+
+export const EmoticonsDiv = styled.div`
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(4, auto);
+  gap: 10px 8px;
+
+  @media (max-width: 368px) {
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: repeat(3, auto);
+  }
+`;
+
+// NumOfWritingPeople.style
+export const NumOfWritingPeopleDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
+  & > p {
+    color: var(--gray900);
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+
+    & > .number {
+      font-weight: 700;
+    }
+  }
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export const EclipseDiv = styled.div`
+  width: 76px;
+  height: 28px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+`;
