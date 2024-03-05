@@ -14,7 +14,7 @@ import {
   SubmitBtn,
 } from '../styles/RollingToMsgPage.style';
 import useOutsideClose from '../hooks/useOutsideClose';
-import Header from '../components/Common/Header/Header';
+import Header from '../components/Common/header/Header';
 
 function RollingToMsgPage() {
   const [isOpenRelationship, setIsOpenRelationship] = useState(false);

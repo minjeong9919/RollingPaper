@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Header from '../components/Common/Header/Header';
+import Header from '../components/Common/header/Header';
 import InputComponent from '../components/RollingBgPage/InputComponent';
 import Toggle from '../components/RollingBgPage/Toggle';
 import getBgImg from '../apis/BgImg';

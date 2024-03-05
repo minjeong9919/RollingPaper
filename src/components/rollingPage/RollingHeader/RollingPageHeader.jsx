@@ -5,7 +5,7 @@ import EmojiPicker from 'emoji-picker-react';
 import { ReactComponent as Arrow } from '../../../assets/icons/arrowDown.svg';
 import { ReactComponent as AddEmotion } from '../../../assets/icons/add_emotion.svg';
 import { ReactComponent as ShareIcon } from '../../../assets/icons/shareBtn.svg';
-import { ContainerHeader } from '../../Common/Header/Header.style';
+import { ContainerHeader } from '../../Common/header/Header.style';
 import Emoticon from './Emoticon';
 import EmoticonDetail from './EmoticonDetail';
 // import emojiList from '../../../constants/EmojiList';

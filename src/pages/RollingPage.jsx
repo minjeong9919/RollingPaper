@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete.svg';
 import GlobalStyles from '../styles/GlobalStyles';
-import RollingCard from '../components/RollingPage/RollingCard';
-import DetailCard from '../components/RollingPage/DetailCard';
+import RollingCard from '../components/rollingPage/RollingCard';
+import DetailCard from '../components/rollingPage/DetailCard';
 // import cardList from '../constants/CardLists';
-import AddCard from '../components/RollingPage/AddCard';
-import Header from '../components/Common/Header/Header';
-import RollingPageHeader from '../components/RollingPage/RollingHeader/RollingPageHeader';
+import AddCard from '../components/rollingPage/AddCard';
+import Header from '../components/Common/header/Header';
+import RollingPageHeader from '../components/rollingPage/RollingHeader/RollingPageHeader';
 import Toast from '../components/Common/Toast';
 
 function RollingPage() {
