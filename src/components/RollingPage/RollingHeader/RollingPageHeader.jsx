@@ -100,6 +100,8 @@ function RollingPageHeader({
 
   const onSharedClickHandle = (item) => {
     const itemUrl = window.location.href;
+    const title = `${name}님의 롤링페이퍼입니다.`;
+
     if (item === '카카오톡 공유') {
       setIsSharedToastVisible(true);
 
@@ -110,13 +112,27 @@ function RollingPageHeader({
           kakao.init(process.env.REACT_APP_KAKAO_KEY);
         }
 
-        kakao.Share.sendScrap({
-          requestUrl: itemUrl,
-          templateId: 104703,
+        kakao.Link.sendDefault({
+          objectType: 'feed',
+          content: {
+            title,
+            description: '🥰내 롤링페이퍼로 오세요🥰',
+            imageUrl: `../../../assets/images/shareLogo.png`,
+            link: {
+              webUrl: itemUrl,
+            },
+          },
+          buttons: [
+            {
+              title,
+              link: {
+                webUrl: itemUrl,
+              },
+            },
+          ],
         });
         kakao.cleanup();
       }
-      console.log(1);
     } else {
       setIsSharedToastVisible(true);
       navigator.clipboard.writeText(itemUrl);
