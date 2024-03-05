@@ -56,7 +56,6 @@ function RollingPageHeader({
       emoji: emojiData.emoji,
       type: 'increase',
     };
-    // setEmojiFormData(updatedEmojiFormData); ==> 안되는 원인 파악 예정
     await postReactionData(updatedEmojiFormData, id);
     const userReactions = await getReactionData(id);
     const newReactionList = userReactions.results;

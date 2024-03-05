@@ -1,61 +1,66 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { getBadgeBgColor, getBadgeTextColor } from '../../utils/BadgeColor';
 import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg';
 
-function RollingCard({
-  id,
-  sender,
-  relationship,
-  createdAt,
-  profileImageURL,
-  content,
-  font,
-  onClick,
-  $isEditMode,
-  setDeleteId,
-}) {
-  const year = createdAt.substring(0, 4);
-  const month = createdAt.substring(5, 7);
-  const day = createdAt.substring(8, 10);
-  // const hour = createdAt.substring(11, 13);
-  // const minute = createdAt.substring(14, 16);
-  const date = `${year}.${month}.${day}`;
+const RollingCard = forwardRef(
+  (
+    {
+      id,
+      sender,
+      relationship,
+      createdAt,
+      profileImageURL,
+      content,
+      font,
+      onClick,
+      $isEditMode,
+      setDeleteId,
+    },
+    ref,
+  ) => {
+    const year = createdAt.substring(0, 4);
+    const month = createdAt.substring(5, 7);
+    const day = createdAt.substring(8, 10);
+    // const hour = createdAt.substring(11, 13);
+    // const minute = createdAt.substring(14, 16);
+    const date = `${year}.${month}.${day}`;
 
-  const onDeleteBtnHandle = () => {
-    setDeleteId(id);
-  };
+    const onDeleteBtnHandle = () => {
+      setDeleteId(id);
+    };
 
-  return (
-    <ContainerDiv onClick={() => $isEditMode || onClick()}>
-      <SenderFrameDiv>
-        <ProfileImageDiv>
-          <img src={profileImageURL} alt={sender} />
-        </ProfileImageDiv>
-        <SenderInfoDiv>
-          <div>
-            <span>From.</span>
-            <span className="name">{sender}</span>
-          </div>
-          <BadgeDiv badge={relationship}>{relationship}</BadgeDiv>
-        </SenderInfoDiv>
-        <DeleteIconBtn
-          $isEditMode={$isEditMode}
-          onClick={() => {
-            onDeleteBtnHandle();
-          }}
-        >
-          <DeleteIcon />
-        </DeleteIconBtn>
-      </SenderFrameDiv>
-      <ContentDiv font={font}>
-        <p>{content}</p>
-        <p className="date">{date}</p>
-      </ContentDiv>
-    </ContainerDiv>
-  );
-}
+    return (
+      <ContainerDiv onClick={() => $isEditMode || onClick()} ref={ref}>
+        <SenderFrameDiv>
+          <ProfileImageDiv>
+            <img src={profileImageURL} alt={sender} />
+          </ProfileImageDiv>
+          <SenderInfoDiv>
+            <div>
+              <span>From.</span>
+              <span className="name">{sender}</span>
+            </div>
+            <BadgeDiv badge={relationship}>{relationship}</BadgeDiv>
+          </SenderInfoDiv>
+          <DeleteIconBtn
+            $isEditMode={$isEditMode}
+            onClick={() => {
+              onDeleteBtnHandle();
+            }}
+          >
+            <DeleteIcon />
+          </DeleteIconBtn>
+        </SenderFrameDiv>
+        <ContentDiv font={font}>
+          <p>{content}</p>
+          <p className="date">{date}</p>
+        </ContentDiv>
+      </ContainerDiv>
+    );
+  },
+);
 
 RollingCard.propTypes = {
   id: PropTypes.number,

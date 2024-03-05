@@ -9,23 +9,18 @@ import AddCard from '../components/RollingPage/AddCard';
 import Header from '../components/Common/Header/Header';
 import RollingPageHeader from '../components/RollingPage/RollingHeader/RollingPageHeader';
 import Toast from '../components/Common/Toast';
-import {
-  deleteMsgData,
-  getCardData,
-  getUserInfo,
-  getMsgInfo,
-} from '../apis/api';
+import { deleteMsgData, getCardData, getUserInfo } from '../apis/api';
 
 function RollingPage() {
   const { id } = useParams();
-  const myRef = useRef();
-  const [offset, setOffset] = useState(0);
-  const [isMoreData, setIsMoreData] = useState(false);
+  // const [offset, setOffset] = useState(0);
+  // const [isMoreData, setIsMoreData] = useState(false);
   const [loading, setLoading] = useState(false);
   const [cardlist, setCardlist] = useState([]);
   const [userInfo, setUserInfo] = useState({});
   const [isSharedToastVisible, setIsSharedToastVisible] = useState(false);
   const [deleteMsgId, setDeleteMsgId] = useState('');
+  const [nextCard, setNextCard] = useState(null);
   const navigate = useNavigate();
 
   const fetchDataForRollingPage = async () => {
@@ -40,6 +35,7 @@ function RollingPage() {
 
       setUserInfo(useInfo);
       setCardlist(newCardList);
+      setNextCard(messages.next);
     } catch (error) {
       // 오류 처리
       console.error(error);
@@ -52,51 +48,55 @@ function RollingPage() {
     fetchDataForRollingPage();
   }, []);
 
+  // 무한 스크롤 구현
+  const lastCardRef = useRef(null);
+
   const loadMoreData = async () => {
     try {
-      const result = await getMsgInfo(id);
-      const nextMoreCard = await result.next;
+      setLoading(true);
 
-      if (nextMoreCard) {
-        setIsMoreData(true);
-      } else setIsMoreData(false);
-      // setIsMoreData(nextMoreCard);
-
-      if (isMoreData) {
-        const messages = await getCardData(id, offset);
-        setCardlist((prevData) => [...prevData, ...messages.results]);
-      }
-      setOffset(offset + 8);
-
-      // }
+      if (nextCard) {
+        console.log(nextCard);
+        const response = await fetch(`${nextCard}`);
+        if (response.ok) {
+          const messages = await response.json();
+          setCardlist((prevData) => [...prevData, ...messages.results]);
+          setNextCard(messages.next);
+        } else {
+          console.error(`Failed to fetch data. Status: ${response.status}`);
+        }
+      } else setLoading(false);
     } catch (error) {
-      // 오류 처리
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            loadMoreData();
-          }
-        });
-      },
-      { threshold: 0.9 },
-    );
+  const onIntersectionHandle = async (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !loading) {
+        loadMoreData();
+        console.log('스크롤의 끝에 도달했습니다.');
+      }
+    });
+  };
 
-    if (myRef.current) {
-      observer.observe(myRef.current);
+  useEffect(() => {
+    const observer = new IntersectionObserver(onIntersectionHandle, {
+      threshold: 1,
+    });
+
+    if (lastCardRef.current) {
+      observer.observe(lastCardRef.current);
     }
 
     return () => {
-      if (myRef.current) {
-        observer.unobserve(myRef.current);
+      if (lastCardRef.current) {
+        observer.unobserve(lastCardRef.current);
       }
     };
-  }, [id, isMoreData, loading]);
+  }, [id, loading]);
 
   // 카드 지우기
   useEffect(() => {
@@ -154,10 +154,11 @@ function RollingPage() {
             >
               수정완료
             </CompleteBtn>
-            <CardsListsDiv ref={myRef}>
+            <CardsListsDiv>
               <AddCard onClick={onAddCardClickHandle} />
               {cardlist.length !== 0
-                ? cardlist.map((card) => {
+                ? cardlist.map((card, index) => {
+                    const isLastCard = index === cardlist.length - 1;
                     return (
                       <RollingCard
                         key={card.id}
@@ -171,6 +172,7 @@ function RollingPage() {
                         $isEditMode={isEditMode}
                         onClick={() => onDetailClickHandle(card)}
                         setDeleteId={setDeleteMsgId}
+                        ref={isLastCard ? lastCardRef : null}
                       />
                     );
                   })
