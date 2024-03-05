@@ -1,14 +1,22 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import EmojiPicker from 'emoji-picker-react';
 import { ReactComponent as Arrow } from '../../../assets/icons/arrowDown.svg';
 import { ReactComponent as AddEmotion } from '../../../assets/icons/add_emotion.svg';
 import { ReactComponent as ShareIcon } from '../../../assets/icons/shareBtn.svg';
-import { ContainerHeader } from '../../Common/Header/Header.style';
 import Emoticon from './Emoticon';
 import EmoticonDetail from './EmoticonDetail';
 import NumOfWritingPeople from './NumOfWritingPeople';
+import {
+  MainContainerHeader,
+  UserH1,
+  DividerDiv,
+  EmoticonDiv,
+  BestEmoticonDiv,
+  EmoticonDetailButton,
+  AddEmotionButton,
+  ShareButton,
+} from './RollingHeader.style';
 import {
   getReactionData,
   postReactionData,
@@ -155,123 +163,5 @@ RollingPageHeader.defaultProps = {
   cardList: [],
   setIsSharedToastVisible: null,
 };
-
-const MainContainerHeader = styled(ContainerHeader)`
-  cursor: default;
-  & .HeaderContainer {
-    padding: 13px auto;
-    justify-content: space-between;
-
-    & > div {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      align-items: center;
-      margin: 0px;
-      @media (max-width: 1248px) {
-        margin: 0px;
-      }
-    }
-  }
-`;
-
-const UserH1 = styled.h1`
-  width: max-width;
-  color: var(--gray800);
-  font-family: Pretendard;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 42px;
-  letter-spacing: -0.28px;
-  cursor: pointer;
-
-  @media (max-width: 368px) {
-    display: none;
-  }
-`;
-
-const EmoticonDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  position: relative;
-
-  & > #EmojiPicker {
-    position: absolute;
-    top: 42px;
-    transform: translateX(00%);
-  }
-
-  @media (max-width: 368px) {
-    gap: 0px;
-  }
-`;
-
-const BestEmoticonDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  position: relative;
-  @media (max-width: 368px) {
-    gap: auto;
-  }
-`;
-
-const EmoticonDetailButton = styled.button`
-  width: 36px;
-  height: 36px;
-  padding: 6px;
-  &>svg: hover {
-    background-color: var(--gray200);
-  }
-`;
-
-const AddEmotionButton = styled.button`
-  width: max-content;
-  padding: 6px 16px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 4px;
-  border-radius: 6px;
-  border: 1px solid var(--gray300);
-  background: var(--white);
-
-  &: hover {
-    background-color: var(--gray200);
-  }
-
-  @media (max-width: 368px) {
-    padding: 6px 8px;
-    & > span {
-      display: none;
-    }
-  }
-`;
-
-const DividerDiv = styled.div`
-  width: 1px;
-  height: 28px;
-  background-color: var(--gray200);
-  margin: 0px ${({ $marginLeft }) => $marginLeft};
-
-  &#hiddenAtMobile {
-    @media (max-width: 368px) {
-      display: none;
-    }
-  }
-
-  &#shrinkAtMobile {
-    margin: 0px 11px;
-  }
-`;
-
-const ShareButton = styled(AddEmotionButton)`
-  & > svg {
-    width: 20px;
-    height: 20px;
-  }
-`;
 
 export default RollingPageHeader;
