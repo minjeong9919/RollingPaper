@@ -19,7 +19,6 @@ function CardData({ cardData, translateX }) {
       {cardData.map((list, index) => (
         <article key={list.id}>
           <CardWrapperLink
-            // to={`/post/${list.id}`}
             to={`/post/${list.id}`}
             state={{
               bgColor: list.backgroundColor,
@@ -40,7 +39,7 @@ function CardData({ cardData, translateX }) {
                   />
                 ))}
 
-                {commentImg[index].length > 3 && (
+                {commentImg[index].length >= 3 && (
                   <div className="commentImg">+ {list.messageCount - 3}</div>
                 )}
               </CardCommentImgBoxDiv>
