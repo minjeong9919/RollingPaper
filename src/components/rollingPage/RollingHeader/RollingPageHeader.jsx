@@ -16,6 +16,8 @@ import {
   EmoticonDetailButton,
   AddEmotionButton,
   ShareButton,
+  ShareOptionDiv,
+  ShareOptionBtn,
 } from './RollingHeader.style';
 import {
   getReactionData,
@@ -23,6 +25,7 @@ import {
   getUserInfo,
 } from '../../../apis/api';
 import useOutsideClose from '../../../hooks/useOutsideClose';
+import { ShareList } from './ShareList';
 
 function RollingPageHeader({
   name,
@@ -33,6 +36,7 @@ function RollingPageHeader({
 }) {
   const [isEmojiPickerVisible, setIsEmojiPickerVsiible] = useState(false);
   const [isEmoticonDetailVisible, setIsEmotionDetailVisible] = useState(false);
+  const [isShareVisible, setIsShareVisible] = useState(false);
   const [userReactionList, setUserReactionList] = useState([]);
   const [topReactions, setTopReactions] = useState([]);
 
@@ -78,6 +82,7 @@ function RollingPageHeader({
   // const [emojiSortedList, setEmojiSortedList] = useState([]);
   const emojiPickerRef = useRef(null);
   const emojiDetailRef = useRef(null);
+  const shareRef = useRef(null);
 
   const onAddEmojiBtnHandle = () => {
     setIsEmojiPickerVsiible(!isEmojiPickerVisible);
@@ -90,14 +95,25 @@ function RollingPageHeader({
   };
 
   const onSharedBtnHandle = () => {
-    setIsSharedToastVisible(true);
-    const url = window.location.href;
-    navigator.clipboard.writeText(url);
+    setIsShareVisible(!isShareVisible);
   };
+
+  const onSharedClickHandle = (item) => {
+    if (item === '카카오톡 공유') {
+      setIsSharedToastVisible(true);
+      console.log(1);
+    } else {
+      setIsSharedToastVisible(true);
+      const itemUrl = window.location.href;
+      navigator.clipboard.writeText(itemUrl);
+    }
+  };
+
   const threePeople = cardList.slice(0, 3);
 
   useOutsideClose(emojiPickerRef, setIsEmojiPickerVsiible);
   useOutsideClose(emojiDetailRef, setIsEmotionDetailVisible);
+  useOutsideClose(shareRef, setIsShareVisible);
 
   return (
     <MainContainerHeader>
@@ -146,9 +162,21 @@ function RollingPageHeader({
             </div>
           </EmoticonDiv>
           <DividerDiv $marginLeft="13px" id="shrinkAtMobile" />
-          <ShareButton onClick={() => onSharedBtnHandle()}>
+          <ShareButton ref={shareRef} onClick={() => onSharedBtnHandle()}>
             <ShareIcon />
           </ShareButton>
+          {isShareVisible && (
+            <ShareOptionDiv>
+              {ShareList.map((item) => (
+                <ShareOptionBtn
+                  key={item}
+                  onClick={() => onSharedClickHandle(item)}
+                >
+                  {item}
+                </ShareOptionBtn>
+              ))}
+            </ShareOptionDiv>
+          )}
         </div>
       </div>
     </MainContainerHeader>
