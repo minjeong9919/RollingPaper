@@ -6,13 +6,15 @@ import ProfileImg from '../components/RollingToMsgPage/ProfileImg';
 import Relationship from '../components/RollingToMsgPage/Relationship';
 import Fonts from '../components/RollingToMsgPage/Fonts';
 import Text from '../components/RollingToMsgPage/Text';
-import PostHeader from '../components/Common/Header/PostHeader';
 import {
+  FormContentDiv,
+  HeaderContentDiv,
   MsgPageContainerDiv,
   MsgPageForm,
   SubmitBtn,
 } from '../styles/RollingToMsgPage.style';
 import useOutsideClose from '../hooks/useOutsideClose';
+import Header from '../components/Common/Header/Header';
 
 function RollingToMsgPage() {
   const [isOpenRelationship, setIsOpenRelationship] = useState(false);
@@ -71,37 +73,45 @@ function RollingToMsgPage() {
   }, []);
   return (
     <MsgPageContainerDiv>
-      <PostHeader />
-      <MsgPageForm onSubmit={onSubmitHandle}>
-        <InputName
-          setName={setName}
-          errorMsg={errorMsg}
-          setErrorMsg={setErrorMsg}
-        />
-        <ProfileImg profileImg={profileImg} image={image} setImage={setImage} />
-        <Relationship
-          ref={relationshipRef}
-          isOpenRelationship={isOpenRelationship}
-          setIsOpenRelationship={setIsOpenRelationship}
-          relationshipValue={relationshipValue}
-          onRelationshipValueHandle={onRelationshipValueHandle}
-        />
-        <Text
-          quillValue={quillValue}
-          onQuillValueChangeHandle={onQuillValueChangeHandle}
-        />
-        <Fonts
-          ref={fontRef}
-          isOpenFont={isOpenFont}
-          setIsOpenFont={setIsOpenFont}
-          isOpenRelationship={isOpenRelationship}
-          fontpValue={fontpValue}
-          onFontValueHandle={onFontValueHandle}
-        />
-        <SubmitBtn type="submit" disabled={!name || !quillValue}>
-          생성하기
-        </SubmitBtn>
-      </MsgPageForm>
+      <HeaderContentDiv>
+        <Header />
+      </HeaderContentDiv>
+      <FormContentDiv>
+        <MsgPageForm onSubmit={onSubmitHandle}>
+          <InputName
+            setName={setName}
+            errorMsg={errorMsg}
+            setErrorMsg={setErrorMsg}
+          />
+          <ProfileImg
+            profileImg={profileImg}
+            image={image}
+            setImage={setImage}
+          />
+          <Relationship
+            ref={relationshipRef}
+            isOpenRelationship={isOpenRelationship}
+            setIsOpenRelationship={setIsOpenRelationship}
+            relationshipValue={relationshipValue}
+            onRelationshipValueHandle={onRelationshipValueHandle}
+          />
+          <Text
+            quillValue={quillValue}
+            onQuillValueChangeHandle={onQuillValueChangeHandle}
+          />
+          <Fonts
+            ref={fontRef}
+            isOpenFont={isOpenFont}
+            setIsOpenFont={setIsOpenFont}
+            isOpenRelationship={isOpenRelationship}
+            fontpValue={fontpValue}
+            onFontValueHandle={onFontValueHandle}
+          />
+          <SubmitBtn type="submit" disabled={!name || !quillValue}>
+            생성하기
+          </SubmitBtn>
+        </MsgPageForm>
+      </FormContentDiv>
     </MsgPageContainerDiv>
   );
 }

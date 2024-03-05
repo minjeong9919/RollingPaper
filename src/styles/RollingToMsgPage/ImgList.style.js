@@ -34,7 +34,7 @@ export const ImgListDiv = styled.div`
 `;
 
 export const ListContentDiv = styled.div`
-  height: 5.6rem;
+  min-height: 5.6rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
