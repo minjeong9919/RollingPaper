@@ -30,7 +30,6 @@ function Header({ name }) {
             <h1 className="LogoText">Rolling</h1>
           </HeaderLogoLink>
         )}
-
         {location.pathname !== '/' && location.pathname !== '/list' ? null : (
           <HeaderButton to="/post">롤링 페이퍼 만들기</HeaderButton>
         )}

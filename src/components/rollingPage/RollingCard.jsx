@@ -32,14 +32,14 @@ function RollingCard({
             <span>From.</span>
             <span className="name">{sender}</span>
           </div>
-          <BadgeDiv badge={relationship}>{relationship}</BadgeDiv>
+          <BadgeDiv $badge={relationship}>{relationship}</BadgeDiv>
         </SenderInfoDiv>
         <DeleteIconBtn $isEditMode={$isEditMode}>
           <DeleteIcon />
         </DeleteIconBtn>
       </SenderFrameDiv>
-      <ContentDiv font={font}>
-        <p>{content}</p>
+      <ContentDiv $font={font}>
+        <p dangerouslySetInnerHTML={{ __html: content }} />
         <p className="date">{date}</p>
       </ContentDiv>
     </ContainerDiv>
@@ -137,8 +137,8 @@ const BadgeDiv = styled.div`
   width: max-content;
   padding: 0px 8px;
   border-radius: 4px;
-  background-color: ${({ badge }) => getBadgeBgColor(badge)};
-  color: ${({ badge }) => getBadgeTextColor(badge)};
+  background-color: ${({ $badge }) => getBadgeBgColor($badge)};
+  color: ${({ $badge }) => getBadgeTextColor($badge)};
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
@@ -153,14 +153,14 @@ const ContentDiv = styled.div`
   flex-shrink: 0;
   margin-top: 16px;
 
-  & > p {
+  & p {
     height: 110px;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     color: var(--gray600);
-    font-family: ${({ font }) => font};
+    font-family: ${({ $font }) => $font};
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

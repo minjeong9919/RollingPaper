@@ -5,34 +5,30 @@ export const MsgPageContainerDiv = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+`;
 
-  @media (max-width: 768px) {
-    max-width: 76.8rem;
-    padding: 0 2.4rem;
+export const HeaderContentDiv = styled.div`
+  @media (max-width: 360px) {
+    display: none;
   }
+`;
+
+export const FormContentDiv = styled.div`
+  padding: 0 2.4rem;
 
   @media (max-width: 360px) {
-    max-width: 36rem;
     padding: 0 2rem;
   }
 `;
 
 export const MsgPageForm = styled.form`
+  max-width: 72rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 4.7rem 0 6rem;
   margin: 0 auto;
   gap: 5rem;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 4.9rem 0 6rem;
-  }
-
-  @media (max-width: 360px) {
-    min-width: 32rem;
-  }
 `;
 
 export const SubmitBtn = styled.button`

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import EmojiPicker from 'emoji-picker-react';
@@ -10,6 +10,7 @@ import Emoticon from './Emoticon';
 import EmoticonDetail from './EmoticonDetail';
 // import emojiList from '../../../constants/EmojiList';
 import NumOfWritingPeople from './NumOfWritingPeople';
+import useOutsideClose from '../../../hooks/useOutsideClose';
 
 function RollingPageHeader({
   name,
@@ -21,6 +22,8 @@ function RollingPageHeader({
   const [isEmojiPickerVisible, setIsEmojiPickerVsiible] = useState(false);
   const [isEmoticonDetailVisible, setIsEmotionDetailVisible] = useState(false);
   // const [emojiSortedList, setEmojiSortedList] = useState([]);
+  const emojiPickerRef = useRef(null);
+  const emojiDetailRef = useRef(null);
 
   const onAddEmojiBtnHandle = () => {
     setIsEmojiPickerVsiible(!isEmojiPickerVisible);
@@ -45,6 +48,9 @@ function RollingPageHeader({
   //   setEmojiSortedList(sorted);
   // }, []);
 
+  useOutsideClose(emojiPickerRef, setIsEmojiPickerVsiible);
+  useOutsideClose(emojiDetailRef, setIsEmotionDetailVisible);
+
   return (
     <MainContainerHeader>
       <div className="HeaderContainer">
@@ -66,10 +72,14 @@ function RollingPageHeader({
               ))}
             </BestEmoticonDiv>
             <EmoticonDetail isVisible={isEmoticonDetailVisible} />
-            <EmoticonDetailButton onClick={() => onEmoticonDetailBtnHandle()}>
+            <EmoticonDetailButton
+              ref={emojiDetailRef}
+              onClick={() => onEmoticonDetailBtnHandle()}
+            >
               <Arrow />
             </EmoticonDetailButton>
             <AddEmotionButton
+              ref={emojiPickerRef}
               onClick={() => {
                 onAddEmojiBtnHandle();
               }}
@@ -183,7 +193,7 @@ const EmoticonDetailButton = styled.button`
   width: 36px;
   height: 36px;
   padding: 6px;
-  &>svg: hover {
+  & > svg:hover {
     background-color: var(--gray200);
   }
 `;
@@ -199,7 +209,7 @@ const AddEmotionButton = styled.button`
   border: 1px solid var(--gray300);
   background: var(--white);
 
-  &: hover {
+  &:hover {
     background-color: var(--gray200);
   }
 
