@@ -15,7 +15,7 @@ function RollingToBgPage() {
   const [items, setItems] = useState([]);
   const color = ['beige', 'purple', 'blue', 'green'];
   const [selectedColor, setSelectedColor] = useState(color[0]);
-  const [selectedImg, setSelectedImg] = useState(' ');
+  const [selectedImg, setSelectedImg] = useState(null);
 
   const navigate = useNavigate();
 
@@ -50,12 +50,19 @@ function RollingToBgPage() {
 
   const onSubmitHandle = async (event) => {
     event.preventDefault();
-    const data = {
-      team: '4-3',
-      name,
-      backgroundColor: selectedColor,
-      backgroundImageURL: selectedImg,
-    };
+    let data;
+    if (selectedImg === null) {
+      data = {
+        name,
+        backgroundColor: selectedColor,
+      };
+    } else {
+      data = {
+        name,
+        backgroundColor: selectedColor,
+        backgroundImageURL: selectedImg,
+      };
+    }
     try {
       const response = await fetch(
         'https://rolling-api.vercel.app/4-3/recipients/',
