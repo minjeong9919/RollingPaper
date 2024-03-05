@@ -163,16 +163,23 @@ function RollingPage() {
             setIsSharedToastVisible={setIsSharedToastVisible}
           />
           <div className="Div">
-            <EditBtn $isEditMode={isEditMode} onClick={onEditModClickHandle}>
-              <DeleteIcon />
-              삭제하기
-            </EditBtn>
-            <CompleteBtn
-              $isEditMode={isEditMode}
-              onClick={onDeleteCheckClickHandle}
-            >
-              수정완료
-            </CompleteBtn>
+            {cardlist[0] && (
+              <>
+                <EditBtn
+                  $isEditMode={isEditMode}
+                  onClick={onEditModClickHandle}
+                >
+                  <DeleteIcon />
+                  삭제하기
+                </EditBtn>
+                <CompleteBtn
+                  $isEditMode={isEditMode}
+                  onClick={onDeleteCheckClickHandle}
+                >
+                  수정완료
+                </CompleteBtn>
+              </>
+            )}
             <CardsListsDiv>
               <AddCard onClick={onAddCardClickHandle} />
               {cardlist.length !== 0
