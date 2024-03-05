@@ -19,6 +19,13 @@ export const MainContainerHeader = styled(ContainerHeader)`
       }
     }
   }
+
+  @media (max-width: 520px) {
+    padding: 0px 15px;
+  }
+  @media (max-width: 360px) {
+    padding: 0px 24px;
+  }
 `;
 
 export const UserH1 = styled.h1`
@@ -32,7 +39,13 @@ export const UserH1 = styled.h1`
   letter-spacing: -0.28px;
   cursor: pointer;
 
-  @media (max-width: 368px) {
+  @media (max-width: 908px) {
+    font-size: 2.5vw;
+  }
+  @media (max-width: 768px) {
+    font-size: 3.3vw;
+  }
+  @media (max-width: 360px) {
     display: none;
   }
 `;
@@ -49,7 +62,7 @@ export const EmoticonDiv = styled.div`
     transform: translateX(00%);
   }
 
-  @media (max-width: 368px) {
+  @media (max-width: 768px) {
     gap: 0px;
   }
 `;
@@ -59,6 +72,11 @@ export const BestEmoticonDiv = styled.div`
   flex-direction: row;
   gap: 8px;
   position: relative;
+
+  @media (max-width: 500px) {
+    gap: 3px;
+  }
+
   @media (max-width: 368px) {
     gap: auto;
   }
@@ -68,6 +86,11 @@ export const EmoticonDetailButton = styled.button`
   width: 36px;
   height: 36px;
   padding: 6px;
+
+  @media (max-width: 500px) {
+    width: 30px;
+  }
+
   &>svg: hover {
     background-color: var(--gray200);
   }
@@ -88,8 +111,15 @@ export const AddEmotionButton = styled.button`
     background-color: var(--gray200);
   }
 
+  @media (max-width: 900px) {
+    padding: 6px 10px;
+  }
+
+  @media (max-width: 500px) {
+    padding: 6px 5px;
+  }
+
   @media (max-width: 368px) {
-    padding: 6px 8px;
     & > span {
       display: none;
     }
@@ -103,6 +133,9 @@ export const DividerDiv = styled.div`
   margin: 0px ${({ $marginLeft }) => $marginLeft};
 
   &#hiddenAtMobile {
+    @media (max-width: 900px) {
+      margin: 0px 10px;
+    }
     @media (max-width: 368px) {
       display: none;
     }
@@ -110,6 +143,10 @@ export const DividerDiv = styled.div`
 
   &#shrinkAtMobile {
     margin: 0px 11px;
+
+    @media (max-width: 500px) {
+      margin: 0px 5px;
+    }
   }
 `;
 
@@ -161,6 +198,14 @@ export const EmoticonFrameDiv = styled.div`
   align-items: center;
   cursor: pointer;
 
+  @media (max-width: 900px) {
+    padding: 8px 10px;
+  }
+
+  @media (max-width: 500px) {
+    padding: 8px 5px;
+  }
+
   @media (max-width: 368px) {
     padding: 4px 8px;
     border-radius: 20px;
@@ -177,9 +222,11 @@ export const EmoticonSpan = styled.span`
 
   & > span {
     margin-right: 5px;
-  }
-  @media (max-width: 368px) {
-    font-size: 14px;
+
+    @media (max-width: 500px) {
+      margin-right: 3px;
+      font-size: 13px;
+    }
   }
 `;
 
@@ -223,6 +270,9 @@ export const NumOfWritingPeopleDiv = styled.div`
 
     & > .number {
       font-weight: 700;
+    }
+    @media (max-width: 900px) {
+      font-size: 2vw;
     }
   }
   @media (max-width: 768px) {
