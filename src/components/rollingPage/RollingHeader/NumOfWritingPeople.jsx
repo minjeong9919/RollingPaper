@@ -7,25 +7,18 @@ export default function NumOfWritingPeople({ messageCount, threePeople }) {
   return (
     <NumOfWritingPeopleDiv>
       <EclipseDiv>
-        <ProfileFrame
-          type="image"
-          left="0px"
-          profileImgURL={threePeople[0] ? threePeople[0].profileImageURL : null}
-        />
-        <ProfileFrame
-          type="image"
-          left="16px"
-          profileImgURL={threePeople[1] ? threePeople[1].profileImageURL : null}
-        />
-        <ProfileFrame
-          type="image"
-          left="32px"
-          profileImgURL={threePeople[2] ? threePeople[2].profileImageURL : null}
-        />
+        {threePeople.map((people, index) => (
+          <ProfileFrame
+            key={people.id}
+            type="image"
+            left={`${index * 16}px`}
+            profileImgURL={people ? people.profileImageURL : null}
+          />
+        ))}
         <ProfileFrame
           type="number"
           left="48px"
-          number={messageCount - 3 > 0 ? messageCount - 3 : 0}
+          number={messageCount > 3 ? messageCount - 3 : 0}
         />
       </EclipseDiv>
       <p>
