@@ -123,8 +123,8 @@ export const BadgeDiv = styled.div`
   width: max-content;
   padding: 0px 8px;
   border-radius: 4px;
-  background-color: ${({ badge }) => getBadgeBgColor(badge)};
-  color: ${({ badge }) => getBadgeTextColor(badge)};
+  background-color: ${({ $badge }) => getBadgeBgColor($badge)};
+  color: ${({ $badge }) => getBadgeTextColor($badge)};
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;

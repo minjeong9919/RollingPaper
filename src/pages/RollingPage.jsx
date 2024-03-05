@@ -107,6 +107,10 @@ function RollingPage() {
     if (deleteMsgId) {
       deleteMsgData(deleteMsgId);
     }
+
+    setCardlist((prevItems) =>
+      prevItems.filter((card) => card.id !== deleteMsgId),
+    );
   }, [deleteMsgId]);
 
   const [isDetailVisible, setIsDetailVisible] = useState(false);

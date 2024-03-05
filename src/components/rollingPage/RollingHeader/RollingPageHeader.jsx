@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import EmojiPicker from 'emoji-picker-react';
 import { ReactComponent as Arrow } from '../../../assets/icons/arrowDown.svg';
@@ -22,6 +22,7 @@ import {
   postReactionData,
   getUserInfo,
 } from '../../../apis/api';
+import useOutsideClose from '../../../hooks/useOutsideClose';
 
 function RollingPageHeader({
   name,
@@ -74,6 +75,9 @@ function RollingPageHeader({
     setUserReactionList(newReactionList);
     setTopReactions(newTopReactions);
   };
+  // const [emojiSortedList, setEmojiSortedList] = useState([]);
+  const emojiPickerRef = useRef(null);
+  const emojiDetailRef = useRef(null);
 
   const onAddEmojiBtnHandle = () => {
     setIsEmojiPickerVsiible(!isEmojiPickerVisible);
@@ -91,6 +95,9 @@ function RollingPageHeader({
     navigator.clipboard.writeText(url);
   };
   const threePeople = cardList.slice(0, 3);
+
+  useOutsideClose(emojiPickerRef, setIsEmojiPickerVsiible);
+  useOutsideClose(emojiDetailRef, setIsEmotionDetailVisible);
 
   return (
     <MainContainerHeader>
@@ -116,10 +123,14 @@ function RollingPageHeader({
               isVisible={isEmoticonDetailVisible}
               emojilist={userReactionList}
             />
-            <EmoticonDetailButton onClick={() => onEmoticonDetailBtnHandle()}>
+            <EmoticonDetailButton
+              ref={emojiDetailRef}
+              onClick={() => onEmoticonDetailBtnHandle()}
+            >
               <Arrow />
             </EmoticonDetailButton>
             <AddEmotionButton
+              ref={emojiPickerRef}
               onClick={() => {
                 onAddEmojiBtnHandle();
               }}

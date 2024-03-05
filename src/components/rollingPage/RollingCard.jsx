@@ -49,7 +49,7 @@ const RollingCard = forwardRef(
               <span>From.</span>
               <span className="name">{sender}</span>
             </div>
-            <BadgeDiv badge={relationship}>{relationship}</BadgeDiv>
+            <BadgeDiv $badge={relationship}>{relationship}</BadgeDiv>
           </SenderInfoDiv>
           <DeleteIconBtn
             $isEditMode={$isEditMode}
@@ -60,8 +60,8 @@ const RollingCard = forwardRef(
             <DeleteIcon />
           </DeleteIconBtn>
         </SenderFrameDiv>
-        <ContentDiv font={font}>
-          <p>{content}</p>
+        <ContentDiv $font={font}>
+          <p dangerouslySetInnerHTML={{ __html: content }} />
           <p className="date">{date}</p>
         </ContentDiv>
       </ContainerDiv>

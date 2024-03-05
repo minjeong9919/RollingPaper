@@ -73,8 +73,8 @@ export const BadgeDiv = styled.div`
   width: max-content;
   padding: 0px 8px;
   border-radius: 4px;
-  background-color: ${({ badge }) => getBadgeBgColor(badge)};
-  color: ${({ badge }) => getBadgeTextColor(badge)};
+  background-color: ${({ $badge }) => getBadgeBgColor($badge)};
+  color: ${({ $badge }) => getBadgeTextColor($badge)};
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
@@ -96,7 +96,7 @@ export const ContentDiv = styled.div`
     -webkit-box-orient: vertical;
     overflow: hidden;
     color: var(--gray600);
-    font-family: ${({ font }) => font};
+    font-family: ${({ $font }) => $font || 'inherit'};
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

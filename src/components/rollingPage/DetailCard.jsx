@@ -12,6 +12,8 @@ import {
 } from './DetailCard.style';
 
 function DetailCard({ $visible, onClick = null, card }) {
+  const { font } = card;
+
   let date = '';
   if (card.createdAt) {
     const year = card.createdAt.substring(0, 4);
@@ -35,13 +37,15 @@ function DetailCard({ $visible, onClick = null, card }) {
                 <span>From.</span>
                 <span className="name">{card.sender}</span>
               </div>
-              <BadgeDiv badge={card.relationship}>{card.relationship}</BadgeDiv>
+              <BadgeDiv $badge={card.relationship}>
+                {card.relationship}
+              </BadgeDiv>
             </SenderInfoDiv>
           </div>
           <p className="date">{date}</p>
         </SenderFrameDiv>
-        <ContentDiv>
-          <p>{card.content}</p>
+        <ContentDiv $font={font}>
+          <p dangerouslySetInnerHTML={{ __html: card.content }} />
         </ContentDiv>
         <CheckButton onClick={() => onClick()}>확인</CheckButton>
       </ContainerDiv>
@@ -59,6 +63,7 @@ DetailCard.propTypes = {
     createdAt: PropTypes.string,
     content: PropTypes.string,
     profileImageURL: PropTypes.string,
+    font: PropTypes.string,
   }),
 };
 
@@ -70,6 +75,7 @@ DetailCard.defaultProps = {
     createdAt: '',
     content: '',
     profileImageURL: '',
+    font: '',
   },
 };
 
