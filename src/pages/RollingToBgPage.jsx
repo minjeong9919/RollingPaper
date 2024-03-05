@@ -127,7 +127,7 @@ const Wrapper = styled.div`
   align-items: start;
   width: 100%;
   margin-top: 57px;
-  @media (min-width: 360px) and (max-width: 768px) {
+  @media (min-width: 360px) and (max-width: 767px) {
     margin-top: 50px;
   }
 `;
@@ -139,7 +139,7 @@ const FormWrapper = styled.form`
   align-items: start;
   width: 720px;
 
-  @media (min-width: 360px) and (max-width: 768px) {
+  @media (min-width: 360px) and (max-width: 767px) {
     width: 320px;
   }
 `;
