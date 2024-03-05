@@ -55,7 +55,7 @@ export const SelectOptionBtn = styled.button`
   padding: 1.2rem 1.6rem;
   cursor: pointer;
   color: var(--gray900);
-  font-family: ${({ item }) => `${item}`};
+  font-family: ${({ $item }) => `${$item}`};
   font-size: var(--font16);
   font-weight: var(--regular);
   line-height: 1.625;
