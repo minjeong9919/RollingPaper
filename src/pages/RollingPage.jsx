@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as DeleteIcon } from '../assets/icons/delete.svg';
 import RollingCard from '../components/RollingPage/RollingCard';
@@ -13,15 +13,16 @@ import { deleteMsgData, getCardData, getUserInfo } from '../apis/api';
 
 function RollingPage() {
   const { id } = useParams();
-  // const [offset, setOffset] = useState(0);
-  // const [isMoreData, setIsMoreData] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { bgColor, bgImg } = location.state;
+
   const [loading, setLoading] = useState(false);
   const [cardlist, setCardlist] = useState([]);
   const [userInfo, setUserInfo] = useState({});
   const [isSharedToastVisible, setIsSharedToastVisible] = useState(false);
   const [deleteMsgId, setDeleteMsgId] = useState('');
   const [nextCard, setNextCard] = useState(null);
-  const navigate = useNavigate();
 
   const fetchDataForRollingPage = async () => {
     try {
@@ -56,7 +57,6 @@ function RollingPage() {
       setLoading(true);
 
       if (nextCard) {
-        console.log(nextCard);
         const response = await fetch(`${nextCard}`);
         if (response.ok) {
           const messages = await response.json();
@@ -77,7 +77,6 @@ function RollingPage() {
     entries.forEach((entry) => {
       if (entry.isIntersecting && !loading) {
         loadMoreData();
-        console.log('스크롤의 끝에 도달했습니다.');
       }
     });
   };
@@ -134,7 +133,7 @@ function RollingPage() {
           onClick={onDetailClickHandle}
           card={clickedUser}
         />
-        <ContainerDiv>
+        <ContainerDiv $bgColor={bgColor} $bgImg={bgImg}>
           <Header name={String(userInfo.name)} />
           <RollingPageHeader
             name={userInfo.name}
@@ -190,8 +189,10 @@ const ContainerDiv = styled.div`
   height: 100vh;
   margin: 0px;
   overflow: auto;
-  background-color: ${({ bgColor = 'var(--orange200)' }) => bgColor};
-
+  background-image: url(${({ $bgImg }) => $bgImg});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: ${({ $bgColor }) => $bgColor};
   & > .Div {
     padding-top: 114px;
     width: 1200px;
