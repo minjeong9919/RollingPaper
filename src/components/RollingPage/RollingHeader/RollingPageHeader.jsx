@@ -99,12 +99,26 @@ function RollingPageHeader({
   };
 
   const onSharedClickHandle = (item) => {
+    const itemUrl = window.location.href;
     if (item === '카카오톡 공유') {
       setIsSharedToastVisible(true);
+
+      if (window.Kakao) {
+        const kakao = window.Kakao;
+
+        if (!kakao.isInitialized()) {
+          kakao.init(process.env.REACT_APP_KAKAO_KEY);
+        }
+
+        kakao.Share.sendScrap({
+          requestUrl: itemUrl,
+          templateId: 104703,
+        });
+        kakao.cleanup();
+      }
       console.log(1);
     } else {
       setIsSharedToastVisible(true);
-      const itemUrl = window.location.href;
       navigator.clipboard.writeText(itemUrl);
     }
   };
