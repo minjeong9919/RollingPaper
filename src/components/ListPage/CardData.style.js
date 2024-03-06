@@ -16,7 +16,7 @@ export const CardWrapperLink = styled(Link)`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 43px;
+  gap: 20px;
   width: 275px;
   height: 260px;
   padding: 30px 24px 20px;
@@ -35,14 +35,21 @@ export const CardWrapperLink = styled(Link)`
 export const CardRecipientWrapperDiv = styled.div`
   color: ${({ theme }) => theme.text};
   width: 100%;
-  height: 114px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
+  background: ${({ theme }) =>
+    theme.mode === 'light'
+      ? 'rgba(255, 255, 255, 0.5)'
+      : 'rgba(0, 0, 0, 0.5);'};
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 16px;
   @media all and (max-width: 768px) {
     height: 100px;
   }
 `;
+
 export const CardRecipientDiv = styled.div`
   font-size: var(--font24, 2.4rem);
   font-weight: var(--bold, 700);
