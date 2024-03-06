@@ -91,7 +91,7 @@ export const EmoticonDetailButton = styled.button`
     width: 30px;
   }
 
-  &>svg: hover {
+  & > svg :hover {
     background-color: var(--gray200);
   }
 `;
