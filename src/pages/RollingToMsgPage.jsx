@@ -8,7 +8,6 @@ import Fonts from '../components/RollingToMsgPage/Fonts';
 import Text from '../components/RollingToMsgPage/Text';
 import {
   FormContentDiv,
-  HeaderContentDiv,
   MsgPageContainerDiv,
   MsgPageForm,
   SubmitBtn,
@@ -73,9 +72,7 @@ function RollingToMsgPage() {
   }, []);
   return (
     <MsgPageContainerDiv>
-      <HeaderContentDiv>
-        <Header />
-      </HeaderContentDiv>
+      <Header />
       <FormContentDiv>
         <MsgPageForm onSubmit={onSubmitHandle}>
           <InputName

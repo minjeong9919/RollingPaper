@@ -27,7 +27,7 @@ const AddCardDiv = styled.div`
   height: 100%;
   padding: 0px 24px;
   border-radius: 16px;
-  background: var(--white);
+  background: ${({ theme }) => theme.btnBgColor};
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
   cursor: pointer;
 
@@ -45,7 +45,6 @@ const PlusFrame = styled.div`
   justify-content: center;
   align-items: center;
   margin: auto;
-  transition: all 0.2s linear;
 
   &:hover {
     transform: scale(1.1);

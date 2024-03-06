@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CardData from './CardData';
-import LeftArrowIcon from '../../assets/icons/leftArrowBtn.svg';
-import RightArrowIcon from '../../assets/icons/rightArrowBtn.svg';
 
 function ListCard() {
   const [cardData, setCardData] = useState({ popular: [], recent: [] });
@@ -52,17 +50,13 @@ function ListCard() {
         <CardListTitleH2>인기 롤링 페이퍼 🔥</CardListTitleH2>
         <div className="ListCardContent">
           {popularScroll ? (
-            <PrevButton onClick={onPopularPrevClickHandle}>
-              <img src={LeftArrowIcon} alt="왼쪽 화살표 아이콘" />
-            </PrevButton>
+            <PrevButton onClick={onPopularPrevClickHandle} />
           ) : null}
           <CardList>
             <CardData cardData={cardData.popular} translateX={popularScroll} />
           </CardList>
           {popularLength > 4 ? (
-            <NextButton onClick={onPopularNextClickHandle}>
-              <img src={RightArrowIcon} alt="오른쪽 화살표 아이콘" />
-            </NextButton>
+            <NextButton onClick={onPopularNextClickHandle} />
           ) : null}
         </div>
       </CardListContainerSection>
@@ -71,17 +65,13 @@ function ListCard() {
         <CardListTitleH2>최근에 만든 롤링 페이퍼 ⭐</CardListTitleH2>
         <div className="ListCardContent">
           {recentScroll ? (
-            <PrevButton onClick={onRecentPrevClickHandle}>
-              <img src={LeftArrowIcon} alt="왼쪽 화살표 아이콘" />
-            </PrevButton>
+            <PrevButton onClick={onRecentPrevClickHandle} />
           ) : null}
           <CardList>
             <CardData cardData={cardData.recent} translateX={recentScroll} />
           </CardList>
           {recentLength > 4 ? (
-            <NextButton onClick={onRecentNextClickHandle}>
-              <img src={RightArrowIcon} alt="오른쪽 화살표 아이콘" />
-            </NextButton>
+            <NextButton onClick={onRecentNextClickHandle} />
           ) : null}
         </div>
       </CardListContainerSection>
@@ -106,7 +96,7 @@ const CardListContainerSection = styled.section`
   }
 `;
 const CardListTitleH2 = styled.h2`
-  color: var(--black, #000);
+  color: ${({ theme }) => theme.text};
   font-size: var(--font24, 2.4rem);
   font-weight: var(--bold, 700);
   line-height: 36px;
@@ -125,17 +115,34 @@ const CardList = styled.div`
     }
   }
 `;
+
 const PrevButton = styled.button`
   position: absolute;
   top: 50%;
-  left: -3rem;
+  left: -2rem;
   transform: translateY(-50%);
-  z-index: 1;
+  width: 4rem;
+  height: 4rem;
+  background-color: ${({ theme }) => theme.borderBottom};
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px #0006;
+  z-index: 5;
+  &::before {
+    content: '＜';
+    font-size: var(--font24, 2.4rem);
+    color: ${({ theme }) => theme.text};
+    line-height: 4rem;
+  }
   @media all and (max-width: 1248px) {
     display: none;
   }
 `;
+
 const NextButton = styled(PrevButton)`
-  right: -3rem;
+  right: -2rem;
   left: initial;
+  &::before {
+    content: '＞';
+  }
 `;

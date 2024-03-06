@@ -35,7 +35,7 @@ function CardData({ cardData, translateX }) {
                   />
                 ))}
 
-                {commentImg[index].length > 3 && (
+                {commentImg[index].length >= 3 && (
                   <div className="commentImg">+ {list.messageCount - 3}</div>
                 )}
               </CardCommentImgBoxDiv>

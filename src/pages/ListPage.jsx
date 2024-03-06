@@ -9,8 +9,10 @@ function ListPage() {
     <>
       <Header />
       <Container>
-        <ListCard />
-        <LinkButton to="/post">나도 만들어보기</LinkButton>
+        <Wrapper>
+          <ListCard />
+          <LinkButton to="/post">나도 만들어보기</LinkButton>
+        </Wrapper>
       </Container>
     </>
   );
@@ -19,6 +21,13 @@ function ListPage() {
 export default ListPage;
 
 const Container = styled.main`
+  width: 100%;
+  min-height: calc(100vh - 65px);
+  display: flex;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.bgColor};
+`;
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

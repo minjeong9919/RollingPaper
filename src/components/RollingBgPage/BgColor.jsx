@@ -43,6 +43,7 @@ const BgImgWrapper = styled.div`
   border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   background-color: ${({ color }) => color};
+  cursor: pointer;
   @media (min-width: 360px) and (max-width: 767px) {
     width: 154px;
     height: 154px;
