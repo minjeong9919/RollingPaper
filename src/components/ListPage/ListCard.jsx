@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CardData from './CardData';
-import LeftArrowIcon from '../../assets/icons/LeftArrowBtn.svg';
-import RightArrowIcon from '../../assets/icons/RightArrowBtn.svg';
+import LeftArrowIcon from '../../assets/icons/leftArrowBtn.svg';
+import RightArrowIcon from '../../assets/icons/rightArrowBtn.svg';
+
 
 function ListCard() {
   const [cardData, setCardData] = useState({ popular: [], recent: [] });
