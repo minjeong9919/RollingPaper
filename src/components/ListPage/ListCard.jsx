@@ -4,7 +4,6 @@ import CardData from './CardData';
 import LeftArrowIcon from '../../assets/icons/leftArrowBtn.svg';
 import RightArrowIcon from '../../assets/icons/rightArrowBtn.svg';
 
-
 function ListCard() {
   const [cardData, setCardData] = useState({ popular: [], recent: [] });
   const [popularScroll, setPopularScroll] = useState(0);
