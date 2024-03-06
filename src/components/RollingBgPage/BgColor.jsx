@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SelectedImg from '../../assets/images/selectedBgImg.png';
+import { getBgColor } from '../../utils/BgItem';
 
 function BgImg({ color, onSelectColor, isSelected, onSelectedColor }) {
   const onClickColorHandle = (value) => {
@@ -42,7 +43,7 @@ const BgImgWrapper = styled.div`
   height: 168px;
   border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  background-color: ${({ color }) => color};
+  background-color: ${({ color }) => getBgColor(color)};
   cursor: pointer;
   @media (min-width: 360px) and (max-width: 767px) {
     width: 154px;

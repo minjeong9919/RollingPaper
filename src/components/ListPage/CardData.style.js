@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { getBgColor } from '../../utils/BgItem';
 
 export const CardListBoxDiv = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ export const CardWrapperLink = styled(Link)`
   padding: 30px 24px 20px;
   border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: ${({ $bgColor }) => $bgColor};
+  background-color: ${({ $bgColor }) => getBgColor($bgColor)};
   background-image: ${({ $bgImg }) => `url(${$bgImg})`};
   background-size: cover;
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);

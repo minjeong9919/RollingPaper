@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { getBgColor } from '../../utils/BgItem';
 
 export const ContainerDiv = styled.div`
   width: 100vw;
@@ -10,7 +11,7 @@ export const ContainerDiv = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-color: ${({ $bgColor, theme }) =>
-    theme.mode === 'light' ? $bgColor : theme.bgColor};
+    theme.mode === 'light' ? getBgColor($bgColor) : theme.bgColor};
   & > .Div {
     padding-top: 114px;
     width: 1200px;

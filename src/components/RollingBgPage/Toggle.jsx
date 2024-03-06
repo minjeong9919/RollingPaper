@@ -102,7 +102,7 @@ const ToggleButton = styled.div`
   border: 2px solid
     ${({ selected, theme }) => (selected ? '#9935ff' : theme.btnBorderColor)};
   color: ${({ selected, theme }) =>
-    selected ? theme.text : theme.buttonSelectText};
+    selected ? theme.buttonSelectText : theme.text};
   background-color: ${({ selected, theme }) =>
     selected ? theme.buttonSelectColor : theme.btnBgColor};
   cursor: pointer;
