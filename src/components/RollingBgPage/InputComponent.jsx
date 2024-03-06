@@ -46,10 +46,10 @@ function InputComponent({
         onChange={onChangeHandle}
         onBlur={onBlurHandle}
         onFocus={onFocusHandle}
-        isTouched={touched}
-        isValid={isValid}
+        $isTouched={touched}
+        $isValid={isValid}
       />
-      <WarningText isVisible={touched && !isValid}>
+      <WarningText $isVisible={touched && !isValid}>
         값을 입력해주세요
       </WarningText>
     </InputWrapper>
@@ -90,7 +90,9 @@ const Input = styled.input`
   color: ${({ theme }) => theme.text};
   z-index: 1;
   border: ${(props) =>
-    props.isTouched && !props.isValid ? '1px solid #dc3a3a' : '1px solid #ccc'};
+    props.$isTouched && !props.$isValid
+      ? '1px solid #dc3a3a'
+      : '1px solid #ccc'};
   &:hover {
     border: 1px solid var(--purple600, #9935ff);
   }
@@ -101,5 +103,5 @@ const Input = styled.input`
 
 const WarningText = styled.div`
   color: #dc3a3a;
-  display: ${(props) => (props.isVisible ? 'block' : 'none')};
+  display: ${(props) => (props.$isVisible ? 'block' : 'none')};
 `;

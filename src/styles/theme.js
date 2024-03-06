@@ -26,6 +26,6 @@ export const darkTheme = {
   btnBorderColor: '#24262b',
   btnBgColor: '#191a1e',
   buttonColor: '#191a1e',
-  buttonSelectText: '#5a5e6c',
+  buttonSelectText: '#861dee',
   buttonSelectColor: '#363840',
 };
