@@ -99,7 +99,7 @@ function RollingPageHeader({
           content: {
             title,
             description: '🥰내 롤링페이퍼로 오세요🥰',
-            imageUrl: `https://github.com/MinCheolS/RollingPaper/blob/main/src/assets/images/shareLogo.png?raw=true`,
+            imageUrl: `../../../assets/images/shareLogo.png`,
             link: {
               webUrl: itemUrl,
             },
