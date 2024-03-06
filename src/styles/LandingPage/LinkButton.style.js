@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-const LinkButton = styled(Link)`
+export const LinkButton = styled(Link)`
   display: inline-block;
   width: 100%;
   width: 280px;
@@ -29,4 +29,4 @@ const LinkButton = styled(Link)`
   }
 `;
 
-export default LinkButton;
+export const etc = styled.div``;

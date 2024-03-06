@@ -11,7 +11,7 @@ import {
   MsgPageContainerDiv,
   MsgPageForm,
   SubmitBtn,
-} from '../styles/RollingToMsgPage.style';
+} from '../styles/RollingToMsgPage/RollingToMsgPage.style';
 import useOutsideClose from '../hooks/useOutsideClose';
 import Header from '../components/Common/Header/Header';
 
