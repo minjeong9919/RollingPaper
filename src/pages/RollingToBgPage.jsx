@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Header from '../components/Common/Header/Header';
 import InputComponent from '../components/RollingBgPage/InputComponent';
 import Toggle from '../components/RollingBgPage/Toggle';
 import getBgImg from '../apis/BgImg';
 import BgList from '../components/RollingBgPage/BgList';
+import Header from '../components/Common/Header/Header';
 
 function RollingToBgPage() {
   const [name, setName] = useState('');
@@ -77,9 +77,7 @@ function RollingToBgPage() {
 
   return (
     <>
-      <HeaderDisplay>
-        <Header />
-      </HeaderDisplay>
+      <Header />
       <Wrapper>
         <FormWrapper onSubmit={onSubmitHandle}>
           <InputComponent
@@ -115,20 +113,17 @@ function RollingToBgPage() {
 
 export default RollingToBgPage;
 
-const HeaderDisplay = styled.div`
-  @media (min-width: 360px) and (max-width: 768px) {
-    display: none;
-  }
-`;
-
 const Wrapper = styled.div`
+  background-color: ${({ theme }) => theme.bgColor};
   display: flex;
   justify-content: center;
   align-items: start;
   width: 100%;
-  margin-top: 57px;
+  min-height: calc(100vh - 65px);
+  padding-top: 57px;
+  transition: all 0.3s ease;
   @media (min-width: 360px) and (max-width: 768px) {
-    margin-top: 50px;
+    padding-top: 50px;
   }
 `;
 
@@ -158,4 +153,10 @@ const SubmitButton = styled.button`
   color: #fff;
   margin-top: 24px;
   margin-bottom: 24px;
+  &:hover {
+    background: var(--purple700, #861dee);
+  }
+  &:active {
+    background: var(--purple800, #6e0ad1);
+  }
 `;

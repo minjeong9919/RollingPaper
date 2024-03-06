@@ -12,7 +12,7 @@ const LinkButton = styled(Link)`
   background: var(--purple600, #9935ff);
   color: var(--white, #fff);
   font-size: var(--font18, 1.8rem);
-  font-weight: var(--blod, 700);
+  font-weight: var(--bold, 700);
   line-height: 28px;
   letter-spacing: -0.18px;
   &:hover {

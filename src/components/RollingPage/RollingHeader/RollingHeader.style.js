@@ -23,7 +23,7 @@ export const MainContainerHeader = styled(ContainerHeader)`
 
 export const UserH1 = styled.h1`
   width: max-width;
-  color: var(--gray800);
+  color: ${({ theme }) => theme.text};
   font-family: Pretendard;
   font-size: 28px;
   font-style: normal;
@@ -214,7 +214,7 @@ export const NumOfWritingPeopleDiv = styled.div`
   flex-direction: row;
   gap: 11px;
   & > p {
-    color: var(--gray900);
+    color: ${({ theme }) => theme.text};
     font-family: Pretendard;
     font-size: 18px;
     font-style: normal;

@@ -26,7 +26,7 @@ const AddCardDiv = styled.div`
   height: 280px;
   padding: 0px 24px;
   border-radius: 16px;
-  background: var(--white);
+  background: ${({ theme }) => theme.btnBgColor};
   box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
   cursor: pointer;
 

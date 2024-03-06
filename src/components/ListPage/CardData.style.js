@@ -33,6 +33,7 @@ export const CardWrapperLink = styled(Link)`
   }
 `;
 export const CardRecipientWrapperDiv = styled.div`
+  color: ${({ theme }) => theme.text};
   width: 100%;
   height: 114px;
   display: flex;
@@ -43,7 +44,6 @@ export const CardRecipientWrapperDiv = styled.div`
   }
 `;
 export const CardRecipientDiv = styled.div`
-  color: var(--gray900, #181818);
   font-size: var(--font24, 2.4rem);
   font-weight: var(--bold, 700);
   line-height: 36px;
@@ -92,7 +92,6 @@ export const CardCommentImgBoxDiv = styled.div`
   }
 `;
 export const CardCommentCountDiv = styled.div`
-  color: var(--gray700, #3a3a3a);
   font-size: var(--font16, 1.6rem);
   font-weight: var(--regular, 400);
   line-height: 26px;
