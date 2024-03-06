@@ -68,7 +68,8 @@ const ToastBoxDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 524px;
+  width: calc(100vw - 48px);
+  max-width: 524px;
   height: 64px;
   padding: 19px 30px;
   border-radius: 8px;

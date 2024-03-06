@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import arrowTop from '../../assets/icons/arrowTop.svg';
-import arrowDown from '../../assets/icons/arrowDown.svg';
 
 export const SelectBtn = styled.button`
   display: flex;
@@ -9,15 +7,19 @@ export const SelectBtn = styled.button`
   padding: 1.2rem 1.6rem;
   border-radius: 0.8rem;
   border: 0.2rem solid
-    ${({ $isOpen }) => ($isOpen ? `var(--gray500)` : `var(--gray300)`)};
+    ${({ $isOpen }) =>
+      $isOpen ? `var(--purple600, #9935ff)` : `var(--gray300)`};
 
   &:hover {
-    border: 0.2rem solid var(--gray500);
+    border: 0.2rem solid var(--purple600, #9935ff);
+  }
+  &:focus {
+    border: 0.2rem solid var(--purple600, #9935ff);
   }
 `;
 
 export const SelectSpan = styled.span`
-  color: var(--gray500);
+  color: ${({ theme }) => theme.text};
   font-family: ${({ $fontValue }) => `${$fontValue}`};
   font-size: var(--font16);
   font-weight: var(--regular);
@@ -26,13 +28,11 @@ export const SelectSpan = styled.span`
 `;
 
 export const ArrowBtn = styled.div`
-  width: 1.6rem;
-  height: 1.6rem;
-  background-image: ${({ $isOpen }) =>
-    $isOpen ? `url(${arrowTop})` : `url(${arrowDown})`};
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  color: ${({ theme }) => theme.text};
+  font-size: var(--font24);
+  &::before {
+    content: ${({ $isOpen }) => ($isOpen ? '"∧"' : '"∨"')};
+  }
 `;
 
 export const SelectOptionDiv = styled.div`
@@ -44,7 +44,8 @@ export const SelectOptionDiv = styled.div`
   padding: 1rem 0.1rem;
   border-radius: 0.8rem;
   border: 0.1rem solid var(--gray300);
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.btnBgColor};
+  box-shadow: 0 4px 12px #00000052;
   z-index: 1;
 `;
 
@@ -54,7 +55,7 @@ export const SelectOptionBtn = styled.button`
   align-items: center;
   padding: 1.2rem 1.6rem;
   cursor: pointer;
-  color: var(--gray900);
+  color: ${({ theme }) => theme.text};
   font-family: ${({ $item }) => `${$item}`};
   font-size: var(--font16);
   font-weight: var(--regular);
@@ -62,6 +63,6 @@ export const SelectOptionBtn = styled.button`
   letter-spacing: -0.016rem;
 
   &:hover {
-    background-color: var(--gray100);
+    background-color: ${({ theme }) => theme.buttonSelectColor};
   }
 `;

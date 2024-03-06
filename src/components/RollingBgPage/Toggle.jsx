@@ -64,6 +64,7 @@ const TextWrapper = styled.div`
 `;
 
 const SelectTxt = styled.h2`
+  color: ${({ theme }) => theme.text};
   font-size: 24px;
   font-weight: 700;
   line-height: 36px;
@@ -74,6 +75,7 @@ const SelectTxt = styled.h2`
 `;
 
 const SubTxt = styled.p`
+  color: ${({ theme }) => theme.subText};
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
@@ -84,7 +86,6 @@ const ToggleWrapper = styled.div`
   width: 244px;
   height: 40px;
   border-radius: 6px;
-  background-color: #f6f6f6;
 `;
 
 const ToggleButton = styled.div`
@@ -94,11 +95,15 @@ const ToggleButton = styled.div`
   width: 50%;
   padding: 10px;
   font-family: Pretendard;
-  font-weight: ${(props) => (props.selected ? '700' : '400')};
+  font-weight: ${({ selected }) => (selected ? '700' : '400')};
   font-size: 16px;
   border-radius: 6px;
-  border: 2px solid ${(props) => (props.selected ? '#9935ff' : '#f6f6f6')};
-  color: ${(props) => (props.selected ? '#861dee' : '#000')};
-  background-color: ${(props) => (props.selected ? '#fff' : '#f6f6f6')};
+
+  border: 2px solid
+    ${({ selected, theme }) => (selected ? '#9935ff' : theme.btnBorderColor)};
+  color: ${({ selected, theme }) =>
+    selected ? theme.text : theme.buttonSelectText};
+  background-color: ${({ selected, theme }) =>
+    selected ? theme.buttonSelectColor : theme.btnBgColor};
   cursor: pointer;
 `;
