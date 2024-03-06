@@ -28,7 +28,10 @@ function Router() {
     <ThemeProvider theme={theme ? lightTheme : darkTheme}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingPage theme={theme} />} />
+          <Route
+            path="/"
+            element={<LandingPage theme={theme ? 'light' : 'dark'} />}
+          />
           <Route path="/list" element={<ListPage />} />
           <Route path="/post">
             <Route index element={<RollingToBgPage />} />

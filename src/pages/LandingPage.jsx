@@ -5,7 +5,7 @@ import LinkButton from '../components/LandingPage/Button';
 import LandingCard from '../components/LandingPage/LandingCard';
 import Header from '../components/Common/Header/Header';
 
-function LandingPage({ theme }) {
+function LandingPage({ theme = 'light' }) {
   return (
     <>
       <Header />
