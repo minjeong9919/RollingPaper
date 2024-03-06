@@ -23,7 +23,8 @@ AddCard.defaultProps = {
 
 const AddCardDiv = styled.div`
   width: 100%;
-  height: 280px;
+  min-height: 280px;
+  height: 100%;
   padding: 0px 24px;
   border-radius: 16px;
   background: ${({ theme }) => theme.btnBgColor};
@@ -44,7 +45,6 @@ const PlusFrame = styled.div`
   justify-content: center;
   align-items: center;
   margin: auto;
-  transition: all 0.2s linear;
 
   &:hover {
     transform: scale(1.1);

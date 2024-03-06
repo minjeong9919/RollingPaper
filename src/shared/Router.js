@@ -30,9 +30,11 @@ function Router() {
         <Routes>
           <Route path="/" element={<LandingPage theme={theme} />} />
           <Route path="/list" element={<ListPage />} />
-          <Route path="/post/:id" element={<RollingPage />} />
-          <Route path="/post" element={<RollingToBgPage />} />
-          <Route path="/post/:id/message" element={<RollingToMsgPage />} />
+          <Route path="/post">
+            <Route index element={<RollingToBgPage />} />
+            <Route path=":id" element={<RollingPage />} />
+            <Route path=":id/message" element={<RollingToMsgPage />} />
+          </Route>
         </Routes>
         <ToggleTheme onClick={toggleTheme} />
       </BrowserRouter>
@@ -43,8 +45,9 @@ export default Router;
 
 const ToggleTheme = styled.button`
   position: fixed;
-  bottom: 50px;
-  right: 30px;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 90px;
   height: 50px;
   background: ${({ theme }) =>

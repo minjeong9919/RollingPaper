@@ -4,7 +4,6 @@ import styled from 'styled-components';
 export const ContainerHeader = styled.header`
   border-bottom: 1px solid ${({ theme }) => theme.borderBottom};
   background-color: ${({ theme }) => theme.bgColor};
-  transition: all 0.3s ease;
 
   @media all and (max-width: 1248px) {
     padding: 0 24px;

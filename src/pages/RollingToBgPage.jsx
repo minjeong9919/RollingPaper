@@ -15,7 +15,7 @@ function RollingToBgPage() {
   const [items, setItems] = useState([]);
   const color = ['beige', 'purple', 'blue', 'green'];
   const [selectedColor, setSelectedColor] = useState(color[0]);
-  const [selectedImg, setSelectedImg] = useState(' ');
+  const [selectedImg, setSelectedImg] = useState(null);
 
   const navigate = useNavigate();
 
@@ -56,6 +56,7 @@ function RollingToBgPage() {
       backgroundColor: selectedColor,
       backgroundImageURL: selectedImg,
     };
+
     try {
       const response = await fetch(
         'https://rolling-api.vercel.app/4-3/recipients/',
@@ -67,8 +68,9 @@ function RollingToBgPage() {
           body: JSON.stringify(data),
         },
       );
-      if (!response.ok) {
-        navigate.push('/rolling');
+      if (response.ok) {
+        const result = await response.json();
+        navigate(`/post/${result.id}`);
       }
     } catch (error) {
       console.log(error);
@@ -119,10 +121,9 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: start;
   width: 100%;
-  min-height: calc(100vh - 65px);
   padding-top: 57px;
-  transition: all 0.3s ease;
-  @media (min-width: 360px) and (max-width: 768px) {
+  min-height: calc(100vh - 65px);
+  @media (min-width: 360px) and (max-width: 767px) {
     padding-top: 50px;
   }
 `;
@@ -134,7 +135,7 @@ const FormWrapper = styled.form`
   align-items: start;
   width: 720px;
 
-  @media (min-width: 360px) and (max-width: 768px) {
+  @media (min-width: 360px) and (max-width: 767px) {
     width: 320px;
   }
 `;

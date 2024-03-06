@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import EmojiPicker from 'emoji-picker-react';
 import { ReactComponent as Arrow } from '../../../assets/icons/arrowDown.svg';
@@ -16,6 +16,8 @@ import {
   EmoticonDetailButton,
   AddEmotionButton,
   ShareButton,
+  ShareOptionDiv,
+  ShareOptionBtn,
 } from './RollingHeader.style';
 import {
   getReactionData,
@@ -23,6 +25,7 @@ import {
   getUserInfo,
 } from '../../../apis/api';
 import useOutsideClose from '../../../hooks/useOutsideClose';
+import { ShareList } from './ShareList';
 
 function RollingPageHeader({
   name,
@@ -30,34 +33,18 @@ function RollingPageHeader({
   messageCount,
   cardList,
   setIsSharedToastVisible,
+  getFromRollingData,
 }) {
   const [isEmojiPickerVisible, setIsEmojiPickerVsiible] = useState(false);
   const [isEmoticonDetailVisible, setIsEmotionDetailVisible] = useState(false);
+  const [isShareVisible, setIsShareVisible] = useState(false);
   const [userReactionList, setUserReactionList] = useState([]);
   const [topReactions, setTopReactions] = useState([]);
 
-  // 유저의 받은 이모티콘 리스트 가져오기
-  const fetchData = useCallback(async () => {
-    try {
-      const [newReactionList, userInfo] = await Promise.all([
-        getReactionData(id),
-        getUserInfo(id),
-      ]);
-
-      setUserReactionList(newReactionList.results);
-      setTopReactions(userInfo.topReactions);
-    } catch (error) {
-      // 오류 처리
-      console.error(error);
-    }
-  }, [id]);
-
   useEffect(() => {
-    const fetchDataAndSetState = async () => {
-      await fetchData();
-    };
-    fetchDataAndSetState();
-  }, [fetchData, id]);
+    setTopReactions(getFromRollingData.topReactions);
+    setUserReactionList(getFromRollingData.reactionList);
+  }, []);
 
   // 새롭게 이모티콘 생성 시 POST 요청 후, 다시 GET 요청으로 리스트 변경
   const onEmojiPickerHandle = async (emojiData) => {
@@ -75,9 +62,9 @@ function RollingPageHeader({
     setUserReactionList(newReactionList);
     setTopReactions(newTopReactions);
   };
-  // const [emojiSortedList, setEmojiSortedList] = useState([]);
   const emojiPickerRef = useRef(null);
   const emojiDetailRef = useRef(null);
+  const shareRef = useRef(null);
 
   const onAddEmojiBtnHandle = () => {
     setIsEmojiPickerVsiible(!isEmojiPickerVisible);
@@ -90,14 +77,55 @@ function RollingPageHeader({
   };
 
   const onSharedBtnHandle = () => {
-    setIsSharedToastVisible(true);
-    const url = window.location.href;
-    navigator.clipboard.writeText(url);
+    setIsShareVisible(!isShareVisible);
   };
+
+  const onSharedClickHandle = (item) => {
+    const itemUrl = window.location.href;
+    const title = `${name}님의 롤링페이퍼입니다.`;
+
+    if (item === '카카오톡 공유') {
+      setIsSharedToastVisible(true);
+
+      if (window.Kakao) {
+        const kakao = window.Kakao;
+
+        if (!kakao.isInitialized()) {
+          kakao.init(process.env.REACT_APP_KAKAO_KEY);
+        }
+
+        kakao.Link.sendDefault({
+          objectType: 'feed',
+          content: {
+            title,
+            description: '🥰내 롤링페이퍼로 오세요🥰',
+            imageUrl: `https://github.com/MinCheolS/RollingPaper/blob/main/src/assets/images/shareLogo.png?raw=true`,
+            link: {
+              webUrl: itemUrl,
+            },
+          },
+          buttons: [
+            {
+              title,
+              link: {
+                webUrl: itemUrl,
+              },
+            },
+          ],
+        });
+        kakao.cleanup();
+      }
+    } else {
+      setIsSharedToastVisible(true);
+      navigator.clipboard.writeText(itemUrl);
+    }
+  };
+
   const threePeople = cardList.slice(0, 3);
 
   useOutsideClose(emojiPickerRef, setIsEmojiPickerVsiible);
   useOutsideClose(emojiDetailRef, setIsEmotionDetailVisible);
+  useOutsideClose(shareRef, setIsShareVisible);
 
   return (
     <MainContainerHeader>
@@ -146,9 +174,21 @@ function RollingPageHeader({
             </div>
           </EmoticonDiv>
           <DividerDiv $marginLeft="13px" id="shrinkAtMobile" />
-          <ShareButton onClick={() => onSharedBtnHandle()}>
+          <ShareButton ref={shareRef} onClick={() => onSharedBtnHandle()}>
             <ShareIcon />
           </ShareButton>
+          {isShareVisible && (
+            <ShareOptionDiv>
+              {ShareList.map((item) => (
+                <ShareOptionBtn
+                  key={item}
+                  onClick={() => onSharedClickHandle(item)}
+                >
+                  {item}
+                </ShareOptionBtn>
+              ))}
+            </ShareOptionDiv>
+          )}
         </div>
       </div>
     </MainContainerHeader>
@@ -164,6 +204,22 @@ RollingPageHeader.propTypes = {
       profileImageURL: PropTypes.string,
     }),
   ),
+  getFromRollingData: PropTypes.shape({
+    reactionList: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        emoji: PropTypes.string,
+        count: PropTypes.number,
+      }),
+    ),
+    topReactions: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        emoji: PropTypes.string,
+        count: PropTypes.number,
+      }),
+    ),
+  }),
   setIsSharedToastVisible: PropTypes.func,
 };
 
@@ -173,6 +229,7 @@ RollingPageHeader.defaultProps = {
   messageCount: 0,
   cardList: [],
   setIsSharedToastVisible: null,
+  getFromRollingData: {},
 };
 
 export default RollingPageHeader;

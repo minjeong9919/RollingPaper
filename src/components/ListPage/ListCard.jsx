@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CardData from './CardData';
 
+
 function ListCard() {
   const [cardData, setCardData] = useState({ popular: [], recent: [] });
   const [popularScroll, setPopularScroll] = useState(0);

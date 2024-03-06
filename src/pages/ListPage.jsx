@@ -26,7 +26,6 @@ const Container = styled.main`
   display: flex;
   justify-content: center;
   background-color: ${({ theme }) => theme.bgColor};
-  transition: all 0.3s ease;
 `;
 const Wrapper = styled.div`
   display: flex;
