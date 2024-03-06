@@ -1,74 +1,7 @@
-import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { getBadgeBgColor, getBadgeTextColor } from '../../utils/BadgeColor';
-import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg';
 
-function RollingCard({
-  sender,
-  relationship,
-  createdAt,
-  profileImageURL,
-  content,
-  font,
-  onClick,
-  $isEditMode,
-}) {
-  const year = createdAt.substring(0, 4);
-  const month = createdAt.substring(5, 7);
-  const day = createdAt.substring(8, 10);
-  // const hour = createdAt.substring(11, 13);
-  // const minute = createdAt.substring(14, 16);
-  const date = `${year}.${month}.${day}`;
-
-  return (
-    <ContainerDiv onClick={() => onClick()}>
-      <SenderFrameDiv>
-        <ProfileImageDiv>
-          <img src={profileImageURL} alt={sender} />
-        </ProfileImageDiv>
-        <SenderInfoDiv>
-          <div>
-            <span>From.</span>
-            <span className="name">{sender}</span>
-          </div>
-          <BadgeDiv $badge={relationship}>{relationship}</BadgeDiv>
-        </SenderInfoDiv>
-        <DeleteIconBtn $isEditMode={$isEditMode}>
-          <DeleteIcon />
-        </DeleteIconBtn>
-      </SenderFrameDiv>
-      <ContentDiv $font={font}>
-        <p dangerouslySetInnerHTML={{ __html: content }} />
-        <p className="date">{date}</p>
-      </ContentDiv>
-    </ContainerDiv>
-  );
-}
-
-RollingCard.propTypes = {
-  sender: PropTypes.string,
-  relationship: PropTypes.string,
-  createdAt: PropTypes.string,
-  profileImageURL: PropTypes.string,
-  content: PropTypes.string,
-  onClick: PropTypes.func,
-  $isEditMode: PropTypes.bool,
-  font: PropTypes.string,
-};
-
-RollingCard.defaultProps = {
-  sender: '',
-  relationship: '',
-  createdAt: '',
-  profileImageURL: '',
-  content: '',
-  onClick: null,
-  $isEditMode: false,
-  font: 'Pretendard',
-};
-
-const ContainerDiv = styled.div`
+export const ContainerDiv = styled.div`
   width: 100%;
   height: 100%;
   padding: 24px;
@@ -85,14 +18,14 @@ const ContainerDiv = styled.div`
   }
 `;
 
-const SenderFrameDiv = styled.div`
+export const SenderFrameDiv = styled.div`
   display: flex;
   flex-direction: row;
   gap: 14px;
   margin-top: 4px;
 `;
 
-const ProfileImageDiv = styled.button`
+export const ProfileImageDiv = styled.button`
   width: 56px;
   height: 56px;
   display: flex;
@@ -109,7 +42,7 @@ const ProfileImageDiv = styled.button`
   }
 `;
 
-const SenderInfoDiv = styled.div`
+export const SenderInfoDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -125,6 +58,9 @@ const SenderInfoDiv = styled.div`
     @media (max-width: 768px) {
       font-size: 3vw;
     }
+    @media (max-width: 360px) {
+      font-size: 16px;
+    }
   }
 
   & > div > .name {
@@ -133,7 +69,7 @@ const SenderInfoDiv = styled.div`
   }
 `;
 
-const BadgeDiv = styled.div`
+export const BadgeDiv = styled.div`
   width: max-content;
   padding: 0px 8px;
   border-radius: 4px;
@@ -147,20 +83,20 @@ const BadgeDiv = styled.div`
   letter-spacing: -0.07px;
 `;
 
-const ContentDiv = styled.div`
+export const ContentDiv = styled.div`
   width: 100%;
   height: auto;
   flex-shrink: 0;
   margin-top: 16px;
 
-  & p {
+  & > p {
     height: 110px;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     color: var(--gray600);
-    font-family: ${({ $font }) => $font};
+    font-family: ${({ $font }) => $font || 'inherit'};
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -175,6 +111,7 @@ const ContentDiv = styled.div`
     @media (max-width: 360px) {
       height: 56px;
       -webkit-line-clamp: 2;
+      font-size: 15px;
     }
   }
 
@@ -191,7 +128,7 @@ const ContentDiv = styled.div`
   }
 `;
 
-const DeleteIconBtn = styled.button`
+export const DeleteIconBtn = styled.button`
   visibility: ${({ $isEditMode }) => ($isEditMode ? 'visible' : 'hidden')};
   width: 40px;
   height: 40px;
@@ -205,5 +142,3 @@ const DeleteIconBtn = styled.button`
   background: var(--white);
   margin-left: auto;
 `;
-
-export default RollingCard;

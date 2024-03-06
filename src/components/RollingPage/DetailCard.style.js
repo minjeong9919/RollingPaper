@@ -1,75 +1,7 @@
-import React from 'react';
 import { styled, keyframes } from 'styled-components';
-import PropTypes from 'prop-types';
 import { getBadgeBgColor, getBadgeTextColor } from '../../utils/BadgeColor';
 
-function DetailCard({ $visible, onClick = null, card }) {
-  const { font } = card;
-
-  let date = '';
-  if (card.createdAt) {
-    const year = card.createdAt.substring(0, 4);
-    const month = card.createdAt.substring(5, 7);
-    const day = card.createdAt.substring(8, 10);
-    // const hour = createdAt.substring(11, 13);
-    // const minute = createdAt.substring(14, 16);
-    date = `${year}.${month}.${day}`;
-  }
-
-  return (
-    <BackgroundDiv $visible={$visible}>
-      <ContainerDiv $visible={$visible}>
-        <SenderFrameDiv>
-          <div>
-            <ProfileImageDiv>
-              <img src={card.profileImageURL} alt={card.sender} />
-            </ProfileImageDiv>
-            <SenderInfoDiv>
-              <div>
-                <span>From.</span>
-                <span className="name">{card.sender}</span>
-              </div>
-              <BadgeDiv badge={card.relationship}>{card.relationship}</BadgeDiv>
-            </SenderInfoDiv>
-          </div>
-          <p className="date">{date}</p>
-        </SenderFrameDiv>
-        <ContentDiv $font={font}>
-          <p dangerouslySetInnerHTML={{ __html: card.content }} />
-        </ContentDiv>
-        <CheckButton onClick={() => onClick()}>확인</CheckButton>
-      </ContainerDiv>
-    </BackgroundDiv>
-  );
-}
-
-DetailCard.propTypes = {
-  $visible: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-  card: PropTypes.shape({
-    id: PropTypes.number,
-    sender: PropTypes.string,
-    relationship: PropTypes.string,
-    createdAt: PropTypes.string,
-    content: PropTypes.string,
-    profileImageURL: PropTypes.string,
-    font: PropTypes.string,
-  }),
-};
-
-DetailCard.defaultProps = {
-  card: {
-    id: 0,
-    sender: '',
-    relationship: '',
-    createdAt: '',
-    content: '',
-    profileImageURL: '',
-    font: '',
-  },
-};
-
-const BackgroundDiv = styled.div`
+export const BackgroundDiv = styled.div`
   background: rgba(0, 0, 0, 0.6);
   visibility: ${({ $visible }) => ($visible ? 'visible' : 'hidden')};
   width: 100%;
@@ -81,7 +13,7 @@ const BackgroundDiv = styled.div`
   justify-content: center;
 `;
 
-const fadeIn = keyframes`
+export const fadeIn = keyframes`
   0% {
     opacity: 0;
   }
@@ -90,7 +22,7 @@ const fadeIn = keyframes`
   }
 `;
 
-const fadeOut = keyframes`
+export const fadeOut = keyframes`
   0% {
     opacity: 1;
   }
@@ -99,7 +31,7 @@ const fadeOut = keyframes`
   }
 `;
 
-const ContainerDiv = styled.div`
+export const ContainerDiv = styled.div`
   width: 600px;
   height: 476px;
   padding: 40px;
@@ -119,7 +51,7 @@ const ContainerDiv = styled.div`
   }
 `;
 
-const SenderFrameDiv = styled.div`
+export const SenderFrameDiv = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -146,7 +78,7 @@ const SenderFrameDiv = styled.div`
   }
 `;
 
-const ProfileImageDiv = styled.button`
+export const ProfileImageDiv = styled.button`
   width: 56px;
   height: 56px;
   display: flex;
@@ -163,7 +95,7 @@ const ProfileImageDiv = styled.button`
   }
 `;
 
-const SenderInfoDiv = styled.div`
+export const SenderInfoDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -187,12 +119,12 @@ const SenderInfoDiv = styled.div`
   }
 `;
 
-const BadgeDiv = styled.div`
+export const BadgeDiv = styled.div`
   width: max-content;
   padding: 0px 8px;
   border-radius: 4px;
-  background-color: ${({ badge }) => getBadgeBgColor(badge)};
-  color: ${({ badge }) => getBadgeTextColor(badge)};
+  background-color: ${({ $badge }) => getBadgeBgColor($badge)};
+  color: ${({ $badge }) => getBadgeTextColor($badge)};
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
@@ -201,7 +133,7 @@ const BadgeDiv = styled.div`
   letter-spacing: -0.07px;
 `;
 
-const ContentDiv = styled.div`
+export const ContentDiv = styled.div`
   flex-shrink: 0;
   margin-top: 16px;
 
@@ -211,7 +143,7 @@ const ContentDiv = styled.div`
     display: -webkit-box;
     overflow-y: scroll;
     color: var(--gray600);
-    /* font-family: ${({ font }) => font}; */
+    font-family: Pretendard;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -237,10 +169,6 @@ const ContentDiv = styled.div`
     }
   }
 
-  & p {
-    font-family: ${({ $font }) => $font};
-  }
-
   & > .date {
     height: auto;
     margin: 0px;
@@ -254,7 +182,7 @@ const ContentDiv = styled.div`
   }
 `;
 
-const CheckButton = styled.button`
+export const CheckButton = styled.button`
   width: 120px;
   margin: 24px auto auto;
   align-items: center;
@@ -279,5 +207,3 @@ const CheckButton = styled.button`
     transform: scale(1.05); /* Scale the button slightly on hover */
   }
 `;
-
-export default DetailCard;

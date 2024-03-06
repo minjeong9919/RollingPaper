@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Header from '../components/Common/header/Header';
+import Header from '../components/Common/Header/Header';
 import InputComponent from '../components/RollingBgPage/InputComponent';
 import Toggle from '../components/RollingBgPage/Toggle';
 import getBgImg from '../apis/BgImg';
@@ -50,19 +50,13 @@ function RollingToBgPage() {
 
   const onSubmitHandle = async (event) => {
     event.preventDefault();
-    let data;
-    if (selectedImg === null) {
-      data = {
-        name,
-        backgroundColor: selectedColor,
-      };
-    } else {
-      data = {
-        name,
-        backgroundColor: selectedColor,
-        backgroundImageURL: selectedImg,
-      };
-    }
+    const data = {
+      team: '4-3',
+      name,
+      backgroundColor: selectedColor,
+      backgroundImageURL: selectedImg,
+    };
+
     try {
       const response = await fetch(
         'https://rolling-api.vercel.app/4-3/recipients/',
@@ -74,8 +68,9 @@ function RollingToBgPage() {
           body: JSON.stringify(data),
         },
       );
-      if (!response.ok) {
-        navigate.push('/rolling');
+      if (response.ok) {
+        const result = await response.json();
+        navigate(`/post/${result.id}`);
       }
     } catch (error) {
       console.log(error);
