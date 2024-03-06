@@ -9,7 +9,7 @@ import {
   CardRecipientDiv,
   CardRecipientWrapperDiv,
   CardWrapperLink,
-} from './CardData.style';
+} from '../../styles/ListPage/CardData.style';
 
 function CardData({ cardData, translateX }) {
   const commentImg = cardData.map((data) => data.recentMessages);

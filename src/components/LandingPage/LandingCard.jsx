@@ -10,7 +10,7 @@ import {
   CardWrapperDiv,
   CardBadgeDiv,
   CardDescDiv,
-} from './LandingCard.style';
+} from '../../styles/LandingPage/LandingCard.style';
 
 function LandingCard({ theme }) {
   const cards = [

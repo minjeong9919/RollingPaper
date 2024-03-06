@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ContainerHeader } from '../../Common/Header/Header.style';
+import { ContainerHeader } from '../Common/Header.style';
 
 // RollingHeader.style
 export const MainContainerHeader = styled(ContainerHeader)`
