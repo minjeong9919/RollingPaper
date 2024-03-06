@@ -19,7 +19,6 @@ export const MainContainerHeader = styled(ContainerHeader)`
       }
     }
   }
-
   @media (max-width: 520px) {
     padding: 0px 15px;
   }
@@ -76,7 +75,6 @@ export const BestEmoticonDiv = styled.div`
   @media (max-width: 500px) {
     gap: 3px;
   }
-
   @media (max-width: 368px) {
     gap: auto;
   }
@@ -90,6 +88,7 @@ export const EmoticonDetailButton = styled.button`
   @media (max-width: 500px) {
     width: 30px;
   }
+
 
   & > svg :hover {
     background-color: var(--gray200);
@@ -107,7 +106,7 @@ export const AddEmotionButton = styled.button`
   border: 1px solid var(--gray300);
   background: var(--white);
 
-  &: hover {
+  &:hover {
     background-color: var(--gray200);
   }
 
@@ -143,7 +142,6 @@ export const DividerDiv = styled.div`
 
   &#shrinkAtMobile {
     margin: 0px 11px;
-
     @media (max-width: 500px) {
       margin: 0px 5px;
     }
@@ -156,6 +154,38 @@ export const ShareButton = styled(AddEmotionButton)`
     height: 20px;
   }
 `;
+
+export const ShareOptionDiv = styled.div`
+  width: 14rem;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 12rem;
+  padding: 1rem 0.1rem;
+  border-radius: 0.8rem;
+  border: 0.1rem solid var(--gray300);
+  background-color: var(--white);
+  box-shadow: 0rem 0.2rem 1.2rem 0rem rgba(0, 0, 0, 0.08);
+  z-index: 1;
+`;
+
+export const ShareOptionBtn = styled.button`
+  width: 13.6rem;
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 1.6rem;
+  cursor: pointer;
+  color: var(--gray900);
+  font-size: var(--font16);
+  font-weight: var(--regular);
+  line-height: 1.625;
+  letter-spacing: -0.016rem;
+
+  &:hover {
+    background-color: var(--gray100);
+  }
+`;
+
 // ProfilFrame.style
 export const ProfileFrameDiv = styled.div`
   width: 28px;
@@ -271,6 +301,7 @@ export const NumOfWritingPeopleDiv = styled.div`
     & > .number {
       font-weight: 700;
     }
+
     @media (max-width: 900px) {
       font-size: 2vw;
     }

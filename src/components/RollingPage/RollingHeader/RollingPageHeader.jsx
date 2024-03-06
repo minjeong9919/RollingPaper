@@ -16,6 +16,8 @@ import {
   EmoticonDetailButton,
   AddEmotionButton,
   ShareButton,
+  ShareOptionDiv,
+  ShareOptionBtn,
 } from './RollingHeader.style';
 import {
   getReactionData,
@@ -23,6 +25,7 @@ import {
   getUserInfo,
 } from '../../../apis/api';
 import useOutsideClose from '../../../hooks/useOutsideClose';
+import { ShareList } from './ShareList';
 
 function RollingPageHeader({
   name,
@@ -34,6 +37,7 @@ function RollingPageHeader({
 }) {
   const [isEmojiPickerVisible, setIsEmojiPickerVsiible] = useState(false);
   const [isEmoticonDetailVisible, setIsEmotionDetailVisible] = useState(false);
+  const [isShareVisible, setIsShareVisible] = useState(false);
   const [userReactionList, setUserReactionList] = useState([]);
   const [topReactions, setTopReactions] = useState([]);
 
@@ -60,6 +64,7 @@ function RollingPageHeader({
   };
   const emojiPickerRef = useRef(null);
   const emojiDetailRef = useRef(null);
+  const shareRef = useRef(null);
 
   const onAddEmojiBtnHandle = () => {
     setIsEmojiPickerVsiible(!isEmojiPickerVisible);
@@ -72,14 +77,55 @@ function RollingPageHeader({
   };
 
   const onSharedBtnHandle = () => {
-    setIsSharedToastVisible(true);
-    const url = window.location.href;
-    navigator.clipboard.writeText(url);
+    setIsShareVisible(!isShareVisible);
   };
+
+  const onSharedClickHandle = (item) => {
+    const itemUrl = window.location.href;
+    const title = `${name}님의 롤링페이퍼입니다.`;
+
+    if (item === '카카오톡 공유') {
+      setIsSharedToastVisible(true);
+
+      if (window.Kakao) {
+        const kakao = window.Kakao;
+
+        if (!kakao.isInitialized()) {
+          kakao.init(process.env.REACT_APP_KAKAO_KEY);
+        }
+
+        kakao.Link.sendDefault({
+          objectType: 'feed',
+          content: {
+            title,
+            description: '🥰내 롤링페이퍼로 오세요🥰',
+            imageUrl: `https://github.com/MinCheolS/RollingPaper/blob/main/src/assets/images/shareLogo.png?raw=true`,
+            link: {
+              webUrl: itemUrl,
+            },
+          },
+          buttons: [
+            {
+              title,
+              link: {
+                webUrl: itemUrl,
+              },
+            },
+          ],
+        });
+        kakao.cleanup();
+      }
+    } else {
+      setIsSharedToastVisible(true);
+      navigator.clipboard.writeText(itemUrl);
+    }
+  };
+
   const threePeople = cardList.slice(0, 3);
 
   useOutsideClose(emojiPickerRef, setIsEmojiPickerVsiible);
   useOutsideClose(emojiDetailRef, setIsEmotionDetailVisible);
+  useOutsideClose(shareRef, setIsShareVisible);
 
   return (
     <MainContainerHeader>
@@ -128,9 +174,21 @@ function RollingPageHeader({
             </div>
           </EmoticonDiv>
           <DividerDiv $marginLeft="13px" id="shrinkAtMobile" />
-          <ShareButton onClick={() => onSharedBtnHandle()}>
+          <ShareButton ref={shareRef} onClick={() => onSharedBtnHandle()}>
             <ShareIcon />
           </ShareButton>
+          {isShareVisible && (
+            <ShareOptionDiv>
+              {ShareList.map((item) => (
+                <ShareOptionBtn
+                  key={item}
+                  onClick={() => onSharedClickHandle(item)}
+                >
+                  {item}
+                </ShareOptionBtn>
+              ))}
+            </ShareOptionDiv>
+          )}
         </div>
       </div>
     </MainContainerHeader>
