@@ -7,7 +7,7 @@ import RollingPage from '../pages/RollingPage';
 import RollingToBgPage from '../pages/RollingToBgPage';
 import RollingToMsgPage from '../pages/RollingToMsgPage';
 import { lightTheme, darkTheme } from '../styles/theme';
-import ToggleTheme from '../styles/Common/ThemeToggle';
+import ToggleTheme from '../styles/Common/ThemeToggle.style';
 
 function Router() {
   const [theme, setTheme] = useState(true);
