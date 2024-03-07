@@ -17,17 +17,17 @@ import {
 } from '../../styles/ListPage/CardDataSkeleton.style';
 
 function CardData({ cardData, translateX }) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const commentImg = cardData.map((data) => data.recentMessages);
   const emoji = cardData.map((data) => data.topReactions.slice(0, 3));
 
   useEffect(() => {
     setTimeout(() => {
-      setIsLoading(true);
+      setIsLoading(false);
     }, 1000);
   }, []);
 
-  if (!isLoading) {
+  if (isLoading) {
     return (
       <CardDataSkeletonWrapper>
         <CardDataSkeletonContainerDiv>
@@ -76,9 +76,7 @@ function CardData({ cardData, translateX }) {
                       명이 작성했어요!
                     </>
                   ) : (
-                    <span className="CommentCount">
-                      작성자가 없어요 작성해주세요!
-                    </span>
+                    <span className="CommentCount">작성자가 없어요...</span>
                   )}
                 </CardCommentCountDiv>
               </CardRecipientWrapperDiv>

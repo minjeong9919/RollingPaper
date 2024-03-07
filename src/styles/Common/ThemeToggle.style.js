@@ -25,7 +25,7 @@ const ToggleTheme = styled.button`
       theme.mode === 'light'
         ? 'linear-gradient(180deg, #ffcc89, #d8860b)'
         : 'linear-gradient(180deg, #777, #3a3a3a)'};
-    border-radius: 180px;
+    border-radius: 50%;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
   }
