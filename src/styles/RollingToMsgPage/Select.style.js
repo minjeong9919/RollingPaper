@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import arrowTop from '../../assets/icons/arrowTop.svg';
+import arrowDown from '../../assets/icons/arrowDown.svg';
 
 export const SelectBtn = styled.button`
   display: flex;
@@ -31,7 +33,8 @@ export const ArrowBtn = styled.div`
   color: ${({ theme }) => theme.text};
   font-size: var(--font24);
   &::before {
-    content: ${({ $isOpen }) => ($isOpen ? '"∧"' : '"∨"')};
+    content: ${({ $isOpen }) =>
+      $isOpen ? `url(${arrowTop})` : `url(${arrowDown})`};
   }
 `;
 
@@ -44,7 +47,7 @@ export const SelectOptionDiv = styled.div`
   padding: 1rem 0.1rem;
   border-radius: 0.8rem;
   border: 0.1rem solid var(--gray300);
-  background-color: ${({ theme }) => theme.btnBgColor};
+  background-color: ${({ theme }) => theme.buttonSelectColor};
   box-shadow: 0 4px 12px #00000052;
   z-index: 1;
 `;
@@ -63,6 +66,6 @@ export const SelectOptionBtn = styled.button`
   letter-spacing: -0.016rem;
 
   &:hover {
-    background-color: ${({ theme }) => theme.buttonSelectColor};
+    background-color: ${({ theme }) => theme.btnBgColor};
   }
 `;
