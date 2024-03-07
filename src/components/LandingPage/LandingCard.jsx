@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import LandingImg1 from '../../assets/images/landing1.png';
 import LandingImg2 from '../../assets/images/landing2.png';
@@ -11,6 +11,9 @@ import {
   CardBadgeDiv,
   CardDescDiv,
 } from '../../styles/LandingPage/LandingCard.style';
+import LandingSkeltonDiv, {
+  LandingSkeltonContainerDiv,
+} from '../../styles/LandingPage/LandingSkeleton.style';
 
 function LandingCard({ theme }) {
   const cards = [
@@ -29,7 +32,24 @@ function LandingCard({ theme }) {
       imgSrc: theme ? LandingImg2 : DarkLandingImg2,
     },
   ];
+  const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(true);
+    }, 1000);
+  }, []);
+
+  if (!isLoading) {
+    return (
+      <LandingSkeltonContainerDiv>
+        {new Array(2).fill(1).map((_, i) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <LandingSkeltonDiv key={i} />
+        ))}
+      </LandingSkeltonContainerDiv>
+    );
+  }
   return (
     <CardContainerDiv>
       {cards.map((card) => (
