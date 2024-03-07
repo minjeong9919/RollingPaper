@@ -35,9 +35,10 @@ function LandingCard({ theme }) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setIsLoading(true);
-    }, 1000);
+    }, 2000);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   if (!isLoading) {
@@ -73,6 +74,6 @@ function LandingCard({ theme }) {
 }
 
 LandingCard.propTypes = {
-  theme: PropTypes.string.isRequired,
+  theme: PropTypes.bool.isRequired,
 };
 export default LandingCard;

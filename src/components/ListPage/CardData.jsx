@@ -22,9 +22,10 @@ function CardData({ cardData, translateX }) {
   const emoji = cardData.map((data) => data.topReactions.slice(0, 3));
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    const timeoutId = setTimeout(() => {
+      setIsLoading(true);
+    }, 2000);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   if (isLoading) {
