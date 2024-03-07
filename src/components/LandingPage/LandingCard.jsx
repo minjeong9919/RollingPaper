@@ -73,6 +73,6 @@ function LandingCard({ theme }) {
 }
 
 LandingCard.propTypes = {
-  theme: PropTypes.string.isRequired,
+  theme: PropTypes.bool.isRequired,
 };
 export default LandingCard;
