@@ -52,6 +52,60 @@
 <br />
 
 # <img src="https://rolling-paper-team3.vercel.app/static/media/logo.b0eb23b848f6b7067a8e7055071719d7.svg"> 주요 기능
+<table>
+  <tbody>
+    <tr>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/6816a748-83f2-4a55-a46a-d1d9d98d50c9" width=450 height=450></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/d5ec7e19-14c5-43f6-b090-fa380397e891" width=450 height=450></td>
+    </tr>
+    <tr>
+      <td align="center">렌더링 페이지</td>
+      <td align="center">롤링 페이퍼 리스트 페이지</td>
+    </tr>
+    <tr>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/1500653f-0b5f-4f64-b580-d83498356a36" width=450 height=450></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/ad9ab9f4-13ed-46bd-88a9-e7d0e1206cdc" width=450 height=450></td>
+    </tr>
+    <tr>
+      <td align="center">롤링 페이퍼 만들기</td>
+      <td align="center">롤링 페이퍼 메세지 작성</td>
+    </tr>
+    <tr>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/ca29f1bd-a282-498c-a2a4-f7e5d710f3f3" width=450 height=450></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/c26a3317-422a-44c1-af9a-53c2fe0da5a0" width=450 height=450></td>
+    </tr>
+    <tr>
+      <td align="center">무한 스크롤</td>
+      <td align="center">이모지</td>
+    </tr>
+    <tr>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/1844a227-aa66-4077-9cdc-4caeed28a31b" width=450 height=450></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/f83bee79-f18d-4dc7-aa62-83e981e985fe" width=450 height=450></td>
+    </tr>
+    <tr>
+      <td align="center">메세지 삭제</td>
+      <td align="center">다크 모드</td>
+    </tr>
+    <tr>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/6aed02eb-bfa0-4aae-996f-e61547da5812" width=450 height=450></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/053312e4-c2eb-41f2-bb2b-9b12e0864065" width=450 height=450></td>
+    </tr>
+    <tr>
+      <td align="center">링크 공유</td>
+      <td align="center">카카오 공유</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
 
 <br />
 
