@@ -1,7 +1,7 @@
-# 프로젝트 소개
+# <img src="https://rolling-paper-team3.vercel.app/static/media/logo.b0eb23b848f6b7067a8e7055071719d7.svg"> 프로젝트 소개
 로그인 없이 다른 사람들의 롤링페이퍼에 메시지와 이모티콘을 남길 수 있고, 자기만의 롤링페이퍼를 만들어 다른사람에게 공유할 수 있는 서비스
 
-# 사용 기술 스택
+# <img src="https://rolling-paper-team3.vercel.app/static/media/logo.b0eb23b848f6b7067a8e7055071719d7.svg"> 사용 기술 스택
 <table>
   <tbody>
     <tr>
@@ -33,12 +33,59 @@
   </tbody>
 </table>
 
-# 주요 기능
+# <img src="https://rolling-paper-team3.vercel.app/static/media/logo.b0eb23b848f6b7067a8e7055071719d7.svg"> 주요 기능
 
-# 트러블 슈팅
+# <img src="https://rolling-paper-team3.vercel.app/static/media/logo.b0eb23b848f6b7067a8e7055071719d7.svg"> 트러블 슈팅
 
-# 팀원 소개
-|             [🚩신민철](https://github.com/MinCheolS)             |              [김민정](https://github.com/minjeong9919)              |             [이진우](https://github.com/yeeZinu)             |              [황준용](https://github.com/hsmurf)              |
-|:-------------------------------------------------------------:|:-------------------------------------------------------------:|:-------------------------------------------------------------:|:------------------------------------------------------------:|
-| ![신민철](https://avatars.githubusercontent.com/u/97032929?v=4) | ![김민정](https://avatars.githubusercontent.com/u/110798291?v=4) | ![이진우](https://avatars.githubusercontent.com/u/33426203?v=4) | ![황준용](https://avatars.githubusercontent.com/u/107796704?v=4) |
-|                           FRONT-END                           |                           FRONT-END                           |                           FRONT-END                            |                           FRONT-END                           |
+# <img src="https://rolling-paper-team3.vercel.app/static/media/logo.b0eb23b848f6b7067a8e7055071719d7.svg"> 프론트엔드 팀원 소개
+<table>
+  <tbody>
+    <tr>
+      <tr>
+        <th colspan="2">이름</th>
+        <th width="250">담당</th>
+        <th width="300">Github</th>
+      </tr>
+      <tr>
+        <td align="center"><p>🚩신민철</p></td>
+        <td><img src="https://avatars.githubusercontent.com/u/97032929?v=4" width=100 height=100> </td>
+        <td align="center">
+          롤링 페이퍼 메세지 페이지 <br />
+          카카오톡 공유하기
+        </td>
+        <td>https://github.com/MinCheolS</td>
+      </tr>
+      <tr>
+        <td align="center"><p>김민정</p></td>
+        <td><img src="https://avatars.githubusercontent.com/u/110798291?v=4" width=100 height=100> </td>
+        <td align="center">
+          롤링 페이퍼 페이지 <br />
+          상세페이지 <br />
+          모달 <br />
+          링크 공유하기
+        </td>
+        <td>https://github.com/minjeong9919</td>
+      </tr>
+      <tr>
+        <td align="center"><p>이진우</p></td>
+        <td><img src="https://avatars.githubusercontent.com/u/33426203?v=4" width=100 height=100> </td>
+        <td align="center">
+          롤링 페이퍼 생성 페이지 <br />
+          스켈레톤 UI
+        </td>
+        <td>https://github.com/yeeZinu</td>
+      </tr>
+      <tr>
+        <td align="center"><p>황준용</p></td>
+        <td><img src="https://avatars.githubusercontent.com/u/107796704?v=4" width=100 height=100> </td>
+        <td align="center">
+          랜딩 페이지 <br />
+          롤링 페이퍼 리스트 페이지 <br />
+          Toast <br />
+          스켈레톤 UI
+        </td>
+        <td>https://github.com/hsmurf</td>
+      </tr>
+    </tr>
+  </tbody>
+</table>
