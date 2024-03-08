@@ -86,14 +86,6 @@
       <td align="center">메세지 삭제</td>
       <td align="center">다크 모드</td>
     </tr>
-    <tr>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/6aed02eb-bfa0-4aae-996f-e61547da5812" width=300 height=300></td>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/053312e4-c2eb-41f2-bb2b-9b12e0864065" width=300 height=300></td>
-    </tr>
-    <tr>
-      <td align="center">링크 공유</td>
-      <td align="center">카카오 공유</td>
-    </tr>
   </tbody>
 </table>
 
