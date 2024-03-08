@@ -23,7 +23,7 @@ function CardData({ cardData, translateX }) {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setIsLoading(true);
+      setIsLoading(false);
     }, 2000);
     return () => clearTimeout(timeoutId);
   }, []);
