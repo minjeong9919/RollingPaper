@@ -1,5 +1,21 @@
 # <img src="https://rolling-paper-team3.vercel.app/static/media/logo.b0eb23b848f6b7067a8e7055071719d7.svg"> 프로젝트 소개
+```javascript
 로그인 없이 다른 사람들의 롤링페이퍼에 메시지와 이모티콘을 남길 수 있고, 자기만의 롤링페이퍼를 만들어 다른사람에게 공유할 수 있는 서비스
+```
+<table>
+  <tbody>
+    <tr>
+      <td>개발 기간</td>
+      <td>2024.02.26 ~ 2024.03.08</td>
+    </tr>
+    <tr>
+      <td>URL</td>
+      <td>https://rolling-paper-team3.vercel.app/</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
 
 # <img src="https://rolling-paper-team3.vercel.app/static/media/logo.b0eb23b848f6b7067a8e7055071719d7.svg"> 사용 기술 스택
 <table>
@@ -33,9 +49,15 @@
   </tbody>
 </table>
 
+<br />
+
 # <img src="https://rolling-paper-team3.vercel.app/static/media/logo.b0eb23b848f6b7067a8e7055071719d7.svg"> 주요 기능
 
+<br />
+
 # <img src="https://rolling-paper-team3.vercel.app/static/media/logo.b0eb23b848f6b7067a8e7055071719d7.svg"> 트러블 슈팅
+
+<br />
 
 # <img src="https://rolling-paper-team3.vercel.app/static/media/logo.b0eb23b848f6b7067a8e7055071719d7.svg"> 프론트엔드 팀원 소개
 <table>
