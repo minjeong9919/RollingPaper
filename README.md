@@ -55,32 +55,32 @@
 <table>
   <tbody>
     <tr>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/6816a748-83f2-4a55-a46a-d1d9d98d50c9" width=300 height=300></td>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/d5ec7e19-14c5-43f6-b090-fa380397e891" width=300 height=300></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/7c5f1307-581c-4b48-8168-040ba16fb471" width=300 height=300></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/bd54c756-70c9-4133-a25f-18bf5340fed7" width=300 height=300></td>
     </tr>
     <tr>
       <td align="center">렌더링 페이지</td>
       <td align="center">롤링 페이퍼 리스트 페이지</td>
     </tr>
     <tr>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/1500653f-0b5f-4f64-b580-d83498356a36" width=300 height=300></td>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/ad9ab9f4-13ed-46bd-88a9-e7d0e1206cdc" width=300 height=300></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/e55de5c8-feea-41d2-9c01-b77c441f3fdd" width=300 height=300></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/57cc30e3-040e-44a6-9372-217fbf6309a7" width=300 height=300></td> 
     </tr>
     <tr>
       <td align="center">롤링 페이퍼 만들기</td>
       <td align="center">롤링 페이퍼 메세지 작성</td>
     </tr>
     <tr>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/ca29f1bd-a282-498c-a2a4-f7e5d710f3f3" width=300 height=300></td>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/c26a3317-422a-44c1-af9a-53c2fe0da5a0" width=300 height=300></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/141fe44c-ccfb-4d96-ba5f-83a707305925" width=300 height=300></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/ed035792-cd72-4eb2-8dc2-29995eb89b89" width=300 height=300></td>
     </tr>
     <tr>
       <td align="center">무한 스크롤</td>
       <td align="center">이모지</td>
     </tr>
     <tr>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/1844a227-aa66-4077-9cdc-4caeed28a31b" width=300 height=300></td>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/f83bee79-f18d-4dc7-aa62-83e981e985fe" width=300 height=300></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/1e5fd10d-183c-4fc9-928a-39a8110b32a2" width=300 height=300></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/6561d2fe-2c96-4b83-b57d-34d54fee1f9a" width=300 height=300></td> 
     </tr>
     <tr>
       <td align="center">메세지 삭제</td>
@@ -88,6 +88,7 @@
     </tr>
   </tbody>
 </table>
+
 
 
 
