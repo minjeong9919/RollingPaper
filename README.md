@@ -656,7 +656,7 @@
         <th width="380">Github</th>
       </tr>
       <tr>
-        <td align="center"><p>🚩신민철</p></td>
+        <td align="center"><p>🚩<br />신민철</p></td>
         <td><img src="https://avatars.githubusercontent.com/u/97032929?v=4" width=100 height=100> </td>
         <td align="center">
           롤링 페이퍼 메세지 페이지 <br />
