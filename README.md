@@ -43,7 +43,7 @@
       </tr>
       <tr>
         <td><p>Communication</p></td>
-        <td><img src="https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white"></td>
+        <td><img src="https://img.shields.io/badge/Notion-%24000000.svg?style=for-the-badge&logo=notion&logoColor=white"> <img src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white"></td>
       </tr>          
     </tr>
   </tbody>
@@ -55,32 +55,32 @@
 <table>
   <tbody>
     <tr>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/7c5f1307-581c-4b48-8168-040ba16fb471" width=300 height=300></td>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/bd54c756-70c9-4133-a25f-18bf5340fed7" width=300 height=300></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/7c5f1307-581c-4b48-8168-040ba16fb471" width=400 height=400></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/bd54c756-70c9-4133-a25f-18bf5340fed7" width=400 height=400></td>
     </tr>
     <tr>
       <td align="center">렌더링 페이지</td>
       <td align="center">롤링 페이퍼 리스트 페이지</td>
     </tr>
     <tr>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/e55de5c8-feea-41d2-9c01-b77c441f3fdd" width=300 height=300></td>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/57cc30e3-040e-44a6-9372-217fbf6309a7" width=300 height=300></td> 
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/e55de5c8-feea-41d2-9c01-b77c441f3fdd" width=400 height=400></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/57cc30e3-040e-44a6-9372-217fbf6309a7" width=400 height=400></td> 
     </tr>
     <tr>
       <td align="center">롤링 페이퍼 만들기</td>
       <td align="center">롤링 페이퍼 메세지 작성</td>
     </tr>
     <tr>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/141fe44c-ccfb-4d96-ba5f-83a707305925" width=300 height=300></td>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/ed035792-cd72-4eb2-8dc2-29995eb89b89" width=300 height=300></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/141fe44c-ccfb-4d96-ba5f-83a707305925" width=400 height=400></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/ed035792-cd72-4eb2-8dc2-29995eb89b89" width=400 height=400></td>
     </tr>
     <tr>
       <td align="center">무한 스크롤</td>
       <td align="center">이모지</td>
     </tr>
     <tr>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/1e5fd10d-183c-4fc9-928a-39a8110b32a2" width=300 height=300></td>
-      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/6561d2fe-2c96-4b83-b57d-34d54fee1f9a" width=300 height=300></td> 
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/1e5fd10d-183c-4fc9-928a-39a8110b32a2" width=400 height=400></td>
+      <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/6561d2fe-2c96-4b83-b57d-34d54fee1f9a" width=400 height=400></td> 
     </tr>
     <tr>
       <td align="center">메세지 삭제</td>
@@ -653,7 +653,7 @@
       <tr>
         <th colspan="2">이름</th>
         <th width="250">담당</th>
-        <th width="300">Github</th>
+        <th width="400">Github</th>
       </tr>
       <tr>
         <td align="center"><p>🚩신민철</p></td>
