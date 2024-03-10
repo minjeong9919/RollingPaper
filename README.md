@@ -1,3 +1,5 @@
+<img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/39fb5984-4471-4438-8217-2ae283a4fd70" witdh=800 height=500>
+
 # <img src="https://rolling-paper-team3.vercel.app/static/media/logo.b0eb23b848f6b7067a8e7055071719d7.svg"> 프로젝트 소개
 ```javascript
 로그인 없이 다른 사람들의 롤링페이퍼에 메시지와 이모티콘을 남길 수 있고, 자기만의 롤링페이퍼를 만들어 다른사람에게 공유할 수 있는 서비스
