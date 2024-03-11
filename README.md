@@ -655,11 +655,11 @@
       <tr>
         <th colspan="2">이름</th>
         <th width="250">담당</th>
-        <th width="380">Github</th>
+        <th width="330">Github</th>
       </tr>
       <tr>
         <td align="center"><p>🚩<br />신민철</p></td>
-        <td><img src="https://avatars.githubusercontent.com/u/97032929?v=4" width=100 height=100> </td>
+        <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/6a7e4981-ab23-4659-b0d9-b8548d40ea4f" width=100 height=141> </td>
         <td align="center">
           롤링 페이퍼 메세지 페이지 <br />
           카카오톡 공유하기
@@ -668,7 +668,7 @@
       </tr>
       <tr>
         <td align="center"><p>김민정</p></td>
-        <td><img src="https://avatars.githubusercontent.com/u/110798291?v=4" width=100 height=100> </td>
+        <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/e70385ad-56b3-497a-8f0f-8b926a0c7e89" width=100 height=141> </td>
         <td align="center">
           롤링 페이퍼 페이지 <br />
           상세페이지 <br />
@@ -679,7 +679,7 @@
       </tr>
       <tr>
         <td align="center"><p>이진우</p></td>
-        <td><img src="https://avatars.githubusercontent.com/u/33426203?v=4" width=100 height=100> </td>
+        <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/4356cfb3-1e82-4d73-abe1-5c2fab071865" width=100 height=141> </td>
         <td align="center">
           롤링 페이퍼 생성 페이지 <br />
           스켈레톤 UI
@@ -688,7 +688,7 @@
       </tr>
       <tr>
         <td align="center"><p>황준용</p></td>
-        <td><img src="https://avatars.githubusercontent.com/u/107796704?v=4" width=100 height=100> </td>
+        <td><img src="https://github.com/MinCheolS/RollingPaper/assets/97032929/e426f140-a68f-4ac1-86b6-e4546b927428" width=100 height=141> </td>
         <td align="center">
           랜딩 페이지 <br />
           롤링 페이퍼 리스트 페이지 <br />
